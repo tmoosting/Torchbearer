@@ -13,7 +13,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Ground
   - 
   - 
   - 
@@ -40,4 +40,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2117106909
+    locked: 0
+  - name: Overworld1
+    uniqueID: 1543813311
+    locked: 0
+  - name: Overworld2
+    uniqueID: 2979121731
+    locked: 0
+  - name: Overworld3
+    uniqueID: 3724226429
+    locked: 0
+  - name: UI1
+    uniqueID: 3794235039
+    locked: 0
+  - name: UI2
+    uniqueID: 2233391745
+    locked: 0
+  - name: UI3
+    uniqueID: 232766651
     locked: 0
