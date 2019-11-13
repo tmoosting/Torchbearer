@@ -11,6 +11,13 @@ public class PlayerMovement : MonoBehaviour
 
     float maxspeed;
     float jumpvelocity;
+    public float dashSpeed;
+    private float dashTime;
+    public float startDashTime;
+    float dashHor;
+    float dashVert;
+    bool dashing;
+    public bool dashAvailable;
 
     // Start is called before the first frame update
     void Start()
@@ -19,23 +26,96 @@ public class PlayerMovement : MonoBehaviour
         PlayerBox = GetComponent<BoxCollider2D>();
         maxspeed = 6f;
         jumpvelocity = 10f;
+        dashing = false;
+        dashAvailable = false;
+        dashSpeed = 20f;
+        dashHor = 0f;
+        dashVert = 0f;
+        dashTime = startDashTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxisRaw("Vertical");
-        Vector2 vel = PlayerRB.velocity;
-        vel.x = horizontal * maxspeed;
-        PlayerRB.velocity = vel;
-        if (vertical == 1)
+        if (!dashing)
         {
-            Jump();
+            if (!dashAvailable)
+            {
+                if (IsGrounded())
+                {
+                    dashAvailable = true;
+                }
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (dashAvailable)
+                {
+                    Dash();
+                }
+            }
+            else
+            {
+                float horizontal = Input.GetAxis("Horizontal");
+                float vertical = Input.GetAxisRaw("Vertical");
+                Vector2 vel = PlayerRB.velocity;
+                vel.x = horizontal * maxspeed;
+                PlayerRB.velocity = vel;
+                if (vertical == 1)
+                {
+                    Jump();
+                }
+            }
+        }
+        else
+        {
+            Dash();
         }
         
 
 
+    }
+
+    void Dash()
+    {
+        if (!dashing)
+        {
+            dashAvailable = false;
+            dashHor = Input.GetAxisRaw("Horizontal");
+            dashVert = Input.GetAxisRaw("Vertical");
+            dashing = true;
+        }
+        if (dashHor == -1 && dashVert != 1)
+        {
+            PlayerRB.velocity = new Vector2(-1f * dashSpeed, 0f);
+        }
+        else if (dashHor == -1 && dashVert == 1)
+        {
+            PlayerRB.velocity = new Vector2(-1f * dashSpeed, 1f * dashSpeed);
+        }
+        else if (dashHor == 0 && dashVert == 1)
+        {
+            PlayerRB.velocity = new Vector2(0f, 1f * dashSpeed);
+        }
+        else if (dashHor == 1 && dashVert == 1)
+        {
+            PlayerRB.velocity = new Vector2(1f * dashSpeed, 1f * dashSpeed);
+        }
+        else if (dashHor == 1 && dashVert != 1)
+        {
+            PlayerRB.velocity = new Vector2(1f * dashSpeed, 0f);
+        }
+        if (dashTime <= 0)
+        {
+            dashHor = 0f;
+            dashVert = 0f;
+            dashTime = startDashTime;
+            PlayerRB.velocity = new Vector2(0f, 0f);
+            dashing = false;
+        }
+        else
+        {
+            dashTime -= Time.deltaTime;
+        }
     }
 
     void Jump()
