@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
+  - Player
   - Ground
-  - 
   - 
   - 
   - 
@@ -52,6 +52,9 @@ TagManager:
     locked: 0
   - name: Overworld3
     uniqueID: 3724226429
+    locked: 0
+  - name: Player
+    uniqueID: 3489321691
     locked: 0
   - name: UI1
     uniqueID: 3794235039
