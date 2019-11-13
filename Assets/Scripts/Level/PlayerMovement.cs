@@ -9,15 +9,15 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D PlayerRB;
     BoxCollider2D PlayerBox;
 
-    float maxspeed;
-    float jumpvelocity;
+    private float maxspeed;
+    private float jumpvelocity;
     public float dashSpeed;
     private float dashTime;
     public float startDashTime;
-    float dashHor;
-    float dashVert;
-    bool dashing;
-    public bool dashAvailable;
+    private float dashHor;
+    private float dashVert;
+    private bool dashing;
+    private bool dashAvailable;
 
     // Start is called before the first frame update
     void Start()
