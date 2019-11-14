@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private float dashHor;
     private float dashVert;
     private bool dashing;
-    private bool dashAvailable;
+    public bool dashAvailable;
     private bool isFalling;
 
     // Start is called before the first frame update
@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (!dashing)
         {
@@ -156,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                dashTime -= Time.fixedDeltaTime;
+                dashTime -= Time.deltaTime;
             }
         }
     }
@@ -165,6 +165,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsGrounded())
         {
+            dashAvailable = true;
             PlayerAnimator.SetBool("Jump", true);
             Vector2 vel = PlayerRB.velocity;
             vel.y = jumpvelocity;
