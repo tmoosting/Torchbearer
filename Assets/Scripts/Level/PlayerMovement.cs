@@ -124,10 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
-        {
-        }
-        else
+        if (!(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0))
         {
             if (!dashing)
             {
