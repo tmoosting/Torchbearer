@@ -7,7 +7,7 @@ public class DangerMarker : MonoBehaviour
 
 
     public bool isSafe;
-    [HideInInspector]
+ 
     public int tier;
 
 

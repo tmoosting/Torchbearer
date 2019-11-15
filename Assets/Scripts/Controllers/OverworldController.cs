@@ -37,6 +37,7 @@ public class OverworldController : MonoBehaviour
 
     public void FinishLevel(bool successful)
     {
+        Debug.Log("finishing level for stage.. " + currentStage);
         if (successful == true)
         {
             SucceedStage();
@@ -61,7 +62,8 @@ public class OverworldController : MonoBehaviour
         TakeSafeRoute();
     }
     public void FailStage()
-    { 
+    {
+        Debug.Log("add " + chosenTowerID);
         towerCompletion.Add(chosenTowerID, false);
         TakeRandomRoute();
     }
@@ -125,7 +127,7 @@ public class OverworldController : MonoBehaviour
             count++;
             if (count == 4)
             {
-                count = 0;
+                count = 1;
                 tier++;
             } 
             obj.GetComponent<DangerMarker>().tier = tier;
