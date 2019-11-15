@@ -1456,7 +1456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9169993, y: -3.5, z: -10}
+  m_LocalPosition: {x: 0.9169995, y: -3.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1524,7 +1524,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1669594749}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.9169993, y: -3.5, z: -10}
+  m_LocalPosition: {x: 0.9169995, y: -3.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 300816787}
@@ -1648,5 +1648,25 @@ PrefabInstance:
       propertyPath: ghost
       value: 
       objectReference: {fileID: 138742661}
+    - target: {fileID: 1117516187577235837, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: dashSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117516187577235837, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: startDashTime
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117516187577235837, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: airDash
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117516187577235837, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: freeDash
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6215db441339de846bf442c6bea427cf, type: 3}

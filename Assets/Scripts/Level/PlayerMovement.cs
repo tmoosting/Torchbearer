@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private bool dashing;
     public bool dashAvailable;
     private bool isFalling;
+    public bool freeDash; 
 
     // Start is called before the first frame update
     void Start()
@@ -66,10 +67,10 @@ public class PlayerMovement : MonoBehaviour
                 isFalling = false;
                 PlayerAnimator.SetBool("Jump", true);
                 PlayerAnimator.SetBool("Falling", false);
-            }
+            } 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                if (dashAvailable)
+                if (dashAvailable  || freeDash)
                 {
                     Dash();
                 }
