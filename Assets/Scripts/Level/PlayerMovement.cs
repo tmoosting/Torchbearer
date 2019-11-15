@@ -1,28 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerMovement : MonoBehaviour
 {
     public LayerMask groundLayer;
     public Ghost ghost;
+    public GameObject cineMachine;
+    public GameObject camObj;
 
     Rigidbody2D PlayerRB;
     BoxCollider2D PlayerBox;
     SpriteRenderer PlayerSprite;
     Animator PlayerAnimator;
+    Transform PlayerTrans;
+    
+    CinemachineFramingTransposer CineTransposer;
+    CinemachineVirtualCamera vcam;
 
-    private float maxspeed;
-    private float jumpvelocity;
-    public float dashSpeed;
+    private float maxspeed = 6f;
+    private float jumpvelocity = 10f;
+    public float dashSpeed = 20f;
+    public float startDashTime = 0.2f;
+    private float dashHor = 0f;
+    private float dashVert = 0f;
+    private bool dashing = false;
+    public bool dashAvailable = false;
+    private bool isFalling = false;
+    public bool freeDash = false;
+    private float lowestY = -30f;
+
     private float dashTime;
-    public float startDashTime;
-    private float dashHor;
-    private float dashVert;
-    private bool dashing;
-    public bool dashAvailable;
-    private bool isFalling;
-    public bool freeDash; 
+    private Vector3 spawnPoint;
+    private Vector3 cineSpawnPoint;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,20 +43,24 @@ public class PlayerMovement : MonoBehaviour
         PlayerBox = GetComponent<BoxCollider2D>();
         PlayerSprite = GetComponent<SpriteRenderer>();
         PlayerAnimator = GetComponent<Animator>();
-        maxspeed = 6f;
-        jumpvelocity = 10f;
-        dashing = false;
-        dashAvailable = false;
-        dashSpeed = 20f;
-        dashHor = 0f;
-        dashVert = 0f;
+        PlayerTrans = GetComponent<Transform>();
         dashTime = startDashTime;
-        isFalling = false;
+        spawnPoint = PlayerTrans.position;
+        vcam = cineMachine.GetComponent<CinemachineVirtualCamera>();
+        CineTransposer = vcam.GetCinemachineComponent<CinemachineFramingTransposer>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (PlayerTrans.position.y < lowestY)
+        {
+            vcam.enabled = false;
+            PlayerTrans.position = spawnPoint;
+            camObj.GetComponent<Transform>().position = spawnPoint;
+            vcam.PreviousStateIsValid = false;
+            vcam.enabled = true;
+        }
         if (!dashing)
         {
             if (!dashAvailable || isFalling)
