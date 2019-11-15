@@ -108,7 +108,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Dash()
     {
-        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") <= 0)
+        if (Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
         {
         }
         else
@@ -125,7 +125,7 @@ public class PlayerMovement : MonoBehaviour
                 ghost.makeGhost = true;
             }
             float pythDash = Mathf.Sqrt(dashSpeed * dashSpeed + dashSpeed * dashSpeed);
-            if (dashHor == -1 && dashVert != 1)
+            if (dashHor == -1 && dashVert == 0)
             {
                 PlayerRB.velocity = new Vector2(-1f * pythDash, 0f);
             }
@@ -141,9 +141,21 @@ public class PlayerMovement : MonoBehaviour
             {
                 PlayerRB.velocity = new Vector2(1f * dashSpeed, 1f * dashSpeed);
             }
-            else if (dashHor == 1 && dashVert != 1)
+            else if (dashHor == 1 && dashVert == 0)
             {
                 PlayerRB.velocity = new Vector2(1f * pythDash, 0f);
+            }
+            else if (dashHor == 1 && dashVert == -1)
+            {
+                PlayerRB.velocity = new Vector2(1f * dashSpeed, -1f * dashSpeed);
+            }
+            else if (dashHor == 0 && dashVert == -1)
+            {
+                PlayerRB.velocity = new Vector2(0f, -1f * pythDash);
+            }
+            else if (dashHor == -1 && dashVert == -1)
+            {
+                PlayerRB.velocity = new Vector2(-1f * dashSpeed, -1f * dashSpeed);
             }
             if (dashTime <= 0)
             {
