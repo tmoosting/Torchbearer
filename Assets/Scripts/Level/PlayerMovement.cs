@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//This is the controller for player movement. It enables the player to walk, jump, dash, and change animations. Should be used on the player gameobject
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
@@ -6,7 +7,7 @@ using Cinemachine;
 public class PlayerMovement : MonoBehaviour
 {
     public LayerMask groundLayer; //uses the Ground layer to see if the player is standing on ground
-    public Ghost ghost; //uses Ghost prefab to create afterimages when dashing
+    public Ghost ghost; //the Ghost Script, used to create afterimages when dashing
     public GameObject cineMachine;  //Cinemachine
     public GameObject camObj;       //Main camera, used together with cinemachine to fix the camera when respawning
 
