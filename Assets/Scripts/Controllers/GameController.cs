@@ -50,10 +50,20 @@ public class GameController : MonoBehaviour
             
         }
     }
-
-
     public GameState GetGameState()
     {
         return currentGameState;
     }
+
+    public void TransitionToLevel()
+    {
+        //TODO: make a small delay and nice fade to level, then switch scene
+        UIController.Instance.overworldInterface.dialogBox.SetActive(true);
+    }
+    public void TransitionFromLevel()
+    {
+        //TODO: make a nice fade to overworld, and switch scene
+    
+    }
+
 }

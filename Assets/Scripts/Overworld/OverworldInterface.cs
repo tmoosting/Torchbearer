@@ -10,20 +10,16 @@ public class OverworldInterface : MonoBehaviour
     public GameObject progressPanel;
     public TextMeshProUGUI progressText;
 
-    public void ClickTower(Tower tower)
-    {
-        OverworldController.Instance.chosenTowerID = tower.towerID;
-        dialogBox.SetActive(true);
-    }
+
 
     public void ClickSuccessYes()
     {
-        OverworldController.Instance.SucceedStage();
+        OverworldController.Instance.FinishLevel(true);
         dialogBox.SetActive(false);
     }
     public void ClickSuccessNo()
     {
-        OverworldController.Instance.FailStage();
+        OverworldController.Instance.FinishLevel(false);
         dialogBox.SetActive(false);
 
     }
