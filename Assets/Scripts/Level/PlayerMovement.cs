@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float jumpvelocity = 10f; // Player initial jump velocity
     private bool isFalling = false; //For animation, is the player falling?
     private float lowestY = -30f; //Under what y value does the player respawn
+    public float yThreshold = 3.0f; //Velocity threshold for falling (negative) and jumping (positive)
     //Variables for dashing
     public float dashSpeed = 20f; //Velocity during dash
     public float startDashTime = 0.2f;//Dash duration
@@ -71,13 +72,13 @@ public class PlayerMovement : MonoBehaviour
                     PlayerAnimator.SetBool("Falling", false);
                 }
             }
-            if (PlayerRB.velocity.y < -0.01) //If the player is falling
+            if (PlayerRB.velocity.y < -yThreshold) //If the player is falling
             {
                 isFalling = true;
                 PlayerAnimator.SetBool("Jump", false);
                 PlayerAnimator.SetBool("Falling", true);
             }
-            else if (PlayerRB.velocity.y > 0.01)//If the player is jumping
+            else if (PlayerRB.velocity.y > yThreshold)//If the player is jumping
             {
                 isFalling = false;
                 PlayerAnimator.SetBool("Jump", true);
@@ -201,7 +202,7 @@ public class PlayerMovement : MonoBehaviour
     bool IsGrounded()//Checks if the player is standing on the ground, by checking for the groundlayer with raycasts on 3 points below the player.
     {
         Vector2 position = transform.position; //Gets player position
-        float x = PlayerBox.bounds.size.x/2 - 0.2f; //Gets half the width of the player and reduces it by 0.2f
+        float x = PlayerBox.bounds.size.x / 2;//Gets half the width of the player boxcollider
         Vector2 direction = Vector2.down;//(0,-1)
         float distance = 1.5f;//Distance the raycast travels
 
@@ -211,13 +212,13 @@ public class PlayerMovement : MonoBehaviour
             return true;
         }
         position.x -= x;
-        RaycastHit2D hit2 = Physics2D.Raycast(position, direction, distance, groundLayer);//Raycast 0.2f from the left edge of the player box collider
+        RaycastHit2D hit2 = Physics2D.Raycast(position, direction, distance, groundLayer);//Raycast at the left edge of the player box collider
         if (hit2.collider != null)
         {
             return true;
         }
         position.x += x*2;
-        RaycastHit2D hit3 = Physics2D.Raycast(position, direction, distance, groundLayer);//Raycast 0.2f from the right edge of the player box collider
+        RaycastHit2D hit3 = Physics2D.Raycast(position, direction, distance, groundLayer);//Raycast at the right edge of the player box collider
         if (hit3.collider != null)
         {
             return true;
