@@ -16,6 +16,13 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D PlayerBox;
     SpriteRenderer PlayerSprite;
     Animator PlayerAnimator;
+    //Player Audio Components
+    public AudioSource PlayerAudio;
+    public AudioClip PlayerStep;
+    public AudioClip PlayerJump;
+    public AudioClip PlayerDash;
+    public float PitchRange = 0.2f; //Maximum deviation from starting pitch
+    private float OriginalPitch; //.9 is recommended
     //Cinemachine components
     CinemachineFramingTransposer CineTransposer;
     CinemachineVirtualCamera vcam;
@@ -51,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
         dashTime = startDashTime; //Sets first dash to have full duration
         spawnPoint = transform.position; //Gets original player position as spawnpoint
+        OriginalPitch = PlayerAudio.pitch;//Saves the original pitch
         
     }
 
@@ -98,6 +106,35 @@ public class PlayerMovement : MonoBehaviour
                 Vector2 vel = PlayerRB.velocity; //Get current player velocity
                 vel.x = horizontal * maxspeed; //Alter horizontal velocity
                 PlayerAnimator.SetFloat("Speed", Mathf.Abs(horizontal * maxspeed));
+                if (horizontal != 0 && IsGrounded())//If the player is moving and on the ground, play the footstep sound
+                {
+                    if (PlayerAudio.clip == PlayerStep)
+                    {
+                        if (PlayerAudio.isPlaying == false)
+                        {
+                            PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+                            PlayerAudio.Play();
+                        }     
+                    }
+                    else
+                    {
+                        if (PlayerAudio.isPlaying == false)
+                        {
+                            PlayerAudio.clip = PlayerStep;
+                            PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+                            PlayerAudio.Play();
+                        }
+                        else
+                        {
+                            PlayerAudio.Stop();
+                            PlayerAudio.clip = PlayerStep;
+                            PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+                            PlayerAudio.Play();
+                        }
+                    }
+                    
+                    
+                }
                 if (horizontal < 0) //Used to flip sprite based on movement direction
                 {
                     PlayerSprite.flipX = true;
@@ -136,6 +173,10 @@ public class PlayerMovement : MonoBehaviour
                 PlayerAnimator.SetBool("Falling", false);
                 PlayerAnimator.SetBool("Dashing", true);
                 ghost.makeGhost = true;
+                PlayerAudio.Stop();
+                PlayerAudio.clip = PlayerDash;
+                PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+                PlayerAudio.Play();
             }
             float pythDash = Mathf.Sqrt(dashSpeed * dashSpeed + dashSpeed * dashSpeed); //Used to make the distance of dashes on 1 axis the same as diagonal dashes
             if (dashHor == -1 && dashVert == 0) //Dash left
@@ -196,13 +237,17 @@ public class PlayerMovement : MonoBehaviour
             Vector2 vel = PlayerRB.velocity;
             vel.y = jumpvelocity; //Give the player vertical velocity
             PlayerRB.velocity = vel;
+            PlayerAudio.Stop();
+            PlayerAudio.clip = PlayerJump;
+            PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+            PlayerAudio.Play();
         }
     }
 
     bool IsGrounded()//Checks if the player is standing on the ground, by checking for the groundlayer with raycasts on 3 points below the player.
     {
         Vector2 position = transform.position; //Gets player position
-        float x = PlayerBox.bounds.size.x / 2;//Gets half the width of the player boxcollider
+        float x = (PlayerBox.bounds.size.x / 2) - 0.1f;//Gets half the width of the player boxcollider, -0.1f to not jump when against a wall
         Vector2 direction = Vector2.down;//(0,-1)
         float distance = 1.5f;//Distance the raycast travels
 
