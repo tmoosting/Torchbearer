@@ -247,9 +247,9 @@ public class PlayerMovement : MonoBehaviour
     bool IsGrounded()//Checks if the player is standing on the ground, by checking for the groundlayer with raycasts on 3 points below the player.
     {
         Vector2 position = transform.position; //Gets player position
-        float x = (PlayerBox.bounds.size.x / 2) - 0.01f;//Gets half the width of the player boxcollider, -0.1f to not jump when against a wall
+        float x = (PlayerBox.bounds.size.x / 2) - 0.08f;//Gets half the width of the player boxcollider, -0.1f to not jump when against a wall
         Vector2 direction = Vector2.down;//(0,-1)
-        float distance = 1.5f;//Distance the raycast travels
+        float distance = 1.6f;//Distance the raycast travels
 
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer); //Raycast in the middle of the player box collider
         if (hit.collider != null)//If ground layer has been hit
