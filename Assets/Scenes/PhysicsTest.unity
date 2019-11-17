@@ -3548,7 +3548,7 @@ PrefabInstance:
     - target: {fileID: 1117516187577235837, guid: 6215db441339de846bf442c6bea427cf,
         type: 3}
       propertyPath: freeDash
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1117516187577235837, guid: 6215db441339de846bf442c6bea427cf,
         type: 3}
