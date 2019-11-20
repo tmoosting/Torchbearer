@@ -96,6 +96,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerLo: {fileID: 21300000, guid: 84121017115b0ea4186758d566b930b9, type: 3}
   towerHi: {fileID: 21300000, guid: dcf553dceddf6c04d9fae26614abcda9, type: 3}
+  explorable: 0
+  towerID: 0
 --- !u!61 &5887263397033655440
 BoxCollider2D:
   m_ObjectHideFlags: 0

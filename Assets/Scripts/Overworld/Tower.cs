@@ -14,18 +14,18 @@ public class Tower : MonoBehaviour
     private void OnMouseOver()
     {
         if (explorable == true)
-        gameObject.GetComponent<SpriteRenderer>().sprite = towerHi;
+        gameObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.towerSpriteHi;
     }
     private void OnMouseExit()
     {
         if (explorable == true)
-            gameObject.GetComponent<SpriteRenderer>().sprite = towerLo;
+            gameObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.towerSprite;
     }
     private void OnMouseDown()
     {
         if (explorable == true)
         {
-            UIController.Instance.overworldInterface.ClickTower(this);
+            OverworldController.Instance.ClickTower(this);
         }
 
     }
