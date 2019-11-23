@@ -161,13 +161,16 @@ public class PlayerMovement : MonoBehaviour
 
     void Dash() //Function that causes the player to dash in a certain direction for a given amount of time at a given speed
     {
-        if (!(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)) //If a direction has been given
+        if (!dashing)
+        {
+            dashHor = Input.GetAxisRaw("Horizontal");
+            dashVert = Input.GetAxisRaw("Vertical");
+        }
+        if (!(dashHor == 0 && dashVert == 0)) //If a direction has been given
         {
             if (!dashing) //If it's the first iteration, initiate a dash, create afterimage and change the animation
             {
                 dashAvailable = false;
-                dashHor = Input.GetAxisRaw("Horizontal");
-                dashVert = Input.GetAxisRaw("Vertical");
                 dashing = true;
                 PlayerAnimator.SetBool("Jump", false);
                 PlayerAnimator.SetBool("Falling", false);
