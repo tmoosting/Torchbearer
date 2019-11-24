@@ -42,8 +42,7 @@ public class GameController : MonoBehaviour
         }
         if (state  == GameState.Introduction)
         {
-            UIController.Instance.ClearTitleScreen();
-            SetGameState(GameState.Overworld);
+            UIController.Instance.narrator.StartIntroduction(); 
         }
         if (state == GameState.Overworld)
         {

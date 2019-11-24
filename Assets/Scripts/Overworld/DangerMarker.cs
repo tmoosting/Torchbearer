@@ -6,6 +6,8 @@ public class DangerMarker : MonoBehaviour
 {
 
 
+    public Danger containedDanger;
+
     public bool isSafe;
  
     public int tier;

@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
     public static UIController Instance;
 
     [Header("Assign")]
+    public Narrator narrator;
     public OverworldInterface overworldInterface;
     public GameObject titlePanel;
-   
+    public GameObject blackFadePanel;
+    public TextMeshProUGUI creditsText;
 
     private void Awake()
     {
         Instance = this;
         titlePanel.SetActive(false);
+        blackFadePanel.SetActive(false);
+        creditsText.gameObject.SetActive(false);
         overworldInterface.dialogBox.SetActive(false);
     }
 
@@ -24,7 +29,10 @@ public class UIController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (GameController.Instance.GetGameState() == GameController.GameState.TitleScreen)
+            {
+                ClearTitleScreen();
                 GameController.Instance.SetGameState(GameController.GameState.Introduction);
+            } 
         }
     }
 
@@ -36,8 +44,31 @@ public class UIController : MonoBehaviour
     {
         titlePanel.SetActive(false);
     }
+    public void ClearIntroduction()
+    {
+        narrator.OpenEventPanel(SpriteCollection.Instance.heroStandsUpSprite, narrator.heroStandsUpString);
+    }
+    public void FadeToBlack()
+    {
+        blackFadePanel.SetActive(true);
+        StartCoroutine(FadeInBlackPanel());
+    }
 
-
-
-     
+    IEnumerator FadeInBlackPanel()
+    {
+        Image bgImage = blackFadePanel.GetComponent<Image>();
+        Color tempColor = bgImage.color;
+        float alpha = 0f;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 6 )
+        {
+            Color newColor = new Color(tempColor.r, tempColor.g, tempColor.b, Mathf.Lerp(alpha, 1, t));
+            bgImage.color = newColor;
+            yield return null;
+        }
+        ShowCredits();
+    }
+    void ShowCredits()
+    {
+        creditsText.gameObject.SetActive(true);
+    }
 }

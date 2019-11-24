@@ -5,14 +5,15 @@ using UnityEngine;
 public class OverworldController : MonoBehaviour
 {
     public static OverworldController Instance;
+    Narrator narrator;
 
-    [Header("Assign")] 
+   [Header("Assign")] 
     public List<GameObject> towerList = new List<GameObject>();
     public List<GameObject> dangerMarkerList = new List<GameObject>();
     public GameObject heroObject;
     public GameObject monsterObject;
     public GameObject groupObject;
-
+    public GameObject endMarker;
     int currentStage = 1;
     int numberOfStages = 5;
     [HideInInspector]
@@ -20,7 +21,13 @@ public class OverworldController : MonoBehaviour
     [HideInInspector]
     public Dictionary<int, bool> towerCompletion = new Dictionary<int, bool>();
     bool proceedAllowed = true;
+    bool finalStageJustCompleted = false;
+    bool postFinalStageMessageClickedAway = false;
+    bool veryLastMessageClickedAway = false;
+    bool levelSucceeded = false;
 
+    [Header("Texts")]
+    public string stage5CompletedString;
 
     private void Awake()
     {
@@ -28,16 +35,24 @@ public class OverworldController : MonoBehaviour
     }
     private void Start()
     {
+        narrator = UIController.Instance.narrator;
         SetTowerIDs();
         SetMarkerTiers();
         SyncTowersToStage();
         SetSpritesFromCollection();
     }
-    
+
+    public void ClickTower(Tower tower)
+    {
+        if (proceedAllowed == true && UIController.Instance.narrator.EventPanelOpened() == false)
+        {
+            chosenTowerID = tower.towerID;
+            StartCoroutine(heroObject.GetComponent<Hero>().MoveHeroToTower(tower));
+        }
+    }
 
     public void FinishLevel(bool successful)
-    {
-        Debug.Log("finishing level for stage.. " + currentStage);
+    { 
         if (successful == true)
         {
             SucceedStage();
@@ -46,29 +61,19 @@ public class OverworldController : MonoBehaviour
         {
             FailStage();
         }
-    }
-
-    public void ClickTower(Tower tower)
-    {
-        if (proceedAllowed == true)
-        { 
-            chosenTowerID = tower.towerID;
-            StartCoroutine(heroObject.GetComponent<Hero>().MoveHeroToTower(tower));
-        } 
-    }
+    }  
     public void SucceedStage()
     {
+        levelSucceeded = true;
         towerCompletion.Add(chosenTowerID, true);
         TakeSafeRoute();
     }
     public void FailStage()
     {
-        Debug.Log("add " + chosenTowerID);
+        levelSucceeded = false;
         towerCompletion.Add(chosenTowerID, false);
         TakeRandomRoute();
-    }
-
-
+    } 
     void TakeSafeRoute()
     {
         proceedAllowed = false;
@@ -85,29 +90,79 @@ public class OverworldController : MonoBehaviour
     void TakeRandomRoute()
     {
         proceedAllowed = false;
-        List<DangerMarker> potentialMarketList = new List<DangerMarker>();
+        List<DangerMarker> potentialMarkerList = new List<DangerMarker>();
         foreach (GameObject obj in dangerMarkerList)
         {
             DangerMarker objMarker = obj.GetComponent<DangerMarker>();
             if (objMarker.tier == currentStage)
-                potentialMarketList.Add(objMarker);
+                potentialMarkerList.Add(objMarker);
         }  
-        StartCoroutine(groupObject.GetComponent<Group>().MoveGroupToMarker(potentialMarketList[Random.Range(0, 3)]));
+        StartCoroutine(groupObject.GetComponent<Group>().MoveGroupToMarker(potentialMarkerList[Random.Range(0, 3)]));
     }
 
     public void FinishGroupMovement (DangerMarker marker)
     {
         // TODO: show what happens with the group 
         ProgressStage();
+        if (levelSucceeded == true) // group moves to safe marker because beacon is lit
+        {
+          narrator.OpenSuccessfulLevelEventPanel();
+        }
+        else if(marker.isSafe == true) // group moves to safe marker by chance
+        {
+           narrator.OpenDangerDodgedEventPanel(); 
+        }
+        else // group has hit a danger
+        {
+            DangerController.Instance.GroupHitsDanger(marker.containedDanger);
+            narrator.OpenDangerHitEventPanel(marker.containedDanger);
+        }
     }
 
+    public void FinishFinalGroupMovement()
+    {
+        narrator.OpenEventPanel(DangerController.Instance.GetFinalGroupString());
+    }
     void ProgressStage()
     {
         currentStage++;
         // UIController.Instance.overworldInterface.UpdateProgressPanel(); 
-        SyncTowersToStage();
+        SyncTowersToStage();         
         proceedAllowed = true;
+        if (currentStage > numberOfStages)
+            finalStageJustCompleted = true;
     }
+
+    public void EventPanelGotClosed()
+    {
+        if (finalStageJustCompleted == true)
+        {
+            narrator.OpenEventPanel(stage5CompletedString);
+            postFinalStageMessageClickedAway = true;
+            finalStageJustCompleted = false;
+        }
+        else if (postFinalStageMessageClickedAway == true)
+        {
+            MoveGroupToEndPoint();
+            postFinalStageMessageClickedAway = false;
+            veryLastMessageClickedAway = true;
+        }
+        else if (veryLastMessageClickedAway == true)
+        {
+            UIController.Instance.FadeToBlack();
+        }
+
+    }
+
+
+    void MoveGroupToEndPoint()
+    {
+        StartCoroutine(groupObject.GetComponent<Group>().MoveGroupToVector(endMarker.transform.localPosition));
+    }
+
+
+
+    // ------------- INIT Stuff
 
     void SetTowerIDs()
     {
