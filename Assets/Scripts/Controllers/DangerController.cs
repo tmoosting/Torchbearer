@@ -82,15 +82,8 @@ public class DangerController : MonoBehaviour
             //      Debug.Log(" marker " + i + " has danger with id " + marker.containedDanger.dangerID + " and text " + marker.containedDanger.dangerString);
         } 
     }
-    public void GroupHitsDanger(Danger danger)
-    {
+  
 
-    }
-
-
-    public string GetFinalGroupString()
-    {
-        return "and so.. ";
-    }
+   
 
 }

@@ -114,14 +114,14 @@ public class OverworldController : MonoBehaviour
         }
         else // group has hit a danger
         {
-            DangerController.Instance.GroupHitsDanger(marker.containedDanger);
+            VillageController.Instance.GroupHitsDanger(marker.containedDanger);
             narrator.OpenDangerHitEventPanel(marker.containedDanger);
         }
     }
 
     public void FinishFinalGroupMovement()
     {
-        narrator.OpenEventPanel(DangerController.Instance.GetFinalGroupString());
+        narrator.OpenEventPanel(VillageController.Instance.GetFinalGroupString());
     }
     void ProgressStage()
     {

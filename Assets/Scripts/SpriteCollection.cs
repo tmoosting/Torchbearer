@@ -43,6 +43,21 @@ public class SpriteCollection : MonoBehaviour
     public Sprite danger8Sprite;
     public Sprite danger9Sprite;
     public Sprite danger10Sprite;
+    public Sprite villager1Sprite;
+    public Sprite villager2Sprite;
+    public Sprite villager3Sprite;
+    public Sprite villager4Sprite;
+    public Sprite villager5Sprite;
+    public Sprite villager6Sprite;
+    public Sprite villager7Sprite;
+    public Sprite villager8Sprite;
+    public Sprite villager9Sprite;
+    public Sprite villager10Sprite;  
+    public Sprite villager11Sprite;  
+    public Sprite villager12Sprite;  
+    public Sprite villager13Sprite;  
+    public Sprite villager14Sprite;  
+    public Sprite villager15Sprite;  
 
     [Header("Overworld")]
     public Sprite towerSprite;
