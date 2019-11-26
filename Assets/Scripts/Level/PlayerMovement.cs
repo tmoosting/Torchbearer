@@ -277,6 +277,11 @@ public class PlayerMovement : MonoBehaviour
     void Respawn ()//Function to respawn the player to his starting position
     {
         vcam.enabled = false;//Disable the CineMachine
+        Vector2 Vel = PlayerRB.velocity;
+        Vel.x = 0f;
+        Vel.y = 0f;
+        PlayerRB.velocity = Vel;
+
         transform.position = spawnPoint;//Reset the player's position
         camObj.GetComponent<Transform>().position = spawnPoint;//Move the camera's position
         vcam.PreviousStateIsValid = false;//Let's the CineMachine know its previous position should be ignored when calculating
