@@ -18,18 +18,23 @@ public class Narrator : MonoBehaviour
     public GameObject screen2Holder;
     public GameObject screen3Holder;
     public GameObject screen4Holder;
+
     public Image screen1Image;
     public TextMeshProUGUI screen1Text;
+
     public Image screen2Image1;
     public Image screen2Image2;
     public TextMeshProUGUI screen2Text1;
     public TextMeshProUGUI screen2Text2;
+
     public Image screen3Image1;
     public Image screen3Image2;
     public TextMeshProUGUI screen3Text1;
     public TextMeshProUGUI screen3Text2;
+
     public Image screen4Image;
     public TextMeshProUGUI screen4Text;
+
     public Image eventPanelImage;
     public TextMeshProUGUI eventPanelText;
 
