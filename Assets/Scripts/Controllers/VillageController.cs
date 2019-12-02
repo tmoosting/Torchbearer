@@ -20,11 +20,13 @@ public class VillageController : MonoBehaviour
     public void InitializeVillage()
     {
         CreateVillagers();
-
     }
     void CreateVillagers()
     {
+        foreach (Villager villager in villagerList)
+        {
 
+        }
     }
 
     public void GroupHitsDanger(Danger danger)

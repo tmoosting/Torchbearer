@@ -918,7 +918,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2053b66c5b62c04b8b090693db469f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  villagerList: []
+  villagerList:
+  - {fileID: 11400000, guid: d9fd80481eebfc747aa51c799ee1874e, type: 2}
+  - {fileID: 11400000, guid: 45c23d014f9e8e344910f4622aac62b2, type: 2}
+  - {fileID: 11400000, guid: c4656b002ade61e4bbad3ff8753e2862, type: 2}
+  - {fileID: 11400000, guid: 89513254987c1de49862098885347072, type: 2}
+  - {fileID: 11400000, guid: f53dd6324772e3d439c3db90b5a78355, type: 2}
+  - {fileID: 11400000, guid: fd205b8c7e2323944940440d7b619a13, type: 2}
+  - {fileID: 11400000, guid: 39cebb43248b6424481b41c0e4fe2b88, type: 2}
+  - {fileID: 11400000, guid: 3ebc0e7170e21c641a782e59484eac76, type: 2}
+  - {fileID: 11400000, guid: fd29bee616f571e42b829a28a9a02ada, type: 2}
+  - {fileID: 11400000, guid: 4a347393d4f46b94d8529c6496c04241, type: 2}
+  - {fileID: 11400000, guid: 430260b74aba87d4982c7012d67a0ccd, type: 2}
+  - {fileID: 11400000, guid: a2f26cd497dd3c74d8e2deaa67ca842d, type: 2}
+  - {fileID: 11400000, guid: 696e848ec090ddc499ea0b999015f75e, type: 2}
+  - {fileID: 11400000, guid: 153d4a76bd101cf4682c6799f3adb277, type: 2}
+  - {fileID: 11400000, guid: 1ccf77be92d4dc649b3b4a158b78c70b, type: 2}
+  - {fileID: 11400000, guid: 154fce6d81c85d947a47952f5b6404e3, type: 2}
+  - {fileID: 11400000, guid: 3c79a81bf010e8a449f57dd5bce96f21, type: 2}
+  - {fileID: 11400000, guid: a1dbb3e1bf927654e90403aa605d7ea8, type: 2}
+  - {fileID: 11400000, guid: 9d3114d591bc85341ab2cbbeb795e197, type: 2}
+  - {fileID: 11400000, guid: d626491068e1f8942b5d1678cf359bfa, type: 2}
 --- !u!1 &249757425 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3823176842141905124, guid: fd31fa5c935b33a4f8adc71d0f29df98,
