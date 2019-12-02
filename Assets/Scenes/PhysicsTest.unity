@@ -4166,6 +4166,31 @@ PrefabInstance:
       propertyPath: camObj
       value: 
       objectReference: {fileID: 519420028}
+    - target: {fileID: 6428960009663657171, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: maxspeed
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428960009663657171, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: jumpvelocity
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6428960009663657171, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: dashSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7195064856660863148, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8176376522341251510, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: ghostDelay
+      value: 0.022
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6215db441339de846bf442c6bea427cf, type: 3}
 --- !u!1001 &9026801295072895862

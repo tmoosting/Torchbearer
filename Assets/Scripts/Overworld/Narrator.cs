@@ -10,6 +10,7 @@ public class Narrator : MonoBehaviour
     int currentStage = 0;
     bool eventPanelOpen = false;
     bool introductionDone = false;
+    bool fastFinishCoroutine = false;
 
     [Header("Assigns")]
     public GameObject introPanel;
@@ -86,7 +87,10 @@ public class Narrator : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             if (currentStage > 0 && currentStage < 5)
-                SetStage(currentStage += 1);  //TODO: Make a click first complete the current screen, then proceed on next click
+            {
+                fastFinishCoroutine = true;
+         //       SetStage(currentStage += 1);  //TODO: Make a click first complete the current screen, then proceed on next click
+            }
             else if (eventPanelOpen == true )
                 CloseEventPanel();
         }
@@ -218,6 +222,7 @@ public class Narrator : MonoBehaviour
     } 
     void ClearIntroPanel()
     {
+        fastFinishCoroutine = false;
         screen1Holder.SetActive(false);
         screen2Holder.SetActive(false);
         screen3Holder.SetActive(false);
@@ -265,12 +270,18 @@ public class Narrator : MonoBehaviour
         {
             Color newColor = new Color(tempColor.r, tempColor.g, tempColor.b, Mathf.Lerp(alpha, 1, t));
             screen1Image.color = newColor;
+            if (fastFinishCoroutine == true)
+                t = 1f;
             yield return null;
         } 
         // Wait for general transition delay
         for (float t = 0.0f; t < transitionDelay; t += Time.deltaTime  )
-            yield return null; 
-      if (introductionDone == false)
+        {
+            if (fastFinishCoroutine == true)
+                t = transitionDelay;
+            yield return null;
+        }
+        if (introductionDone == false)
           SetStage(2); 
     } 
     IEnumerator Screen2Routine()
@@ -283,11 +294,17 @@ public class Narrator : MonoBehaviour
         {
             Color newColor = new Color(tempColor1.r, tempColor1.g, tempColor1.b, Mathf.Lerp(alpha1, 1, t));
             screen2Image1.color = newColor;
+            if (fastFinishCoroutine == true)
+                t = 1f;
             yield return null;
         } 
         // Wait for in-screen transition time
         for (float t = 0.0f; t < screen2TransitionTime; t += Time.deltaTime)
-            yield return null; 
+        {
+            if (fastFinishCoroutine == true)
+                t = screen2TransitionTime;
+            yield return null;
+        }
         screen2Text2.gameObject.SetActive(true);
         // Fade in Image
         Color tempColor2 = screen2Image2.color;
@@ -296,10 +313,16 @@ public class Narrator : MonoBehaviour
         {
             Color newColor = new Color(tempColor2.r, tempColor2.g, tempColor2.b, Mathf.Lerp(alpha2, 1, t));
             screen2Image2.color = newColor;
+            if (fastFinishCoroutine == true)
+                t = 1f;
             yield return null;
         } 
         for (float t = 0.0f; t < transitionDelay; t += Time.deltaTime)
+        {
+            if (fastFinishCoroutine == true)
+                t = transitionDelay;
             yield return null;
+        }
         if (introductionDone == false)
             SetStage(3);
     }
@@ -313,11 +336,17 @@ public class Narrator : MonoBehaviour
         {
             Color newColor = new Color(tempColor1.r, tempColor1.g, tempColor1.b, Mathf.Lerp(alpha1, 1, t));
             screen3Image1.color = newColor;
+            if (fastFinishCoroutine == true)
+                t = 1f;
             yield return null;
         }
         // Wait for in-screen transition time
         for (float t = 0.0f; t < screen3TransitionTime; t += Time.deltaTime)
+        {
+            if (fastFinishCoroutine == true)
+                t = screen3TransitionTime;
             yield return null;
+        }
         screen3Text2.gameObject.SetActive(true);
         // Fade in Image
         Color tempColor2 = screen3Image2.color;
@@ -326,10 +355,16 @@ public class Narrator : MonoBehaviour
         {
             Color newColor = new Color(tempColor2.r, tempColor2.g, tempColor2.b, Mathf.Lerp(alpha2, 1, t));
             screen3Image2.color = newColor;
+            if (fastFinishCoroutine == true)
+                t = 1f;
             yield return null;
         }
         for (float t = 0.0f; t < transitionDelay; t += Time.deltaTime)
+        {
+            if (fastFinishCoroutine == true)
+                t = transitionDelay;
             yield return null;
+        }
         if (introductionDone == false)
             SetStage(4);
     }
@@ -343,11 +378,17 @@ public class Narrator : MonoBehaviour
         {
             Color newColor = new Color(tempColor.r, tempColor.g, tempColor.b, Mathf.Lerp(alpha, 1, t));
             screen4Image.color = newColor;
+            if (fastFinishCoroutine == true)
+                t = 1f;
             yield return null;
         }
         // Wait for general transition delay
         for (float t = 0.0f; t < transitionDelay; t += Time.deltaTime)
+        {
+            if (fastFinishCoroutine == true)
+                t = transitionDelay;
             yield return null;
+        }
         if (introductionDone == false)
             SetStage(5);
     }
