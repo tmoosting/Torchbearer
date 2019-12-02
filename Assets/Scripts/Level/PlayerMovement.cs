@@ -27,8 +27,8 @@ public class PlayerMovement : MonoBehaviour
     CinemachineFramingTransposer CineTransposer;
     CinemachineVirtualCamera vcam;
     //Variables for basic movement
-    private float maxspeed = 6f; //Player max running speed
-    private float jumpvelocity = 10f; // Player initial jump velocity
+    public float maxspeed = 6f; //Player max running speed
+    public float jumpvelocity = 10f; // Player initial jump velocity
     private bool isFalling = false; //For animation, is the player falling?
     private float lowestY = -30f; //Under what y value does the player respawn
     public float yThreshold = 3.0f; //Velocity threshold for falling (negative) and jumping (positive)
