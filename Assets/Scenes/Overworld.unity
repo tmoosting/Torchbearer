@@ -904,7 +904,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1497501402}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &235632773
 MonoBehaviour:
@@ -918,6 +918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2053b66c5b62c04b8b090693db469f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  villagerList: []
 --- !u!1 &249757425 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3823176842141905124, guid: fd31fa5c935b33a4f8adc71d0f29df98,
@@ -3390,7 +3391,10 @@ MonoBehaviour:
   eventPanelImage: {fileID: 369652250}
   eventPanelText: {fileID: 1977458767}
   transitionDelay: 2.5
-  screen1String: There once was a village..
+  screen1String: "In Village X there are people who are a little special: they all
+    have a special power. Some powers are extremely strong and useful. But others\u2026not
+    exactly. Still, almost everyone is able to use their power to their hearts\u2019
+    content."
   screen1ImageAppearSpeed: 0.5
   screen2String1: Some villagers could do exciting things..
   screen2String2: Others not so much.
@@ -4061,8 +4065,7 @@ MonoBehaviour:
   groupObject: {fileID: 1867159589}
   endMarker: {fileID: 1922893078}
   chosenTowerID: 0
-  stage5CompletedString: all dangers have been faced.. now for the group to  escape
-    to safety like the cowards they are
+  stage5CompletedString: overworldcontrl string
 --- !u!1 &1300090282 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3823176842141905124, guid: fd31fa5c935b33a4f8adc71d0f29df98,
@@ -4856,9 +4859,9 @@ Transform:
   m_Children:
   - {fileID: 509749731}
   - {fileID: 1247349202}
-  - {fileID: 1562141032}
   - {fileID: 1976342318}
   - {fileID: 235632772}
+  - {fileID: 1562141032}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5166,7 +5169,7 @@ Transform:
   m_Children:
   - {fileID: 1920544531}
   m_Father: {fileID: 1497501402}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1562141033
 MonoBehaviour:
@@ -6669,7 +6672,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1497501402}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1976342319
 MonoBehaviour:
@@ -6683,7 +6686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c342a29866567f409724b60b1d59c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  danger1Name: AngryBoar
+  danger1Name: Bubbly Swamp
   danger1Event: very tusky
   danger2Name: Volcano
   danger2Event: bubble bubble

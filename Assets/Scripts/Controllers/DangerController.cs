@@ -9,6 +9,7 @@ public class DangerController : MonoBehaviour
     List<string> dangerNameList = new List<string>();
     List<string> dangerEventList = new List<string>();
 
+    [Header("Strings")]
     public string danger1Name;
     public string danger1Event;
     public string danger2Name;
@@ -55,6 +56,10 @@ public class DangerController : MonoBehaviour
         dangerEventList.Add(danger10Event); 
     }
     private void Start()
+    {
+     
+    }
+    public void InitializeDangers()
     {
         CreateDangers();
         AddDangersToMarkers();

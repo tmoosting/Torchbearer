@@ -26,6 +26,9 @@ public class GameController : MonoBehaviour
 
     void StartGame()
     {
+        VillageController.Instance.InitializeVillage();
+        DangerController.Instance.InitializeDangers();
+        OverworldController.Instance.InitializeOverworld();
         if (skipIntroduction == true)       
            SetGameState(GameState.Overworld);         
         else

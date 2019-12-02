@@ -35,6 +35,10 @@ public class OverworldController : MonoBehaviour
     }
     private void Start()
     {
+    
+    }
+    public void InitializeOverworld()
+    {
         narrator = UIController.Instance.narrator;
         SetTowerIDs();
         SetMarkerTiers();
