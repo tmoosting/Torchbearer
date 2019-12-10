@@ -152,10 +152,12 @@ MonoBehaviour:
   cineMachine: {fileID: 0}
   camObj: {fileID: 0}
   PlayerAudio: {fileID: 8176376522341251404}
-  PlayerStep: {fileID: 8300000, guid: 476c841120bed3242913ddfcb01feedc, type: 3}
+  PlayerStep: {fileID: 8300000, guid: 753b54d838ea5bf4b9c1d21f4ca33301, type: 3}
   PlayerJump: {fileID: 8300000, guid: 90d1be86ecd640c4c8be00787722a850, type: 3}
   PlayerDash: {fileID: 8300000, guid: 4c30ebe24d09a044daf445563d2cb3cc, type: 3}
   PitchRange: 0.1
+  maxspeed: 11
+  jumpvelocity: 14
   yThreshold: 3
   dashSpeed: 20
   startDashTime: 0.2
