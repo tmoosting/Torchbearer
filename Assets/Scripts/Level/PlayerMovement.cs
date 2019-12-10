@@ -94,12 +94,9 @@ public class PlayerMovement : MonoBehaviour
                 PlayerAnimator.SetBool("Jump", true);
                 PlayerAnimator.SetBool("Falling", false);
             } 
-            if (Input.GetKey(KeyCode.Space))//If the player presses down the space key
+            if (Input.GetKey(KeyCode.Space) && (dashAvailable || freeDash))//If the player presses down the space key and can dash
             {
-                if (dashAvailable  || freeDash) // If the player can use a dash or has unlimited dashes
-                {
-                    Dash();
-                }
+                Dash();
             }
             else
             {
