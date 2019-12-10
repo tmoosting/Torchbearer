@@ -834,7 +834,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: -82.84}
+  m_AnchoredPosition: {x: 0.0000076293945, y: -82.83984}
   m_SizeDelta: {x: 1163, y: 575}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &195567178
@@ -2964,7 +2964,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -82.84}
+  m_AnchoredPosition: {x: 0, y: -82.83984}
   m_SizeDelta: {x: 1163, y: 575}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1021663652
@@ -3410,30 +3410,41 @@ MonoBehaviour:
   screen4Text: {fileID: 1091479693}
   eventPanelImage: {fileID: 369652250}
   eventPanelText: {fileID: 1977458767}
-  transitionDelay: 2.5
+  transitionDelay: 7
   screen1String: "In Village X there are people who are a little special: they all
     have a special power. Some powers are extremely strong and useful. But others\u2026not
     exactly. Still, almost everyone is able to use their power to their hearts\u2019
     content."
   screen1ImageAppearSpeed: 0.5
-  screen2String1: Some villagers could do exciting things..
-  screen2String2: Others not so much.
+  screen2String1: 'There is one person, however, who is not allowed to use her power.
+    Villager A has a dangerous power: the power to summon an extremely powerful Monster.
+    Because her power is so dangerous, she never used it before. '
+  screen2String2: "Until one day she decides to use it\u2026"
   screen2Image1AppearSpeed: 1
   screen2Text1AppearDelay: 1
-  screen2TransitionTime: 1.5
-  screen2Image2AppearSpeed: 1
-  screen2Text2AppearDelay: 1
-  screen3String1: 'Villager X had enough. And said: let''s do!'
-  screen3String2: Bad choice..
+  screen2TransitionTime: 7
+  screen2Image2AppearSpeed: 7
+  screen2Text2AppearDelay: 7
+  screen3String1: 'The Monster she summons is huge and incredibly scary! It attacks
+    the village and its people. Houses are burned down, and villagers are killed. '
+  screen3String2: 'Only a few survive. The survivors flee into the night, away from
+    the Monster, but they are being chased. '
   screen3Image1AppearSpeed: 1
   screen3Text1AppearDelay: 1
-  screen3TransitionTime: 1
-  screen3Image2AppearSpeed: 1
-  screen3Text2AppearDelay: 1
-  screen4String: There goes the village..
+  screen3TransitionTime: 7
+  screen3Image2AppearSpeed: 7
+  screen3Text2AppearDelay: 7
+  screen4String: 'It is now up to the survivors to defeat the Monster. None of them
+    is strong enough to fight it, so they have to go to Beacon X, where the strongest
+    people live, in order to save themselves. The group has to traverse a dangerous
+    path, and light beacons along their way, to drive away the Monster. '
   screen4ImageAppearSpeed: 1
   screen4TextAppearDelay: 1
-  heroStandsUpString: Dash ahead little friend!!
+  heroStandsUpString: 'They cannot do this without a leader, someone who risks their
+    life in order to light the beacons. Dash Dude steps up: he is the strongest and
+    fastest of them all, only he can light the beacons and lead the survivors to savety.
+    He was given a magical ring, called The Torch, and it is to be used to light the
+    beacons and signal safety. Dash Dude was now deemed The Torchbearer. '
   successfulLevelString: group found safe passage through the beacon!!
   dangerDodgedString: group got lucky.. this time
 --- !u!1001 &1150551733
@@ -4407,7 +4418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 61.200073, y: -33.5}
+  m_AnchoredPosition: {x: 61.200195, y: -33.5}
   m_SizeDelta: {x: -1130, y: -618.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1412336009
