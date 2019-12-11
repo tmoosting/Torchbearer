@@ -8,7 +8,11 @@ using UnityEngine;
 public class Villager : ScriptableObject
       
 {
-  
+    //public enum Occupation
+    //{
+    //    Unassigned, Gravedigger, Smith, Juggler, Executioner, Farmer, Gemcutter, Scribe, Guard, Weaver, Shepherd,
+    //    Beekeeper, Armorer, Fisher, Fletcher, Courier, Carpenter, Shaman, Poet, Innkeeper, Herbalist
+    //}
 
     public enum Occupation { Unassigned, Gravedigger, Smith, Juggler, Executioner, Farmer, Gemcutter, Scribe, Guard, Weaver, Shepherd,  
         Beekeeper, Armorer, Fisher, Fletcher, Courier, Carpenter, Shaman, Poet, Innkeeper, Herbalist   }

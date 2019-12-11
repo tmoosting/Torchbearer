@@ -11,6 +11,7 @@ public class SceneController : MonoBehaviour
     public bool madeTransition = false;
     public bool lastLevelSuccess = false;
 
+
     private void Awake()
     {
         Instance = this; 
