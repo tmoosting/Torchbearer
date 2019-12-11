@@ -34,6 +34,11 @@ public class DangerController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+ 
+    
+    } 
+    public void InitializeDangers()
+    {
         dangerNameList.Add(danger1Name);
         dangerNameList.Add(danger2Name);
         dangerNameList.Add(danger3Name);
@@ -44,23 +49,16 @@ public class DangerController : MonoBehaviour
         dangerNameList.Add(danger8Name);
         dangerNameList.Add(danger9Name);
         dangerNameList.Add(danger10Name);
-        dangerEventList.Add(danger1Event); 
-        dangerEventList.Add(danger2Event); 
-        dangerEventList.Add(danger3Event); 
-        dangerEventList.Add(danger4Event); 
-        dangerEventList.Add(danger5Event); 
-        dangerEventList.Add(danger6Event); 
-        dangerEventList.Add(danger7Event); 
-        dangerEventList.Add(danger8Event); 
-        dangerEventList.Add(danger9Event); 
-        dangerEventList.Add(danger10Event); 
-    }
-    private void Start()
-    {
-     
-    }
-    public void InitializeDangers()
-    {
+        dangerEventList.Add(danger1Event);
+        dangerEventList.Add(danger2Event);
+        dangerEventList.Add(danger3Event);
+        dangerEventList.Add(danger4Event);
+        dangerEventList.Add(danger5Event);
+        dangerEventList.Add(danger6Event);
+        dangerEventList.Add(danger7Event);
+        dangerEventList.Add(danger8Event);
+        dangerEventList.Add(danger9Event);
+        dangerEventList.Add(danger10Event);
         CreateDangers();
         AddDangersToMarkers();
     }

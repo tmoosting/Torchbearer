@@ -14,14 +14,20 @@ public class UIController : MonoBehaviour
     public GameObject titlePanel;
     public GameObject blackFadePanel;
     public TextMeshProUGUI creditsText;
+    public GameObject overworldHolder;
 
     private void Awake()
     {
         Instance = this;
-        titlePanel.SetActive(false);
-        blackFadePanel.SetActive(false);
-        creditsText.gameObject.SetActive(false);
-        overworldInterface.dialogBox.SetActive(false);
+
+        if (SceneController.Instance.madeTransition == false)
+        {
+            titlePanel.SetActive(false);
+            blackFadePanel.SetActive(false);
+            creditsText.gameObject.SetActive(false);
+            overworldInterface.dialogBox.SetActive(false);
+            Debug.Log("Call");
+        } 
     }
 
     private void Update()
@@ -30,8 +36,12 @@ public class UIController : MonoBehaviour
         {
             if (GameController.Instance.GetGameState() == GameController.GameState.TitleScreen)
             {
-                ClearTitleScreen();
-                GameController.Instance.SetGameState(GameController.GameState.Introduction);
+                if (SceneController.Instance.madeTransition == false)
+                {
+                    ClearTitleScreen();
+                    GameController.Instance.SetGameState(GameController.GameState.Introduction);
+                }
+
             } 
         }
     }

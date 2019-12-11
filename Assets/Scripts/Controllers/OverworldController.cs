@@ -32,11 +32,7 @@ public class OverworldController : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-    }
-    private void Start()
-    {
-    
-    }
+    } 
     public void InitializeOverworld()
     {
         narrator = UIController.Instance.narrator;

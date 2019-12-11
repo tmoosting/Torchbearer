@@ -17,19 +17,25 @@ public class GameController : MonoBehaviour
     GameState currentGameState;
 
     public bool skipIntroduction;
-
+    [HideInInspector]
+    public bool introCompleted = false;
+  
 
     private void Start()
     {
-        StartGame();
+        if (SceneController.Instance.madeTransition == false)
+            StartGame();
+        else
+            currentGameState = GameState.Overworld;
     }
 
     void StartGame()
     {
+        currentGameState = GameState.TitleScreen;
         VillageController.Instance.InitializeVillage();
         DangerController.Instance.InitializeDangers();
         OverworldController.Instance.InitializeOverworld();
-        if (skipIntroduction == true)       
+        if (skipIntroduction == true || introCompleted == true)       
            SetGameState(GameState.Overworld);         
         else
            SetGameState(GameState.TitleScreen);
@@ -60,7 +66,8 @@ public class GameController : MonoBehaviour
     public void TransitionToLevel()
     {
         //TODO: make a small delay and nice fade to level, then switch scene
-        UIController.Instance.overworldInterface.dialogBox.SetActive(true);
+        //   UIController.Instance.overworldInterface.dialogBox.SetActive(true);
+        SceneController.Instance.LoadLevel();
     }
     public void TransitionFromLevel()
     {

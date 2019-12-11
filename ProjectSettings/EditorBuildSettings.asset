@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Overworld.unity
+    guid: f745e28449532964baf3a06e4cdbfbef
+  - enabled: 1
+    path: Assets/Scenes/Ice Level (test).unity
+    guid: 689bacb243e6147beac1968c73d229a3
   m_configObjects: {}

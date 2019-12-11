@@ -173,6 +173,7 @@ public class Narrator : MonoBehaviour
     // -------------------- INTRODUCTION
     public void StartIntroduction()
     {
+        Debug.Log("starting intro");
         introPanel.SetActive(true);
         SetStage(1);
     }
@@ -226,6 +227,7 @@ public class Narrator : MonoBehaviour
             }
             if (stage == 5)
             {
+                GameController.Instance.introCompleted = true;
                 FinishIntroduction();
             }
         } 
