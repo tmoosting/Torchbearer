@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Villager 4
   m_EditorClassIdentifier: 
   villagerID: Peer
-  occupation: 1
+  occupation: 4
   power: 0
+  isAlive: 1

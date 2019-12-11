@@ -143,7 +143,17 @@ public class Narrator : MonoBehaviour
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(true);
         eventPanelImage.sprite = danger.dangerSprite;
-        eventPanelText.text = danger.dangerString;
+        string str = "";
+        str += danger.dangerID;
+        str += "\n";
+        str += danger.dangerString;
+        str += "\n\n";
+        str += VillageController.Instance.recentlyDeceasedVillager.villagerID.ToString();
+        str += " is with us no more.\n";
+        str += "The village no longer has a " + VillageController.Instance.recentlyDeceasedVillager.occupation.ToString() + ".";
+         
+        
+        eventPanelText.text = str;
     }
 
 
@@ -314,7 +324,9 @@ public class Narrator : MonoBehaviour
             Color newColor = new Color(tempColor2.r, tempColor2.g, tempColor2.b, Mathf.Lerp(alpha2, 1, t));
             screen2Image2.color = newColor;
             if (fastFinishCoroutine == true)
-                t = 1f;
+            {
+                fastFinishCoroutine = false; 
+            }
             yield return null;
         } 
         for (float t = 0.0f; t < transitionDelay; t += Time.deltaTime)
@@ -356,7 +368,9 @@ public class Narrator : MonoBehaviour
             Color newColor = new Color(tempColor2.r, tempColor2.g, tempColor2.b, Mathf.Lerp(alpha2, 1, t));
             screen3Image2.color = newColor;
             if (fastFinishCoroutine == true)
-                t = 1f;
+            {
+                fastFinishCoroutine = false; 
+            }
             yield return null;
         }
         for (float t = 0.0f; t < transitionDelay; t += Time.deltaTime)

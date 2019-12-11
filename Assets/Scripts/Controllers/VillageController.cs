@@ -8,30 +8,33 @@ public class VillageController : MonoBehaviour
 
     public List<Villager> villagerList = new List<Villager>();
 
+    [HideInInspector]
+    public Villager recentlyDeceasedVillager = null;
     
 
     private void Awake()
     {
         Instance = this;
     }
-    private void Start()
-    {
-    }
+   
     public void InitializeVillage()
     {
-        CreateVillagers();
+         
     }
-    void CreateVillagers()
-    {
-        foreach (Villager villager in villagerList)
-        {
-
-        }
-    }
-
+    
+    // select and kill a villager
     public void GroupHitsDanger(Danger danger)
     {
-
+        recentlyDeceasedVillager =  GetRandomLivingVillager();
+        recentlyDeceasedVillager.isAlive = false;
+    } 
+    public Villager GetRandomLivingVillager()
+    {
+        List<Villager> livingVillagers = new List<Villager>();
+        foreach (Villager villager in villagerList)
+            if (villager.isAlive == true)
+                livingVillagers.Add(villager);
+        return livingVillagers[Random.Range(0, livingVillagers.Count)];
     }
     public string GetFinalGroupString()
     {

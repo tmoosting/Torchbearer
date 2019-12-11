@@ -270,13 +270,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dangerSpriteList: []
-  screen1Sprite: {fileID: 21300000, guid: 5faad6605d23a0f4e977ba61b775c446, type: 3}
-  screen2Sprite1: {fileID: 21300000, guid: 5faad6605d23a0f4e977ba61b775c446, type: 3}
-  screen2Sprite2: {fileID: 21300000, guid: 5faad6605d23a0f4e977ba61b775c446, type: 3}
-  screen3Sprite1: {fileID: 21300000, guid: 5faad6605d23a0f4e977ba61b775c446, type: 3}
-  screen3Sprite2: {fileID: 21300000, guid: 5faad6605d23a0f4e977ba61b775c446, type: 3}
-  screen4Sprite: {fileID: 21300000, guid: 5faad6605d23a0f4e977ba61b775c446, type: 3}
-  heroStandsUpSprite: {fileID: 21300000, guid: 10a14eb3792c26243aefb1e65e085a80, type: 3}
+  screen1Sprite: {fileID: 21300000, guid: d2c6e8e234e63ad479542acb5348e937, type: 3}
+  screen2Sprite1: {fileID: 21300000, guid: 5e58e2a3c4f15e3499d81733cc3e6813, type: 3}
+  screen2Sprite2: {fileID: 21300000, guid: 9d7698b9d46aa704fa20ed39ef509e1b, type: 3}
+  screen3Sprite1: {fileID: 21300000, guid: 76e68e93c8d1e054cb93f57d08892429, type: 3}
+  screen3Sprite2: {fileID: 21300000, guid: b09b4b3cff2ffe346b2d13c08e35f2f0, type: 3}
+  screen4Sprite: {fileID: 21300000, guid: c0570ce94a7d7d14b91f29e6953f343d, type: 3}
+  heroStandsUpSprite: {fileID: 21300000, guid: 72f547efcdd315d4ead85fbe8a2c10b0, type: 3}
   successfulLevelSprite: {fileID: 21300000, guid: a863776a3f8a444409635e440f2da45b,
     type: 3}
   dangerDodgedSprite: {fileID: 21300000, guid: 742399161961a5a4eadf238a65a7c7b4, type: 3}
@@ -342,7 +342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &87398677
 RectTransform:
   m_ObjectHideFlags: 0
@@ -736,8 +736,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -939,6 +939,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a1dbb3e1bf927654e90403aa605d7ea8, type: 2}
   - {fileID: 11400000, guid: 9d3114d591bc85341ab2cbbeb795e197, type: 2}
   - {fileID: 11400000, guid: d626491068e1f8942b5d1678cf359bfa, type: 2}
+  recentlyDeceasedVillager: {fileID: 0}
 --- !u!1 &249757425 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3823176842141905124, guid: fd31fa5c935b33a4f8adc71d0f29df98,
@@ -1234,8 +1235,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -51.3, y: -43.98001}
-  m_SizeDelta: {x: 324.6, y: 324.6}
+  m_AnchoredPosition: {x: 0, y: -44.04001}
+  m_SizeDelta: {x: 597.3, y: 324.6}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &369652250
 MonoBehaviour:
@@ -2696,8 +2697,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3173,8 +3174,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3410,7 +3411,7 @@ MonoBehaviour:
   screen4Text: {fileID: 1091479693}
   eventPanelImage: {fileID: 369652250}
   eventPanelText: {fileID: 1977458767}
-  transitionDelay: 7
+  transitionDelay: 9999
   screen1String: "In Village X there are people who are a little special: they all
     have a special power. Some powers are extremely strong and useful. But others\u2026not
     exactly. Still, almost everyone is able to use their power to their hearts\u2019
@@ -3422,18 +3423,18 @@ MonoBehaviour:
   screen2String2: "Until one day she decides to use it\u2026"
   screen2Image1AppearSpeed: 1
   screen2Text1AppearDelay: 1
-  screen2TransitionTime: 7
-  screen2Image2AppearSpeed: 7
-  screen2Text2AppearDelay: 7
+  screen2TransitionTime: 9999
+  screen2Image2AppearSpeed: 1
+  screen2Text2AppearDelay: 1
   screen3String1: 'The Monster she summons is huge and incredibly scary! It attacks
     the village and its people. Houses are burned down, and villagers are killed. '
   screen3String2: 'Only a few survive. The survivors flee into the night, away from
     the Monster, but they are being chased. '
   screen3Image1AppearSpeed: 1
   screen3Text1AppearDelay: 1
-  screen3TransitionTime: 7
-  screen3Image2AppearSpeed: 7
-  screen3Text2AppearDelay: 7
+  screen3TransitionTime: 9999
+  screen3Image2AppearSpeed: 1
+  screen3Text2AppearDelay: 1
   screen4String: 'It is now up to the survivors to defeat the Monster. None of them
     is strong enough to fight it, so they have to go to Beacon X, where the strongest
     people live, in order to save themselves. The group has to traverse a dangerous
@@ -3985,8 +3986,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -643, y: -723}
-  m_SizeDelta: {x: 364.3, y: 283.1}
+  m_AnchoredPosition: {x: -627.3, y: -729.6}
+  m_SizeDelta: {x: 435.7, y: 276.5}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1230943828
 CanvasRenderer:
@@ -5761,8 +5762,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6014,8 +6015,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 10
+  m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6783,8 +6784,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.4, y: -188}
-  m_SizeDelta: {x: 237, y: 50}
+  m_AnchoredPosition: {x: 4.3, y: -185.7}
+  m_SizeDelta: {x: 248.3, y: 64.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1977458767
 MonoBehaviour:
@@ -6815,8 +6816,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6834,8 +6835,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
