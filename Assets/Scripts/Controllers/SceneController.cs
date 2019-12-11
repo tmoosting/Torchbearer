@@ -20,7 +20,7 @@ public class SceneController : MonoBehaviour
     {
         UIController.Instance.overworldHolder.SetActive(false);
         madeTransition = true;
-        if (OverworldController.Instance.chosenTowerID == 1)
+        if (OverworldController.Instance.chosenTowerID >= 1)
         {
             SceneManager.LoadSceneAsync("Ice Level (test)");
         }

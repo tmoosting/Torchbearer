@@ -173,7 +173,6 @@ public class Narrator : MonoBehaviour
     // -------------------- INTRODUCTION
     public void StartIntroduction()
     {
-        Debug.Log("starting intro");
         introPanel.SetActive(true);
         SetStage(1);
     }

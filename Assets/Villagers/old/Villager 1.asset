@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcf1b7c264dc48d4ab851cfef58a1241, type: 3}
   m_Name: Villager 1
   m_EditorClassIdentifier: 
-  villagerID: 
-  occupation: 0
-  power: 0
+  villagerID: Tarpo
+  occupation: 1
+  power: 1
   isAlive: 1

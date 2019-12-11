@@ -16,7 +16,7 @@ public class Finish : MonoBehaviour
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
-            SceneController.Instance.CompleteLevel();
+            SceneController.Instance.FailLevel();
 
     }
 }

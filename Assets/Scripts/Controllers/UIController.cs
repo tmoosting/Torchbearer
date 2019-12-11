@@ -26,7 +26,6 @@ public class UIController : MonoBehaviour
             blackFadePanel.SetActive(false);
             creditsText.gameObject.SetActive(false);
             overworldInterface.dialogBox.SetActive(false);
-            Debug.Log("Call");
         } 
     }
 
