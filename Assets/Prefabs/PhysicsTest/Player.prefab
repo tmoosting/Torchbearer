@@ -127,7 +127,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.8
+  m_GravityScale: 2.5
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -148,6 +148,9 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 512
+  hazardLayer:
+    serializedVersion: 2
+    m_Bits: 1024
   ghost: {fileID: 8176376522341251510}
   cineMachine: {fileID: 0}
   camObj: {fileID: 0}
@@ -155,14 +158,22 @@ MonoBehaviour:
   PlayerStep: {fileID: 8300000, guid: 753b54d838ea5bf4b9c1d21f4ca33301, type: 3}
   PlayerJump: {fileID: 8300000, guid: 90d1be86ecd640c4c8be00787722a850, type: 3}
   PlayerDash: {fileID: 8300000, guid: 4c30ebe24d09a044daf445563d2cb3cc, type: 3}
+  PlayerDamage: {fileID: 8300000, guid: 6478c4256fbf6b94b9106d281841e2b5, type: 3}
   PitchRange: 0.1
   maxspeed: 11
   jumpvelocity: 14
+  flashColor: {r: 1, g: 0.627451, b: 0.627451, a: 1}
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
   yThreshold: 3
-  dashSpeed: 20
+  dashSpeed: 25
   startDashTime: 0.2
   dashAvailable: 0
   freeDash: 0
+  hearts: []
+  fullHeart: {fileID: 21300000, guid: a8292a95d39aa364db0318840ca30452, type: 3}
+  emptyContainer: {fileID: 21300000, guid: 96009390e813882459f2dbffc549e177, type: 3}
+  dashtracker: {fileID: 0}
+  fullDash: {fileID: 21300000, guid: f5313f56e684c7f4792761a094ca9c0b, type: 3}
 --- !u!95 &2365109992041704511
 Animator:
   serializedVersion: 3
@@ -291,6 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fa35b9d264897488ebbd3a70a78702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostDelay: 0.05
+  ghostDelay: 0.022
   ghost: {fileID: 7016819479955561547, guid: 8f8275dcb7d3ec644bbdef6032680743, type: 3}
   makeGhost: 0

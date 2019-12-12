@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip PlayerStep;
     public AudioClip PlayerJump;
     public AudioClip PlayerDash;
+    public AudioClip PlayerDamage;
     public float PitchRange = 0.2f; //Maximum deviation from starting pitch
     private float OriginalPitch; //.9 is recommended
     //Cinemachine components
@@ -40,7 +41,9 @@ public class PlayerMovement : MonoBehaviour
     private float flashTimer = 0f; //timer for flashes
     public Color flashColor; //Sprite color while flashing
     public Color normalColor; //sprite color when normal
-    private float knockbackSpeed = 20f;
+    private float knockbackSpeed = 20f;//knockback from damage
+    private bool respawn = true;
+    private bool dying = false;
 
     private bool isFalling = false; //For animation, is the player falling?
     private float lowestY = -30f; //Under what y value does the player respawn
@@ -85,136 +88,144 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (dashAvailable || freeDash)
+        if (!dying)
         {
-            dashtracker.sprite = fullDash;
-        }
-        if (transform.position.y < lowestY) //If the player is under the lowest y limit
-        {
-            Respawn();
-        }
-        if (invincible)
-        {
-            invincibleTimer -= Time.deltaTime;
-            if (invincibleTimer <= 0)
+            if (dashAvailable || freeDash)
             {
-                invincible = false;
-                PlayerSprite.color = normalColor;
+                dashtracker.sprite = fullDash;
             }
-            else
+            if (transform.position.y < lowestY) //If the player is under the lowest y limit
             {
-                flashTimer -= Time.deltaTime;
-                if (flashTimer < 0)
-                {
-                    if (PlayerSprite.color == normalColor)
-                    {
-                        PlayerSprite.color = flashColor;
-                    }
-                    else
-                    {
-                        PlayerSprite.color = normalColor;
-                    }
-                    flashTimer = flashTime;
-                }   
+                Die();
             }
-        }
-        if (inControl) //is the player in control of his character
-        {
-            if (!dashing)//If the player is not currently dashing
+            if (invincible)
             {
-                if (!dashAvailable || isFalling)//If the player has no dash available or if the player is currently falling
+                invincibleTimer -= Time.deltaTime;
+                if (invincibleTimer <= 0)
                 {
-                    if (IsGrounded()) //If the player is currently standing on the ground
-                    {
-                        dashAvailable = true;
-                        isFalling = false;
-                        PlayerAnimator.SetBool("Falling", false);
-                    }
-                }
-                if (PlayerRB.velocity.y < -yThreshold) //If the player is falling
-                {
-                    isFalling = true;
-                    PlayerAnimator.SetBool("Jump", false);
-                    PlayerAnimator.SetBool("Falling", true);
-                }
-                else if (PlayerRB.velocity.y > yThreshold)//If the player is jumping
-                {
-                    isFalling = false;
-                    PlayerAnimator.SetBool("Jump", true);
-                    PlayerAnimator.SetBool("Falling", false);
-                }
-                if (Input.GetKey(KeyCode.Space) && (dashAvailable || freeDash))//If the player presses down the space key and can dash
-                {
-                    Dash();
+                    invincible = false;
+                    PlayerSprite.color = normalColor;
                 }
                 else
                 {
-                    float horizontal = Input.GetAxis("Horizontal"); //Gets a float between -1.0f and 1.0f depending on keypress
-                    float vertical = Input.GetAxisRaw("Vertical"); //Gets a float that is exactly -1.0f, 0f or 1.0f depending on keypress
-                    Vector2 vel = PlayerRB.velocity; //Get current player velocity
-                    vel.x = horizontal * maxspeed; //Alter horizontal velocity
-                    PlayerAnimator.SetFloat("Speed", Mathf.Abs(horizontal * maxspeed));
-                    if (horizontal != 0 && IsGrounded())//If the player is moving and on the ground, play the footstep sound
+                    flashTimer -= Time.deltaTime;
+                    if (flashTimer < 0)
                     {
-                        if (PlayerAudio.clip == PlayerStep)
+                        if (PlayerSprite.color == normalColor)
                         {
-                            if (PlayerAudio.isPlaying == false)
-                            {
-                                PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
-                                PlayerAudio.Play();
-                            }
+                            PlayerSprite.color = flashColor;
                         }
                         else
                         {
-                            if (PlayerAudio.isPlaying == false)
-                            {
-                                PlayerAudio.clip = PlayerStep;
-                                PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
-                                PlayerAudio.Play();
-                            }
-                            else
-                            {
-                                PlayerAudio.Stop();
-                                PlayerAudio.clip = PlayerStep;
-                                PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
-                                PlayerAudio.Play();
-                            }
+                            PlayerSprite.color = normalColor;
                         }
-
-
-                    }
-                    if (horizontal < 0) //Used to flip sprite based on movement direction
-                    {
-                        PlayerSprite.flipX = true;
-                    }
-                    else if (horizontal > 0)
-                    {
-                        PlayerSprite.flipX = false;
-                    }
-                    PlayerRB.velocity = vel; //Updates player velocity
-                    if (vertical == 1) //If the up arrow is pressed
-                    {
-                        Jump();
+                        flashTimer = flashTime;
                     }
                 }
             }
-            else //If we're currently dashing
+            if (inControl) //is the player in control of his character
             {
-                Dash();
+                if (!dashing)//If the player is not currently dashing
+                {
+                    if (!dashAvailable || isFalling)//If the player has no dash available or if the player is currently falling
+                    {
+                        if (IsGrounded()) //If the player is currently standing on the ground
+                        {
+                            dashAvailable = true;
+                            isFalling = false;
+                            PlayerAnimator.SetBool("Falling", false);
+                        }
+                    }
+                    if (PlayerRB.velocity.y < -yThreshold) //If the player is falling
+                    {
+                        isFalling = true;
+                        PlayerAnimator.SetBool("Jump", false);
+                        PlayerAnimator.SetBool("Falling", true);
+                    }
+                    else if (PlayerRB.velocity.y > yThreshold)//If the player is jumping
+                    {
+                        isFalling = false;
+                        PlayerAnimator.SetBool("Jump", true);
+                        PlayerAnimator.SetBool("Falling", false);
+                    }
+                    if (Input.GetKey(KeyCode.Space) && (dashAvailable || freeDash))//If the player presses down the space key and can dash
+                    {
+                        Dash();
+                    }
+                    else
+                    {
+                        float horizontal = Input.GetAxis("Horizontal"); //Gets a float between -1.0f and 1.0f depending on keypress
+                        float vertical = Input.GetAxisRaw("Vertical"); //Gets a float that is exactly -1.0f, 0f or 1.0f depending on keypress
+                        Vector2 vel = PlayerRB.velocity; //Get current player velocity
+                        vel.x = horizontal * maxspeed; //Alter horizontal velocity
+                        PlayerAnimator.SetFloat("Speed", Mathf.Abs(horizontal * maxspeed));
+                        if (horizontal != 0 && IsGrounded())//If the player is moving and on the ground, play the footstep sound
+                        {
+                            PlayerAnimator.SetBool("Jump", false);
+                            if (PlayerAudio.clip == PlayerStep)
+                            {
+                                if (PlayerAudio.isPlaying == false)
+                                {
+                                    PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+                                    PlayerAudio.Play();
+                                }
+                            }
+                            else
+                            {
+                                if (PlayerAudio.isPlaying == false)
+                                {
+                                    PlayerAudio.clip = PlayerStep;
+                                    PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+                                    PlayerAudio.Play();
+                                }
+                                else
+                                {
+                                    PlayerAudio.Stop();
+                                    PlayerAudio.clip = PlayerStep;
+                                    PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+                                    PlayerAudio.Play();
+                                }
+                            }
+
+
+                        }
+                        if (horizontal < 0) //Used to flip sprite based on movement direction
+                        {
+                            PlayerSprite.flipX = true;
+                        }
+                        else if (horizontal > 0)
+                        {
+                            PlayerSprite.flipX = false;
+                        }
+                        PlayerRB.velocity = vel; //Updates player velocity
+                        if (vertical == 1) //If the up arrow is pressed
+                        {
+                            Jump();
+                        }
+                    }
+                }
+                else //If we're currently dashing
+                {
+                    Dash();
+                }
+            }
+            else
+            {
+                WaitControlTimer -= Time.deltaTime;
+                if (WaitControlTimer <= 0 && !dying)
+                {
+                    inControl = true;
+                    PlayerRB.velocity = Vector2.zero;
+                }
             }
         }
         else
         {
-            WaitControlTimer -= Time.deltaTime;
-            if (WaitControlTimer <= 0)
+            if (PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("DeathEnd"))
             {
-                inControl = true;
-                PlayerRB.velocity = Vector2.zero;
+                DeathHandler();
             }
         }
-        
-
-
     }
 
     void Dash() //Function that causes the player to dash in a certain direction for a given amount of time at a given speed
@@ -359,6 +370,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Respawn ()//Function to respawn the player to his starting position
     {
+        PlayerRB.bodyType = RigidbodyType2D.Dynamic;
         vcam.enabled = false;//Disable the CineMachine
         Vector2 Vel = PlayerRB.velocity;
         Vel.x = 0f;
@@ -369,6 +381,47 @@ public class PlayerMovement : MonoBehaviour
         camObj.GetComponent<Transform>().position = spawnPoint;//Move the camera's position
         vcam.PreviousStateIsValid = false;//Let's the CineMachine know its previous position should be ignored when calculating
         vcam.enabled = true;//Enable the CineMachine
+        PlayerAnimator.SetTrigger("Respawn");
+        dashHor = 0f;
+        dashVert = 0f;
+        dashTime = startDashTime;
+        dashing = false;
+    }
+    void Die()
+    {
+        PlayerLives = 0;
+        foreach (Image heart in hearts)
+        {
+            heart.sprite = emptyContainer;
+        }
+        inControl = false;
+        dying = true;
+        PlayerAnimator.SetBool("Dashing", false);
+        PlayerAnimator.SetBool("Falling", false);
+        PlayerAnimator.SetBool("Jump", false);
+        ghost.makeGhost = false;
+        PlayerAnimator.SetTrigger("Dying");
+        PlayerRB.bodyType = RigidbodyType2D.Static;
+    }
+
+    void DeathHandler()
+    {
+        if (!respawn)
+        {
+            Debug.Log("Died");
+            //End level
+        }
+        else
+        {
+            foreach (Image heart in hearts)
+            {
+                heart.sprite = fullHeart;
+            }
+            PlayerLives = 3;
+            inControl = true;
+            dying = false;
+            Respawn();
+        }
     }
 
     public void takeDamage(Vector2 direction)
@@ -379,22 +432,21 @@ public class PlayerMovement : MonoBehaviour
             if (PlayerLives == 0)
             {
                 hearts[PlayerLives].sprite = emptyContainer;
-                //Die, temporarily revives now
-                foreach (Image heart in hearts)
-                {
-                    heart.sprite = fullHeart;
-                }
-                PlayerLives = 3;
-                takeDamage(direction);
+                Die();
             }
             else
             {
-                hearts[PlayerLives].sprite = emptyContainer;
+                if (PlayerLives >= 0)
+                {
+                    hearts[PlayerLives].sprite = emptyContainer;
+                }
                 dashHor = 0f;
                 dashVert = 0f;
                 dashTime = startDashTime;
                 dashing = false;
                 PlayerAnimator.SetBool("Dashing", false);
+                PlayerAnimator.SetBool("Falling", false);
+                PlayerAnimator.SetBool("Jump", false);
                 ghost.makeGhost = false;
                 inControl = false;
                 invincible = true;
@@ -405,7 +457,11 @@ public class PlayerMovement : MonoBehaviour
                 direction.x *= knockbackSpeed;
                 direction.y *= knockbackSpeed;
                 PlayerRB.velocity = direction;
-                //play hurt animation and toggle invincibility for like a second
+                PlayerAnimator.SetTrigger("DamageTaken");
+                PlayerAudio.Stop();
+                PlayerAudio.clip = PlayerDamage;
+                PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+                PlayerAudio.Play();
             }
         }
     }
