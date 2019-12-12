@@ -90,9 +90,14 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!dying)
         {
+
             if (dashAvailable || freeDash)
             {
                 dashtracker.sprite = fullDash;
+            }
+            else if (!dashAvailable && !freeDash)
+            {
+                dashtracker.sprite = emptyContainer;
             }
             if (transform.position.y < lowestY) //If the player is under the lowest y limit
             {
