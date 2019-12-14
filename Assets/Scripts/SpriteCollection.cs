@@ -66,5 +66,6 @@ public class SpriteCollection : MonoBehaviour
     public Sprite heroSprite;
     public Sprite groupSprite;
     public Sprite monsterSprite;
+    public Sprite spookedSprite;
 
 }

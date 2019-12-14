@@ -10,6 +10,7 @@ public class VillageController : MonoBehaviour
 
     [HideInInspector]
     public Villager recentlyDeceasedVillager = null;
+    public Villager recentlySpookedVillager = null;
     
 
     private void Awake()
@@ -60,7 +61,14 @@ public class VillageController : MonoBehaviour
     {
         recentlyDeceasedVillager =  GetRandomLivingVillager();
         recentlyDeceasedVillager.isAlive = false;
-    } 
+    }
+    public void MonsterSpooksVillager()
+    {
+        recentlySpookedVillager = GetRandomLivingVillager();
+        recentlySpookedVillager.isAlive = false;
+        OverworldController.Instance.GetNarrator().OpenSpookedEventPanel();
+    }
+     
     public Villager GetRandomLivingVillager()
     {
         List<Villager> livingVillagers = new List<Villager>();

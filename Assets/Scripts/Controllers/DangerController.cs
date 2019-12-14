@@ -75,7 +75,7 @@ public class DangerController : MonoBehaviour
     void AddDangersToMarkers()
     {
         int skipCount = 0;
-        for (int i = 0; i < 15; i++)
+        for (int i = 0; i < OverworldController.Instance.dangerMarkerList.Count; i++)
         {
             DangerMarker marker = OverworldController.Instance.dangerMarkerList[i].GetComponent<DangerMarker>();
             if (marker.isSafe == true) 

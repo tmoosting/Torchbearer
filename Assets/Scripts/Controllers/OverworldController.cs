@@ -11,20 +11,24 @@ public class OverworldController : MonoBehaviour
     public List<GameObject> towerList = new List<GameObject>();
     public List<GameObject> dangerMarkerList = new List<GameObject>();
     public GameObject heroObject;
-    public GameObject monsterObject;
+    public Monster monster;
     public GameObject groupObject;
-    public GameObject endMarker;
+    public GameObject endMarker; 
+
     int currentStage = 1;
-    int numberOfStages = 5;
+    int numberOfStages = 4;
     [HideInInspector]
     public int chosenTowerID; 
     [HideInInspector]
     public Dictionary<int, bool> towerCompletion = new Dictionary<int, bool>();
     bool proceedAllowed = true;
-    bool finalStageJustCompleted = false;
+    [HideInInspector]
+    public bool finalStageJustCompleted = false;
     bool postFinalStageMessageClickedAway = false;
     bool veryLastMessageClickedAway = false;
     bool levelSucceeded = false;
+    [HideInInspector]
+    public int monsterSteps = 0;
 
     [Header("Texts")]
     public string stage5CompletedString;
@@ -51,28 +55,33 @@ public class OverworldController : MonoBehaviour
         }
     }
 
-    public void FinishLevel(bool successful)
+    public void FinishLevel(bool successful, bool withinTime)
     { 
         if (successful == true)
         {
-            SucceedStage();
+            if (withinTime == true)
+                SucceedStage(0);
+            else
+                SucceedStage(1);
         }
         if (successful == false)
         {
             FailStage();
         }
     }  
-    public void SucceedStage()
+    public void SucceedStage(int monsterSteps)
     {
+        this.monsterSteps = monsterSteps;
         levelSucceeded = true;
         towerCompletion.Add(chosenTowerID, true);
-        TakeSafeRoute();
+        TakeSafeRoute(); 
     }
     public void FailStage()
     {
+        this.monsterSteps = 2;
         levelSucceeded = false;
         towerCompletion.Add(chosenTowerID, false);
-        TakeRandomRoute();
+        TakeRandomRoute(); 
     } 
     void TakeSafeRoute()
     {
@@ -117,6 +126,7 @@ public class OverworldController : MonoBehaviour
             VillageController.Instance.GroupHitsDanger(marker.containedDanger);
             narrator.OpenDangerHitEventPanel(marker.containedDanger);
         }
+        monster.AddWaypoint(groupObject.transform.localPosition); 
     }
 
     public void FinishFinalGroupMovement()
@@ -199,11 +209,15 @@ public class OverworldController : MonoBehaviour
     void SetSpritesFromCollection()
     {
         heroObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.heroSprite;
-        monsterObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.monsterSprite;
+      //  monsterObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.monsterSprite;
         groupObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.groupSprite;
         foreach (GameObject obj in towerList)
             obj.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.towerSprite;
         foreach (GameObject obj in dangerMarkerList)
             obj.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.dangerMarkerSprite;
+    }
+    public Narrator GetNarrator()
+    {
+        return narrator;
     }
 }

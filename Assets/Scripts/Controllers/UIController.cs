@@ -9,8 +9,7 @@ public class UIController : MonoBehaviour
     public static UIController Instance;
 
     [Header("Assign")]
-    public Narrator narrator;
-    public OverworldInterface overworldInterface;
+    public Narrator narrator; 
     public GameObject titlePanel;
     public GameObject blackFadePanel;
     public TextMeshProUGUI creditsText;
@@ -24,8 +23,7 @@ public class UIController : MonoBehaviour
         {
             titlePanel.SetActive(false);
             blackFadePanel.SetActive(false);
-            creditsText.gameObject.SetActive(false);
-            overworldInterface.dialogBox.SetActive(false);
+            creditsText.gameObject.SetActive(false); 
         } 
     }
 

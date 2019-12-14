@@ -9,14 +9,17 @@ public class Finish : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))//is the colliding object the player?
         {
             Debug.Log("Finished");
-            SceneController.Instance.CompleteLevel();
+            SceneController.Instance.EndLevel(true, true);
             //finish level
         }
     }
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
-            SceneController.Instance.FailLevel();
-
+            SceneController.Instance.EndLevel(false, false);
+        if (Input.GetMouseButtonDown(1))
+            SceneController.Instance.EndLevel(true, false);
+        if (Input.GetMouseButtonDown(2))
+            SceneController.Instance.EndLevel(true, true);
     }
 }

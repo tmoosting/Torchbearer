@@ -10,6 +10,7 @@ public class SceneController : MonoBehaviour
 
     public bool madeTransition = false;
     public bool lastLevelSuccess = false;
+    public bool lastLevelMonsterEvaded = false;
 
 
     private void Awake()
@@ -26,19 +27,15 @@ public class SceneController : MonoBehaviour
             SceneManager.LoadSceneAsync("Ice Level (test)");
         }
     }
+    public void EndLevel (bool levelCompleted, bool withinTimeLimit)
+    {
+      //  Debug.Log("ending with " + levelCompleted + " and timelimit " + withinTimeLimit);
+        UIController.Instance.overworldHolder.SetActive(true);
+        lastLevelSuccess = levelCompleted;
+        lastLevelMonsterEvaded = withinTimeLimit;
+        SceneManager.LoadScene("Overworld");
+        OverworldController.Instance.FinishLevel(lastLevelSuccess, lastLevelMonsterEvaded);
+    }
 
-    public void CompleteLevel()
-    {
-        UIController.Instance.overworldHolder.SetActive(true);
-        lastLevelSuccess = true;
-        SceneManager.LoadScene("Overworld");
-        OverworldController.Instance.FinishLevel(true);
-    }
-    public void FailLevel()
-    {
-        UIController.Instance.overworldHolder.SetActive(true);
-        lastLevelSuccess = false;
-        SceneManager.LoadScene("Overworld");
-        OverworldController.Instance.FinishLevel(false);
-    }
+ 
 }
