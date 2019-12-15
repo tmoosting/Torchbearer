@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     public enum GameState { TitleScreen, Introduction, Overworld, Level, LevelFinished, GameFinished}
 
     GameState previousGameState;
-    GameState currentGameState;
+    GameState currentGameState = GameState.TitleScreen;
 
     public bool skipIntroduction;
     [HideInInspector]
@@ -30,8 +30,7 @@ public class GameController : MonoBehaviour
     }
 
     void StartGame()
-    {
-        currentGameState = GameState.TitleScreen;
+    { 
         VillageController.Instance.InitializeVillage();
         DangerController.Instance.InitializeDangers();
         OverworldController.Instance.InitializeOverworld();

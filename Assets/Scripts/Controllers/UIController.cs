@@ -41,8 +41,10 @@ public class UIController : MonoBehaviour
 
             } 
         }
+       
     }
 
+    
    public void ShowTitleScreen()
     {
         titlePanel.SetActive(true);
@@ -51,10 +53,10 @@ public class UIController : MonoBehaviour
     {
         titlePanel.SetActive(false);
     }
-    public void ClearIntroduction()
-    {
-        narrator.OpenEventPanel(SpriteCollection.Instance.heroStandsUpSprite, narrator.heroStandsUpString);
-    }
+    //public void ClearIntroduction()
+    //{
+       
+    //}
     public void FadeToBlack()
     {
         blackFadePanel.SetActive(true);

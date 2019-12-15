@@ -30,8 +30,7 @@ public class OverworldController : MonoBehaviour
     [HideInInspector]
     public int monsterSteps = 0;
 
-    [Header("Texts")]
-    public string stage5CompletedString;
+    
 
     private void Awake()
     {
@@ -147,8 +146,10 @@ public class OverworldController : MonoBehaviour
     {
         if (finalStageJustCompleted == true)
         {
-            narrator.OpenEventPanel(stage5CompletedString);
+            narrator.OpenEndEventPanel();
+
             postFinalStageMessageClickedAway = true;
+
             finalStageJustCompleted = false;
         }
         else if (postFinalStageMessageClickedAway == true)
