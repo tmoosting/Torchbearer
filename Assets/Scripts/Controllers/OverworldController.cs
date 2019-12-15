@@ -208,7 +208,7 @@ public class OverworldController : MonoBehaviour
     }
     void SetSpritesFromCollection()
     {
-        heroObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.heroSprite;
+      //  heroObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.heroSprite;
       //  monsterObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.monsterSprite;
         groupObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.groupSprite;
         foreach (GameObject obj in towerList)
