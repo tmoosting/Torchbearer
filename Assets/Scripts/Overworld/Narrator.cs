@@ -96,7 +96,7 @@ public class Narrator : MonoBehaviour
                 fastFinishCoroutine = true;
          //       SetStage(currentStage += 1);  //TODO: Make a click first complete the current screen, then proceed on next click
             }
-            else if (dangerEventPanelOpen == true)
+            if (dangerEventPanelOpen == true)
                 CloseDangerEventPanel();
             else if (spookedEventPanelOpen == true)
                 CloseSpookedEventPanel();
@@ -198,20 +198,22 @@ public class Narrator : MonoBehaviour
     }
     void CloseEventPanel()
     {
+    //    Debug.Log("close vent normal");
         eventPanelOpen = false;
         eventPanel.SetActive(false);
         OverworldController.Instance.EventPanelGotClosed();
     }
     void CloseDangerEventPanel()
     {
-        
+     //   Debug.Log("close vent danger");
         OverworldController.Instance.monster.MoveForward();
         dangerEventPanelOpen = false;
         eventPanel.SetActive(false);
         OverworldController.Instance.EventPanelGotClosed();
     }
     void CloseSpookedEventPanel()
-    { 
+    {
+     //   Debug.Log("close vent spooked");
         spookedEventPanelOpen = false;
         eventPanel.SetActive(false);
         OverworldController.Instance.EventPanelGotClosed();

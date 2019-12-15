@@ -26,7 +26,7 @@ public class Monster : MonoBehaviour
     {
         stepsRemaining = OverworldController.Instance.monsterSteps; 
         if (stepsRemaining > 0 )
-         StartCoroutine(MoveMonsterToVector(waypointList[stepsCompleted ])); 
+         MoveMonsterToVector(waypointList[stepsCompleted ]); 
     }
     void FinishOneMovement()
     {
@@ -36,13 +36,20 @@ public class Monster : MonoBehaviour
         if (MonsterAtGroup() == true)
             VillageController.Instance.MonsterSpooksVillager();
         else if (stepsRemaining > 0 && OverworldController.Instance.finalStageJustCompleted == false && stepsCompleted < 5)
-            StartCoroutine(MoveMonsterToVector(waypointList[stepsCompleted]));
+            MoveMonsterToVector(waypointList[stepsCompleted]);
+    }
+    public void MoveMonsterToVector(Vector3 targetVector)
+    {
+        //  Debug.Log("moving mnster for steps: "   + " to x: " + waypointList[stepsCompleted  ].x + " and y: "+ waypointList[stepsCompleted  ].y);
+
+        SoundControllers.Instance.StartMonsterWalk();
+        StartCoroutine(MoveMonster(targetVector));
     }
 
-    public IEnumerator MoveMonsterToVector (Vector3 targetVector)
+    public IEnumerator MoveMonster (Vector3 targetVector)
     {
-      //  Debug.Log("moving mnster for steps: "   + " to x: " + waypointList[stepsCompleted  ].x + " and y: "+ waypointList[stepsCompleted  ].y);
-
+        //  Debug.Log("moving mnster for steps: "   + " to x: " + waypointList[stepsCompleted  ].x + " and y: "+ waypointList[stepsCompleted  ].y);
+         
         int count = 0; 
         while (gameObject.transform.localPosition != targetVector)
         {
@@ -51,6 +58,7 @@ public class Monster : MonoBehaviour
                 break;
             yield return null;
         }
+        SoundControllers.Instance.StopMonsterWalk();
         FinishOneMovement();
     }
 

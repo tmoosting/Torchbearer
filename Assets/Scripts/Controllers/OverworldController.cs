@@ -93,7 +93,7 @@ public class OverworldController : MonoBehaviour
                 if (objMarker.isSafe == true)
                     marker = objMarker;            
         }
-        StartCoroutine(groupObject.GetComponent<Group>().MoveGroupToMarker(marker)); 
+        groupObject.GetComponent<Group>().MoveGroupToMarker(marker); 
     }
     void TakeRandomRoute()
     {
@@ -105,7 +105,7 @@ public class OverworldController : MonoBehaviour
             if (objMarker.tier == currentStage)
                 potentialMarkerList.Add(objMarker);
         }  
-        StartCoroutine(groupObject.GetComponent<Group>().MoveGroupToMarker(potentialMarkerList[Random.Range(0, 3)]));
+        groupObject.GetComponent<Group>().MoveGroupToMarker(potentialMarkerList[Random.Range(0, 3)]);
     }
 
     public void FinishGroupMovement (DangerMarker marker)
@@ -208,10 +208,7 @@ public class OverworldController : MonoBehaviour
             towerList[currentStage - 1].GetComponent<Tower>().explorable = true;
     }
     void SetSpritesFromCollection()
-    {
-      //  heroObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.heroSprite;
-      //  monsterObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.monsterSprite;
-        groupObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.groupSprite;
+    { 
         foreach (GameObject obj in towerList)
             obj.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.towerSprite;
         foreach (GameObject obj in dangerMarkerList)
