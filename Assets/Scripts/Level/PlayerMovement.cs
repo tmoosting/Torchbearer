@@ -46,8 +46,11 @@ public class PlayerMovement : MonoBehaviour
     private bool dying = false;
 
     private bool isFalling = false; //For animation, is the player falling?
+    private bool isJumping = false;
     private float lowestY = -30f; //Under what y value does the player respawn
-    public float yThreshold = 3.0f; //Velocity threshold for falling (negative) and jumping (positive)
+    private float yThreshold = 11.0f; //Velocity threshold for jumping
+    private float negyThreshold = -3.0f; //Velocity threshold for falling
+    private float walkingyThreshold = 0.1f;
     //Variables for dashing
     public float dashSpeed = 25f; //Velocity during dash
     public float startDashTime = 0.2f;//Dash duration
@@ -141,17 +144,32 @@ public class PlayerMovement : MonoBehaviour
                             PlayerAnimator.SetBool("Falling", false);
                         }
                     }
-                    if (PlayerRB.velocity.y < -yThreshold) //If the player is falling
+                    if (PlayerRB.velocity.y < yThreshold && PlayerRB.velocity.y > walkingyThreshold)
+                    {
+                        isJumping = false;
+                    }
+                    if (PlayerRB.velocity.y < negyThreshold) //If the player is falling
                     {
                         isFalling = true;
+                        isJumping = false;
                         PlayerAnimator.SetBool("Jump", false);
                         PlayerAnimator.SetBool("Falling", true);
                     }
                     else if (PlayerRB.velocity.y > yThreshold)//If the player is jumping
                     {
                         isFalling = false;
+                        isJumping = true;
                         PlayerAnimator.SetBool("Jump", true);
                         PlayerAnimator.SetBool("Falling", false);
+                    }
+                    if (!isJumping && !isFalling && IsGrounded())
+                    {
+                        Vector2 vel = PlayerRB.velocity;
+                        if (vel.y > walkingyThreshold)
+                        {
+                            vel.y = 1f;
+                            PlayerRB.velocity = vel;
+                        }
                     }
                     if (Input.GetKey(KeyCode.Space) && (dashAvailable || freeDash))//If the player presses down the space key and can dash
                     {
@@ -330,7 +348,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 position = transform.position; //Gets player position
         float x = (PlayerBox.bounds.size.x / 2) - 0.08f;//Gets half the width of the player boxcollider, -0.1f to not jump when against a wall
         Vector2 direction = Vector2.down;//(0,-1)
-        float distance = 1.6f;//Distance the raycast travels
+        float distance = 1.8f;//Distance the raycast travels
 
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer); //Raycast in the middle of the player box collider
         if (hit.collider != null)//If ground layer has been hit
