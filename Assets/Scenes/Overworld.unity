@@ -1854,7 +1854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f35e0b4c16fdf844cba677107cd3113b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skipIntroduction: 1
+  skipIntroduction: 0
   introCompleted: 0
 --- !u!1 &550774582 stripped
 GameObject:
