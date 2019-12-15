@@ -22,10 +22,15 @@ public class SceneController : MonoBehaviour
     {
         UIController.Instance.overworldHolder.SetActive(false);
         madeTransition = true;
-        if (OverworldController.Instance.chosenTowerID >= 1)
-        {
-            SceneManager.LoadSceneAsync("Ice Level (test)");
-        }
+        if (OverworldController.Instance.chosenTowerID == 1)        
+            SceneManager.LoadSceneAsync("Desert Level");
+        else if (OverworldController.Instance.chosenTowerID == 2)
+            SceneManager.LoadSceneAsync("Ice Level");
+        else if (OverworldController.Instance.chosenTowerID == 3)
+            SceneManager.LoadSceneAsync("Cave Level");
+        else if (OverworldController.Instance.chosenTowerID == 4)
+            SceneManager.LoadSceneAsync("Forest Level");
+
     }
     public void EndLevel (bool levelCompleted, bool withinTimeLimit)
     {

@@ -76,6 +76,9 @@ public class Narrator : MonoBehaviour
     public string successfulLevelString;
     public string dangerDodgedString;
 
+    [Header("End")]
+    public string stage5CompletedString;
+
 
     private void Start()
     {
@@ -104,7 +107,12 @@ public class Narrator : MonoBehaviour
         {
             if (introductionDone == true)
                 ShowLastEventPanel();
-        } 
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if ( GameController.Instance.GetGameState() == GameController.GameState.Introduction)
+                  SkipRestOfIntroduction();
+        }
     } 
     public bool EventPanelOpened()
     {
@@ -173,6 +181,16 @@ public class Narrator : MonoBehaviour
         str += "The village no longer has a " + VillageController.Instance.recentlySpookedVillager.occupation.ToString() + ".";
         eventPanelText.text = str;
     }
+    public void OpenEndEventPanel(  )
+    {
+        eventPanelOpen = true;
+        eventPanel.SetActive(true);
+        eventPanelImage.gameObject.SetActive(true);
+        eventPanelImage.sprite = SpriteCollection.Instance.endSprite;
+        string str = "";
+        str += " run to safety..";
+        eventPanelText.text = str;
+    }
     void ShowLastEventPanel()
     {
         eventPanelOpen = true;
@@ -204,10 +222,18 @@ public class Narrator : MonoBehaviour
         introPanel.SetActive(true);
         SetStage(1);
     }
+    void SkipRestOfIntroduction()
+    {
+        GameController.Instance.introCompleted = true;
+        introPanel.SetActive(false); 
+        introductionDone = true;
+        ClearIntroPanel();
+    }
     void FinishIntroduction()
     {
+        GameController.Instance.introCompleted = true;
         introPanel.SetActive(false);
-        UIController.Instance.ClearIntroduction();
+        OpenEventPanel(SpriteCollection.Instance.heroStandsUpSprite, heroStandsUpString);
         introductionDone = true;
         ClearIntroPanel();
     }
@@ -253,8 +279,7 @@ public class Narrator : MonoBehaviour
                 StartCoroutine(Screen4Routine());
             }
             if (stage == 5)
-            {
-                GameController.Instance.introCompleted = true;
+            { 
                 FinishIntroduction();
             }
         } 
