@@ -10,7 +10,9 @@ public class Narrator : MonoBehaviour
     int currentStage = 0;
     bool eventPanelOpen = false;
     bool dangerEventPanelOpen = false;
+    bool dangerDodgedPanelOpen = false;
     bool spookedEventPanelOpen = false;
+    bool deadVillagerEventPanelOpen = false;
     bool introductionDone = false;
     bool fastFinishCoroutine = false;
 
@@ -100,8 +102,14 @@ public class Narrator : MonoBehaviour
                 CloseDangerEventPanel();
             else if (spookedEventPanelOpen == true)
                 CloseSpookedEventPanel();
+            else if (deadVillagerEventPanelOpen == true)       
+                CloseDeadVillagerEventPanel();
+            else if (dangerDodgedPanelOpen == true)
+                CloseDangerDodgedPanel();
             else if (eventPanelOpen == true )
                 CloseEventPanel();
+
+            
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -145,7 +153,7 @@ public class Narrator : MonoBehaviour
     }
     public void OpenDangerDodgedEventPanel()
     {
-        dangerEventPanelOpen = true;
+        dangerDodgedPanelOpen = true;
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(true);
         eventPanelImage.sprite = SpriteCollection.Instance.dangerDodgedSprite;
@@ -162,9 +170,7 @@ public class Narrator : MonoBehaviour
         str += "\n";
         str += danger.dangerString;
         str += "\n\n";
-        str += VillageController.Instance.recentlyDeceasedVillager.villagerID.ToString();
-        str += " is with us no more.\n";
-        str += "The village no longer has a " + VillageController.Instance.recentlyDeceasedVillager.occupation.ToString() + "."; 
+        
         eventPanelText.text = str;
     }
     public void OpenSpookedEventPanel(   )
@@ -175,10 +181,28 @@ public class Narrator : MonoBehaviour
         eventPanelImage.sprite = SpriteCollection.Instance.spookedSprite;
         string str = "";
         str += "A villager got spooked!"; 
-        str += "\n\n";
-        str += VillageController.Instance.recentlySpookedVillager.villagerID.ToString();
-        str += " is with us no more.\n";
-        str += "The village no longer has a " + VillageController.Instance.recentlySpookedVillager.occupation.ToString() + ".";
+        str += "\n\n"; 
+        eventPanelText.text = str;
+    }
+    public void OpenDeadVillagerEventPanel(   )
+    {
+        deadVillagerEventPanelOpen = true;
+        eventPanel.SetActive(true);
+        eventPanelImage.gameObject.SetActive(true);
+        string str = "";
+        if (spookException == false)
+        {
+            eventPanelImage.sprite = VillageController.Instance.recentlyDeceasedVillager.sprite;
+            str += VillageController.Instance.recentlyDeceasedVillager.villagerID;
+        }
+        else
+        {
+            eventPanelImage.sprite = VillageController.Instance.recentlySpookedVillager.sprite;
+            str += VillageController.Instance.recentlySpookedVillager.villagerID;
+        } 
+        str += "\n";
+        str += "has met their demise";
+        str += "\n\n"; 
         eventPanelText.text = str;
     }
     public void OpenEndEventPanel(  )
@@ -205,18 +229,45 @@ public class Narrator : MonoBehaviour
     }
     void CloseDangerEventPanel()
     {
-     //   Debug.Log("close vent danger");
-        OverworldController.Instance.monster.MoveForward();
         dangerEventPanelOpen = false;
         eventPanel.SetActive(false);
         OverworldController.Instance.EventPanelGotClosed();
+        OpenDeadVillagerEventPanel(); 
     }
-    void CloseSpookedEventPanel()
+    void CloseDangerDodgedPanel()
     {
-     //   Debug.Log("close vent spooked");
+        OverworldController.Instance.monster.MoveForward();
+        dangerDodgedPanelOpen = false;
+        eventPanel.SetActive(false);
+        OverworldController.Instance.EventPanelGotClosed();
+        
+    }
+    void CloseDeadVillagerEventPanel()
+    {
+        //   Debug.Log("close vent danger");
+        if (spookException == true)
+        {
+            spookException = false;
+        }
+        else
+        {
+            OverworldController.Instance.monster.MoveForward();
+            spookException = false;
+        } 
+          
+        deadVillagerEventPanelOpen = false;
+        eventPanel.SetActive(false);
+        OverworldController.Instance.EventPanelGotClosed();
+    }
+    
+    bool spookException = false;
+    void CloseSpookedEventPanel()
+    { 
         spookedEventPanelOpen = false;
         eventPanel.SetActive(false);
         OverworldController.Instance.EventPanelGotClosed();
+        spookException = true;
+        OpenDeadVillagerEventPanel(); 
     }
     // -------------------- INTRODUCTION
     public void StartIntroduction()

@@ -26,10 +26,7 @@ public class DangerController : MonoBehaviour
     public string danger7Event;
     public string danger8Name;
     public string danger8Event;
-    public string danger9Name;
-    public string danger9Event;
-    public string danger10Name;
-    public string danger10Event;
+ 
 
     private void Awake()
     {
@@ -46,9 +43,7 @@ public class DangerController : MonoBehaviour
         dangerNameList.Add(danger5Name);
         dangerNameList.Add(danger6Name);
         dangerNameList.Add(danger7Name);
-        dangerNameList.Add(danger8Name);
-        dangerNameList.Add(danger9Name);
-        dangerNameList.Add(danger10Name);
+        dangerNameList.Add(danger8Name); 
         dangerEventList.Add(danger1Event);
         dangerEventList.Add(danger2Event);
         dangerEventList.Add(danger3Event);
@@ -56,20 +51,18 @@ public class DangerController : MonoBehaviour
         dangerEventList.Add(danger5Event);
         dangerEventList.Add(danger6Event);
         dangerEventList.Add(danger7Event);
-        dangerEventList.Add(danger8Event);
-        dangerEventList.Add(danger9Event);
-        dangerEventList.Add(danger10Event);
+        dangerEventList.Add(danger8Event); 
         CreateDangers();
         AddDangersToMarkers();
     }
 
     void CreateDangers()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 8; i++)
         {
             Danger danger = new Danger(dangerNameList[i], dangerEventList[i], SpriteCollection.Instance.dangerSpriteList[i]);
             dangerList.Add(danger);
-        }
+        } 
     }
 
     void AddDangersToMarkers()
@@ -80,8 +73,11 @@ public class DangerController : MonoBehaviour
             DangerMarker marker = OverworldController.Instance.dangerMarkerList[i].GetComponent<DangerMarker>();
             if (marker.isSafe == true) 
                 skipCount++; 
-            else 
-                marker.containedDanger = dangerList[i - skipCount];  
+            else
+            { 
+                marker.containedDanger = dangerList[i - skipCount];
+
+            }
             //      Debug.Log(" marker " + i + " has danger with id " + marker.containedDanger.dangerID + " and text " + marker.containedDanger.dangerString);
         } 
     }
