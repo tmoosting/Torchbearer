@@ -57,16 +57,17 @@ public class SpriteCollection : MonoBehaviour
     public Sprite villager12Sprite;  
     public Sprite villager13Sprite;  
     public Sprite villager14Sprite;  
-    public Sprite villager15Sprite;  
+    public Sprite villager15Sprite;
 
-    [Header("Overworld")]
+    [Header("Overworld - Narrative")]
+    public Sprite spookedSprite;
+    public Sprite endSprite;
+
+    [Header("Overworld - Map")]
     public Sprite towerSprite;
     public Sprite towerSpriteHi;
     public Sprite dangerMarkerSprite;
-    public Sprite heroSprite;
-    public Sprite groupSprite;
-    public Sprite monsterSprite;
-    public Sprite spookedSprite;
-    public Sprite endSprite;
+
+ 
 
 }
