@@ -209,8 +209,8 @@ public class OverworldController : MonoBehaviour
     }
     void SetSpritesFromCollection()
     { 
-        foreach (GameObject obj in towerList)
-            obj.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.towerSprite;
+        //foreach (GameObject obj in towerList)
+        //    obj.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.towerSprite;
         foreach (GameObject obj in dangerMarkerList)
             obj.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.dangerMarkerSprite;
     }
@@ -218,4 +218,5 @@ public class OverworldController : MonoBehaviour
     {
         return narrator;
     }
+  
 }
