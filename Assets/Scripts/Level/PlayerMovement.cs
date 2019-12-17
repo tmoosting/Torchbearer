@@ -420,12 +420,10 @@ public class PlayerMovement : MonoBehaviour
                     if (!wasInPath)
                     {
                         PlayerRB.velocity = new Vector2(0f, 0f); //Reset velocity
-                        Debug.Log("No wasInPath");
                     }
                     else
                     {
                         PlayerRB.velocity = new Vector2(dashHor * dashSpeed, dashVert * dashSpeed);
-                        Debug.Log("wasInPath");
                     }
                     wasInPath = false;
                     dashing = false;
