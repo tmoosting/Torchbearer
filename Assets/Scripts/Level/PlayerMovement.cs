@@ -76,6 +76,9 @@ public class PlayerMovement : MonoBehaviour
     public Sprite emptyContainer;
     public Image dashtracker;
     public Sprite fullDash;
+    public Slider ghostSlider;
+    private float timeSpent = 0f;
+    private float maxTime = 200f;
 
     private Vector3 spawnPoint;//The players starting point
 
@@ -102,7 +105,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!dying)
         {
-
+            if (endingAnimation == 0)
+            {
+                if (timeSpent >= maxTime)
+                {
+                    //level failed, took too long
+                }
+                else
+                {
+                    ghostSlider.value = timeSpent / maxTime;
+                    timeSpent += Time.deltaTime;
+                }
+            }
             if (dashAvailable || freeDash)
             {
                 dashtracker.sprite = fullDash;
