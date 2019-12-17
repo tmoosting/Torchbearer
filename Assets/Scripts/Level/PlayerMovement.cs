@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     private bool dying = false;
     public int endingAnimation = 0;//0 not active, 1 waittillbeaconhit, 2 castanimation, 3 wait, 4 walkoffscreen
 
-    private bool isFalling = false; //For animation, is the player falling?
+    public bool isFalling = false; //For animation, is the player falling?
     private bool isJumping = false;
     private float lowestY = -30f; //Under what y value does the player respawn
     private float yThreshold = 11.0f; //Velocity threshold for jumping
@@ -137,20 +137,23 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (!dashing)//If the player is not currently dashing
                 {
-                    if (!dashAvailable || isFalling)//If the player has no dash available or if the player is currently falling
-                    {
-                        if (IsGrounded()) //If the player is currently standing on the ground
-                        {
-                            dashAvailable = true;
-                            isFalling = false;
-                            PlayerAnimator.SetBool("Falling", false);
-                        }
-                    }
                     if (PlayerRB.velocity.y < yThreshold && PlayerRB.velocity.y > walkingyThreshold)
                     {
                         isJumping = false;
                     }
-                    if (PlayerRB.velocity.y < negyThreshold) //If the player is falling
+                    if (IsGrounded(0.8f)) //If the player is currently standing on the ground
+                    {
+                        if (!dashAvailable && IsGrounded(0.1f))
+                        {
+                            dashAvailable = true;
+                        }
+                        if (isFalling)
+                        {
+                            isFalling = false;
+                            PlayerAnimator.SetBool("Falling", false);
+                        }
+                    }
+                    else if (PlayerRB.velocity.y < negyThreshold) //If the player is falling
                     {
                         isFalling = true;
                         isJumping = false;
@@ -164,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
                         PlayerAnimator.SetBool("Jump", true);
                         PlayerAnimator.SetBool("Falling", false);
                     }
-                    if (!isJumping && !isFalling && IsGrounded())
+                    if (!isJumping && !isFalling && IsGrounded(0.1f))
                     {
                         Vector2 vel = PlayerRB.velocity;
                         if (vel.y > walkingyThreshold)
@@ -196,7 +199,7 @@ public class PlayerMovement : MonoBehaviour
                         }
                         vel.x = horizontal * maxspeed; //Alter horizontal velocity
                         PlayerAnimator.SetFloat("Speed", Mathf.Abs(horizontal * maxspeed));
-                        if (horizontal != 0 && IsGrounded())//If the player is moving and on the ground, play the footstep sound
+                        if (horizontal != 0 && IsGrounded(0.1f))//If the player is moving and on the ground, play the footstep sound
                         {
                             PlayerAnimator.SetBool("Jump", false);
                             if (PlayerAudio.clip == PlayerStep)
@@ -343,7 +346,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump() //Function to make the player jump
     {
-        if (IsGrounded())//If the player is standing on the ground
+        if (IsGrounded(0.3f))//If the player is standing on the ground
         {
             dashAvailable = true;
             PlayerAnimator.SetBool("Jump", true);
@@ -357,12 +360,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    bool IsGrounded()//Checks if the player is standing on the ground, by checking for the groundlayer with raycasts on 3 points below the player.
+    bool IsGrounded(float offset)//Checks if the player is standing on the ground, by checking for the groundlayer with raycasts on 3 points below the player.
     {
         Vector2 position = transform.position; //Gets player position
-        float x = (PlayerBox.bounds.size.x / 2) - 0.08f;//Gets half the width of the player boxcollider, -0.1f to not jump when against a wall
+        position.y -= 1.40f;
+        float x = (PlayerBox.bounds.size.x / 2);//Gets half the width of the player boxcollider
         Vector2 direction = Vector2.down;//(0,-1)
-        float distance = 1.8f;//Distance the raycast travels
+        float distance = 0.1f + offset;//Distance the raycast travels
 
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer); //Raycast in the middle of the player box collider
         if (hit.collider != null)//If ground layer has been hit
@@ -384,6 +388,7 @@ public class PlayerMovement : MonoBehaviour
         if (invincible)
         {
             position = transform.position;
+            position.y -= 1.40f;
             hit = Physics2D.Raycast(position, direction, distance, hazardLayer); //Raycast in the middle of the player box collider
             if (hit.collider != null)//If ground layer has been hit
             {
