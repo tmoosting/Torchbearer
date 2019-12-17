@@ -8,6 +8,7 @@ public class Finish : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))//is the colliding object the player?
         {
+            other.gameObject.GetComponent<PlayerMovement>().LevelEnd();
             Debug.Log("Finished");
             SceneController.Instance.EndLevel(true, true);
             //finish level

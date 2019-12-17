@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D PlayerRB;
     BoxCollider2D PlayerBox;
     SpriteRenderer PlayerSprite;
-    Animator PlayerAnimator;
+    public Animator PlayerAnimator;
+    public Animator BeaconAnimator;
     //Player Audio Components
     public AudioSource PlayerAudio;
     public AudioClip PlayerStep;
@@ -44,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     private float knockbackSpeed = 20f;//knockback from damage
     private bool respawn = true;
     private bool dying = false;
+    public int endingAnimation = 0;//0 not active, 1 waittillbeaconhit, 2 castanimation, 3 wait, 4 walkoffscreen
 
     private bool isFalling = false; //For animation, is the player falling?
     private bool isJumping = false;
@@ -171,7 +173,7 @@ public class PlayerMovement : MonoBehaviour
                             PlayerRB.velocity = vel;
                         }
                     }
-                    if (Input.GetKey(KeyCode.Space) && (dashAvailable || freeDash))//If the player presses down the space key and can dash
+                    if (Input.GetKey(KeyCode.Space) && (dashAvailable || freeDash) && endingAnimation == 0)//If the player presses down the space key and can dash
                     {
                         Dash();
                     }
@@ -180,6 +182,18 @@ public class PlayerMovement : MonoBehaviour
                         float horizontal = Input.GetAxis("Horizontal"); //Gets a float between -1.0f and 1.0f depending on keypress
                         float vertical = Input.GetAxisRaw("Vertical"); //Gets a float that is exactly -1.0f, 0f or 1.0f depending on keypress
                         Vector2 vel = PlayerRB.velocity; //Get current player velocity
+                        if (endingAnimation == 1)
+                        {
+                            horizontal = 0.5f;
+                        }
+                        else if (endingAnimation == 2)
+                        {
+                            horizontal = 0f;
+                        }
+                        else if (endingAnimation == 4)
+                        {
+                            horizontal = 1f;
+                        }
                         vel.x = horizontal * maxspeed; //Alter horizontal velocity
                         PlayerAnimator.SetFloat("Speed", Mathf.Abs(horizontal * maxspeed));
                         if (horizontal != 0 && IsGrounded())//If the player is moving and on the ground, play the footstep sound
@@ -221,7 +235,7 @@ public class PlayerMovement : MonoBehaviour
                             PlayerSprite.flipX = false;
                         }
                         PlayerRB.velocity = vel; //Updates player velocity
-                        if (vertical == 1) //If the up arrow is pressed
+                        if (vertical == 1 && endingAnimation == 0) //If the up arrow is pressed
                         {
                             Jump();
                         }
@@ -487,5 +501,16 @@ public class PlayerMovement : MonoBehaviour
                 PlayerAudio.Play();
             }
         }
+    }
+    public void castEnd()
+    {
+        endingAnimation++;
+        vcam.enabled = false;//Disable the CineMachine
+        BeaconAnimator.SetTrigger("TurnOn");
+    }
+
+    public void LevelEnd()
+    {
+        inControl = false;
     }
 }
