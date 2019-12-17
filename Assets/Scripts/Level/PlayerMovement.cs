@@ -53,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
     private float yThreshold = 11.0f; //Velocity threshold for jumping
     private float negyThreshold = -3.0f; //Velocity threshold for falling
     private float walkingyThreshold = 0.1f;
+    private float fallDamageThreshold = 25f;
+    private float fallY;
     //Variables for dashing
     public float dashSpeed = 25f; //Velocity during dash
     public float startDashTime = 0.2f;//Dash duration
@@ -149,13 +151,21 @@ public class PlayerMovement : MonoBehaviour
                         }
                         if (isFalling)
                         {
+                            if (fallY - transform.position.y > fallDamageThreshold)
+                            {
+                                takeDamage(Vector2.zero);
+                            }
                             isFalling = false;
                             PlayerAnimator.SetBool("Falling", false);
                         }
                     }
                     else if (PlayerRB.velocity.y < negyThreshold) //If the player is falling
                     {
-                        isFalling = true;
+                        if (!isFalling)
+                        {
+                            isFalling = true;
+                            fallY = transform.position.y;
+                        }
                         isJumping = false;
                         PlayerAnimator.SetBool("Jump", false);
                         PlayerAnimator.SetBool("Falling", true);
@@ -284,6 +294,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     dashtracker.sprite = emptyContainer;
                 }
+                isFalling = false;
                 dashing = true;
                 PlayerAnimator.SetBool("Jump", false);
                 PlayerAnimator.SetBool("Falling", false);
@@ -428,6 +439,9 @@ public class PlayerMovement : MonoBehaviour
         dashVert = 0f;
         dashTime = startDashTime;
         dashing = false;
+        isFalling = false;
+        isJumping = false;
+        ghost.makeGhost = false;
     }
     void Die()
     {
