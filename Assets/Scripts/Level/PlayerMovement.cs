@@ -64,6 +64,11 @@ public class PlayerMovement : MonoBehaviour
     private bool dashing = false; //Is the player currently dashing?
     public bool dashAvailable = false; //Can the player dash? (dash resets when on ground)
     public bool freeDash = false; //Can the player infinitely dash?
+    public bool inDashPath = false;
+    public float dashAngle = 1f;
+    private bool DashPathActivated = false;
+    private bool wasInPath = false;
+
 
     private int PlayerLives = 3; // Player lives
     public Image[] hearts;
@@ -309,44 +314,110 @@ public class PlayerMovement : MonoBehaviour
             if (dashHor == -1 && dashVert == 0) //Dash left
             {
                 PlayerRB.velocity = new Vector2(-1f * pythDash, 0f);
+                if (inDashPath && dashAngle == 180)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == -1 && dashVert == 1)//Dash top left
             {
                 PlayerRB.velocity = new Vector2(-1f * dashSpeed, 1f * dashSpeed);
+                if (inDashPath && dashAngle == 135)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == 0 && dashVert == 1)//Dash up
             {
                 PlayerRB.velocity = new Vector2(0f, 1f * pythDash);
+                if (inDashPath && dashAngle == 90)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == 1 && dashVert == 1)//Dash top right
             {
                 PlayerRB.velocity = new Vector2(1f * dashSpeed, 1f * dashSpeed);
+                if (inDashPath && dashAngle == 45)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == 1 && dashVert == 0)//Dash right
             {
                 PlayerRB.velocity = new Vector2(1f * pythDash, 0f);
+                if (inDashPath && dashAngle == 0)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == 1 && dashVert == -1)//Dash bottom right
             {
                 PlayerRB.velocity = new Vector2(1f * dashSpeed, -1f * dashSpeed);
+                if (inDashPath && dashAngle == 315)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == 0 && dashVert == -1)//Dash bottom
             {
                 PlayerRB.velocity = new Vector2(0f, -1f * pythDash);
+                if (inDashPath && dashAngle == 270)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == -1 && dashVert == -1)//Dash bottom left
             {
                 PlayerRB.velocity = new Vector2(-1f * dashSpeed, -1f * dashSpeed);
+                if (inDashPath && dashAngle == 225)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
+            }
+            if (!inDashPath)
+            {
+                DashPathActivated = false;
             }
             if (dashTime <= 0)//If the dash is done
             {
-                dashHor = 0f;
-                dashVert = 0f;
-                dashTime = startDashTime;
-                PlayerRB.velocity = new Vector2(0f, 0f); //Reset velocity
-                dashing = false;
-                PlayerAnimator.SetBool("Dashing", false);
-                ghost.makeGhost = false;
+                if (DashPathActivated)
+                {
+                    dashTime = startDashTime;
+                    PlayerAudio.Stop();
+                    PlayerAudio.clip = PlayerDash;
+                    PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+                    PlayerAudio.Play();
+                }
+                else
+                {
+                    dashHor = 0f;
+                    dashVert = 0f;
+                    dashTime = startDashTime;
+                    dashAngle = 1f;
+                    if (!wasInPath)
+                    {
+                        PlayerRB.velocity = new Vector2(0f, 0f); //Reset velocity
+                        Debug.Log("No wasInPath");
+                    }
+                    else
+                    {
+                        PlayerRB.velocity = new Vector2(dashHor * dashSpeed, dashVert * dashSpeed);
+                        Debug.Log("wasInPath");
+                    }
+                    wasInPath = false;
+                    dashing = false;
+                    PlayerAnimator.SetBool("Dashing", false);
+                    ghost.makeGhost = false;
+                }
             }
             else //If the dash is not yet done
             {
