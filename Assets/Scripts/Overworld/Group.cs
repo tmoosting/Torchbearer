@@ -9,7 +9,15 @@ public class Group : MonoBehaviour
 
     public void MoveGroupToMarker(DangerMarker marker)
     {
+        if (SoundControllers.Instance == null)
+        {
+            Debug.Log("scontroller is null!");
+        }
+        else
+        {
         SoundControllers.Instance.StartGroupWalk();
+            Debug.Log("scontroller is null!");
+        }
         StartCoroutine(MoveGroup(marker));
     }
 
@@ -26,7 +34,7 @@ public class Group : MonoBehaviour
                 break;
             yield return null;
         }
-        SoundControllers.Instance.StopGroupWalk();
+     //   SoundControllers.Instance.StopGroupWalk();
         OverworldController.Instance.FinishGroupMovement(marker);
     }
     public IEnumerator MoveGroupToVector(Vector3 markerPos)

@@ -42,7 +42,7 @@ public class Monster : MonoBehaviour
     {
         //  Debug.Log("moving mnster for steps: "   + " to x: " + waypointList[stepsCompleted  ].x + " and y: "+ waypointList[stepsCompleted  ].y);
 
-        SoundControllers.Instance.StartMonsterWalk();
+     //   SoundControllers.Instance.StartMonsterWalk();
         StartCoroutine(MoveMonster(targetVector));
     }
 
@@ -58,7 +58,7 @@ public class Monster : MonoBehaviour
                 break;
             yield return null;
         }
-        SoundControllers.Instance.StopMonsterWalk();
+       
         FinishOneMovement();
     }
 
