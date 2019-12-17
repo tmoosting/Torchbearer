@@ -186,7 +186,7 @@ public class PlayerMovement : MonoBehaviour
                         {
                             horizontal = 0.5f;
                         }
-                        else if (endingAnimation == 2)
+                        else if (endingAnimation == 2 || endingAnimation == 3)
                         {
                             horizontal = 0f;
                         }
