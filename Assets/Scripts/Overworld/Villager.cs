@@ -22,5 +22,5 @@ public class Villager : ScriptableObject
     public Occupation occupation;
     public Power power;
     public bool isAlive = true;
-
+    public Sprite sprite;
 }

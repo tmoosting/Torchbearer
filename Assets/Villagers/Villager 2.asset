@@ -16,3 +16,4 @@ MonoBehaviour:
   occupation: 19
   power: 0
   isAlive: 1
+  sprite: {fileID: 21300000, guid: dd9fd6bd0edd23943a88c300a7c812a9, type: 3}

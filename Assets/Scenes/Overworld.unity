@@ -268,26 +268,26 @@ MonoBehaviour:
   successfulLevelSprite: {fileID: 21300000, guid: a863776a3f8a444409635e440f2da45b,
     type: 3}
   dangerDodgedSprite: {fileID: 21300000, guid: 742399161961a5a4eadf238a65a7c7b4, type: 3}
-  danger1Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
+  danger1Sprite: {fileID: 21300000, guid: e368ac0f1039d274687d5d9b817ce928, type: 3}
   danger2Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
   danger3Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
-  danger4Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
-  danger5Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
+  danger4Sprite: {fileID: 21300000, guid: f67b76f159cb6044690271958018fbf7, type: 3}
+  danger5Sprite: {fileID: 21300000, guid: 10ae4a672260e424fae7340ccadaff5e, type: 3}
   danger6Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
   danger7Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
   danger8Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
   danger9Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
   danger10Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
-  villager1Sprite: {fileID: 0}
-  villager2Sprite: {fileID: 0}
-  villager3Sprite: {fileID: 0}
-  villager4Sprite: {fileID: 0}
-  villager5Sprite: {fileID: 0}
-  villager6Sprite: {fileID: 0}
-  villager7Sprite: {fileID: 0}
-  villager8Sprite: {fileID: 0}
-  villager9Sprite: {fileID: 0}
-  villager10Sprite: {fileID: 0}
+  villager1Sprite: {fileID: 21300000, guid: 666a2f0457a4da448b9d54f5bc5b932c, type: 3}
+  villager2Sprite: {fileID: 21300000, guid: dd9fd6bd0edd23943a88c300a7c812a9, type: 3}
+  villager3Sprite: {fileID: 21300000, guid: d5fe6e8591a44a148afb28c67954fe09, type: 3}
+  villager4Sprite: {fileID: 21300000, guid: b31ed5b1e5a4f8f4b98d6ce1baf663c7, type: 3}
+  villager5Sprite: {fileID: 21300000, guid: d40ecdd56da2c4143bac0f4e246d2f35, type: 3}
+  villager6Sprite: {fileID: 21300000, guid: 3264cdf260627a64089637573eff821d, type: 3}
+  villager7Sprite: {fileID: 21300000, guid: 31ca563f1b2e9c641af373fe3f7f2ddd, type: 3}
+  villager8Sprite: {fileID: 21300000, guid: ce725dcc0ec15694b8ff78213981637c, type: 3}
+  villager9Sprite: {fileID: 21300000, guid: 7d85d6349a0843646aa61af01ba4d3be, type: 3}
+  villager10Sprite: {fileID: 21300000, guid: 912bf7bbb3a40fd469e9416d2e49c8bd, type: 3}
   villager11Sprite: {fileID: 0}
   villager12Sprite: {fileID: 0}
   villager13Sprite: {fileID: 0}
@@ -3062,8 +3062,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 7166793a4f46fce459fe0ac4b4f9735d, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -5346,7 +5346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1549994848
 Transform:
   m_ObjectHideFlags: 0
@@ -5407,7 +5407,7 @@ SpriteRenderer:
   m_Size: {x: 0.4, y: 0.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1562141031
@@ -6322,7 +6322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1876081417
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6741,26 +6741,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c342a29866567f409724b60b1d59c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  danger1Name: Bubbly Swamp
-  danger1Event: very tusky
-  danger2Name: Volcano
-  danger2Event: bubble bubble
-  danger3Name: CrankyGoat
-  danger3Event: stomps evveryone
-  danger4Name: Marsh
-  danger4Event: whoops get stuck
-  danger5Name: EvilWizard
-  danger5Event: casts nasty spells
-  danger6Name: BottomlessPit
-  danger6Event: fall forever and ever
-  danger7Name: Hag
-  danger7Event: throws potion at you
-  danger8Name: SharpStones
-  danger8Event: ouch ouch ouch
-  danger9Name: DrugLord
-  danger9Event: defending their drugs
-  danger10Name: BigBird
-  danger10Event: fly over then eat you
+  danger1Name: Quicksand
+  danger1Event: '...'
+  danger2Name: Sandworms
+  danger2Event: '...'
+  danger3Name: Snowstorm
+  danger3Event: '...'
+  danger4Name: Cliffs
+  danger4Event: '...'
+  danger5Name: Crocodiles
+  danger5Event: '...'
+  danger6Name: Hermit
+  danger6Event: '...'
+  danger7Name: Monkeys
+  danger7Event: '...'
+  danger8Name: Swamps
+  danger8Event: '...'
 --- !u!1 &1976834051 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5887263397033655447, guid: 6815e0b1a6caa6249a70881c36d2ed80,
