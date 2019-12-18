@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class FallingPlatform : MonoBehaviour
 {
+    public AudioSource platformSource;
     public Animator platformAnim;
     public Rigidbody2D platformRB;
     public SpriteRenderer platformSprite;
@@ -58,6 +59,7 @@ public class FallingPlatform : MonoBehaviour
                 if (alpha > 1f)
                 {
                     alpha = 1f;
+                    platformSource.Stop();
                     platformGround.enabled = true;
                     triggers.layer = 9;
                     stage = 0;
@@ -78,6 +80,7 @@ public class FallingPlatform : MonoBehaviour
             {
                 platformAnim.SetTrigger("Shake");
                 stage++;
+                platformSource.Play();
             }
         }
     }
