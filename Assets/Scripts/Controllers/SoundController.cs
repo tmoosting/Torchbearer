@@ -23,6 +23,7 @@ public class SoundController : MonoBehaviour
     public AudioClip dangerDodged;
     public AudioClip levelSuccessful;
     public AudioClip levelDoubleSuccessful;
+    public AudioClip appearX;
 
      
 
@@ -111,5 +112,9 @@ public class SoundController : MonoBehaviour
     public void PlayLevelDoubleSuccessful()
     {
         fxAudio.PlayOneShot(levelDoubleSuccessful);
+    }
+    public void PlayXAppears()
+    {
+        fxAudio.PlayOneShot(appearX);
     }
 }
