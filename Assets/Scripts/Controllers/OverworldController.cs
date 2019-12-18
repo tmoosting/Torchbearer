@@ -5,70 +5,101 @@ using UnityEngine;
 public class OverworldController : MonoBehaviour
 {
     public static OverworldController Instance;
+    Narrator narrator;
 
-    [Header("Assign")] 
+   [Header("Assign")] 
     public List<GameObject> towerList = new List<GameObject>();
     public List<GameObject> dangerMarkerList = new List<GameObject>();
     public GameObject heroObject;
-    public GameObject monsterObject;
+    public Monster monster;
     public GameObject groupObject;
+    public GameObject endMarker; 
 
     int currentStage = 1;
-    int numberOfStages = 5;
+    int numberOfStages = 4;
     [HideInInspector]
     public int chosenTowerID; 
     [HideInInspector]
     public Dictionary<int, bool> towerCompletion = new Dictionary<int, bool>();
     bool proceedAllowed = true;
+    [HideInInspector]
+    public bool finalStageJustCompleted = false;
+    bool postFinalStageMessageClickedAway = false;
+    bool veryLastMessageClickedAway = false;
+    bool levelSucceeded = false;
+    [HideInInspector]
+    public int monsterSteps = 0;
 
+    
 
     private void Awake()
     {
         Instance = this;
-    }
-    private void Start()
+    } 
+    public void InitializeOverworld()
     {
+        narrator = UIController.Instance.narrator;
         SetTowerIDs();
         SetMarkerTiers();
         SyncTowersToStage();
         SetSpritesFromCollection();
     }
-    
 
-    public void FinishLevel(bool successful)
+    bool IsTowerClickAllowed()
     {
-        Debug.Log("finishing level for stage.. " + currentStage);
+        if (proceedAllowed == false)
+            return false;
+        if (UIController.Instance.narrator.EventPanelOpened() == true)
+            return false;
+
+        if (monster.isMoving == true)
+            return false;
+
+        if (groupObject.GetComponent<Group>().isMoving == true)
+            return false;
+
+        if (heroObject.GetComponent<Hero>().isMoving == true)
+            return false;
+        return true;
+    }
+    public void ClickTower(Tower tower)
+    {
+        if (IsTowerClickAllowed() == true)
+        {
+            chosenTowerID = tower.towerID;
+            StartCoroutine(heroObject.GetComponent<Hero>().MoveHeroToTower(tower));
+        }
+    }
+
+    public void FinishLevel(bool successful, bool withinTime)
+    { 
         if (successful == true)
         {
-            SucceedStage();
+            if (withinTime == true)
+                SucceedStage(0);
+            else
+                SucceedStage(1);
         }
         if (successful == false)
         {
             FailStage();
         }
-    }
-
-    public void ClickTower(Tower tower)
+        SoundController.Instance.PlayOverworldBackgroundMusic();
+    }  
+    public void SucceedStage(int monsterSteps)
     {
-        if (proceedAllowed == true)
-        { 
-            chosenTowerID = tower.towerID;
-            StartCoroutine(heroObject.GetComponent<Hero>().MoveHeroToTower(tower));
-        } 
-    }
-    public void SucceedStage()
-    {
+        this.monsterSteps = monsterSteps;
+        levelSucceeded = true;
         towerCompletion.Add(chosenTowerID, true);
-        TakeSafeRoute();
+        TakeSafeRoute(); 
     }
     public void FailStage()
     {
-        Debug.Log("add " + chosenTowerID);
+        this.monsterSteps = 2;
+        levelSucceeded = false;
         towerCompletion.Add(chosenTowerID, false);
-        TakeRandomRoute();
-    }
-
-
+        TakeRandomRoute(); 
+    } 
     void TakeSafeRoute()
     {
         proceedAllowed = false;
@@ -80,34 +111,91 @@ public class OverworldController : MonoBehaviour
                 if (objMarker.isSafe == true)
                     marker = objMarker;            
         }
-        StartCoroutine(groupObject.GetComponent<Group>().MoveGroupToMarker(marker)); 
+        groupObject.GetComponent<Group>().MoveGroupToMarker(marker); 
     }
     void TakeRandomRoute()
     {
         proceedAllowed = false;
-        List<DangerMarker> potentialMarketList = new List<DangerMarker>();
+        List<DangerMarker> potentialMarkerList = new List<DangerMarker>();
         foreach (GameObject obj in dangerMarkerList)
         {
             DangerMarker objMarker = obj.GetComponent<DangerMarker>();
             if (objMarker.tier == currentStage)
-                potentialMarketList.Add(objMarker);
+                potentialMarkerList.Add(objMarker);
         }  
-        StartCoroutine(groupObject.GetComponent<Group>().MoveGroupToMarker(potentialMarketList[Random.Range(0, 3)]));
+        groupObject.GetComponent<Group>().MoveGroupToMarker(potentialMarkerList[Random.Range(0, 3)]);
     }
 
     public void FinishGroupMovement (DangerMarker marker)
     {
         // TODO: show what happens with the group 
         ProgressStage();
+        if (levelSucceeded == true) // group moves to safe marker because beacon is lit
+        {
+          narrator.OpenSuccessfulLevelEventPanel();
+        }
+        else if(marker.isSafe == true) // group moves to safe marker by chance
+        {
+           narrator.OpenDangerDodgedEventPanel(); 
+        }
+        else // group has hit a danger
+        {
+            VillageController.Instance.GroupHitsDanger(marker.containedDanger);
+            narrator.OpenDangerHitEventPanel(marker.containedDanger);
+        }
+        monster.AddWaypoint(groupObject.transform.localPosition); 
     }
 
+    public void FinishFinalGroupMovement()
+    {
+        narrator.OpenEndEventPanel();
+    }
     void ProgressStage()
     {
         currentStage++;
         // UIController.Instance.overworldInterface.UpdateProgressPanel(); 
-        SyncTowersToStage();
+        SyncTowersToStage();         
         proceedAllowed = true;
+        if (currentStage > numberOfStages)
+            finalStageJustCompleted = true;
     }
+
+    public void EventPanelGotClosed(bool hasNextScreen)
+    {
+
+        if (finalStageJustCompleted == true)
+        { 
+            postFinalStageMessageClickedAway = true; 
+            finalStageJustCompleted = false;
+            if (hasNextScreen == false)
+            {
+                MoveGroupToEndPoint();
+                postFinalStageMessageClickedAway = false;
+                veryLastMessageClickedAway = true;
+            }
+        }
+        else if (postFinalStageMessageClickedAway == true)
+        {
+            MoveGroupToEndPoint();
+            postFinalStageMessageClickedAway = false;
+            veryLastMessageClickedAway = true;
+        }
+        else if (veryLastMessageClickedAway == true)
+        {
+            UIController.Instance.FadeToBlack();
+        }
+
+    }
+
+
+    void MoveGroupToEndPoint()
+    {
+        StartCoroutine(groupObject.GetComponent<Group>().MoveGroupToVector(endMarker.transform.localPosition));
+    }
+
+
+
+    // ------------- INIT Stuff
 
     void SetTowerIDs()
     {
@@ -142,13 +230,15 @@ public class OverworldController : MonoBehaviour
             towerList[currentStage - 1].GetComponent<Tower>().explorable = true;
     }
     void SetSpritesFromCollection()
-    {
-        heroObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.heroSprite;
-        monsterObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.monsterSprite;
-        groupObject.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.groupSprite;
-        foreach (GameObject obj in towerList)
-            obj.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.towerSprite;
+    { 
+        //foreach (GameObject obj in towerList)
+        //    obj.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.towerSprite;
         foreach (GameObject obj in dangerMarkerList)
             obj.GetComponent<SpriteRenderer>().sprite = SpriteCollection.Instance.dangerMarkerSprite;
     }
+    public Narrator GetNarrator()
+    {
+        return narrator;
+    }
+  
 }

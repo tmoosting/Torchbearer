@@ -5,10 +5,14 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
     public float movementSpeed;
-    
+
+    [HideInInspector]
+    public bool isMoving = false;
 
     public IEnumerator MoveHeroToTower(Tower tower)
     {
+        isMoving = true;
+        SoundController.Instance.PlayHeroMoves();
         Vector3 towerPos = new Vector3(tower.gameObject.transform.localPosition.x, tower.gameObject.transform.localPosition.y - 2.2f, tower.gameObject.transform.localPosition.z); 
 
         int count = 0;
@@ -19,8 +23,8 @@ public class Hero : MonoBehaviour
             if (count > 100000)
                 break;
             yield return null; 
-        } 
-
+        }
+        isMoving = false;
         GameController.Instance.TransitionToLevel();
     }
 }

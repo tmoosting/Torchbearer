@@ -6,7 +6,7 @@ using UnityEngine;
 public class Ghost : MonoBehaviour
 {
 
-    public float ghostDelay;//The delay it takes
+    private float ghostDelay = 0.04f;//The delay it takes
     private float ghostDelaySeconds;//used to count down the delay
     public GameObject ghost; //Ghost prefab
     public bool makeGhost = false;//are we allowed to make a ghost?
