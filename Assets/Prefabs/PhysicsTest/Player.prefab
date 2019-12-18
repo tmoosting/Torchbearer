@@ -151,10 +151,14 @@ MonoBehaviour:
   hazardLayer:
     serializedVersion: 2
     m_Bits: 1024
+  fallthroughLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   ghost: {fileID: 8176376522341251510}
   cineMachine: {fileID: 0}
   camObj: {fileID: 0}
   PlayerAnimator: {fileID: 2365109992041704511}
+  BeaconAnimator: {fileID: 0}
   PlayerAudio: {fileID: 8176376522341251404}
   PlayerStep: {fileID: 8300000, guid: 753b54d838ea5bf4b9c1d21f4ca33301, type: 3}
   PlayerJump: {fileID: 8300000, guid: 90d1be86ecd640c4c8be00787722a850, type: 3}
@@ -166,6 +170,7 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0.627451, b: 0.627451, a: 1}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
   endingAnimation: 0
+  isFalling: 0
   dashSpeed: 25
   startDashTime: 0.2
   dashAvailable: 0

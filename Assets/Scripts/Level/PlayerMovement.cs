@@ -47,12 +47,14 @@ public class PlayerMovement : MonoBehaviour
     private bool dying = false;
     public int endingAnimation = 0;//0 not active, 1 waittillbeaconhit, 2 castanimation, 3 wait, 4 walkoffscreen
 
-    private bool isFalling = false; //For animation, is the player falling?
+    public bool isFalling = false; //For animation, is the player falling?
     private bool isJumping = false;
     private float lowestY = -30f; //Under what y value does the player respawn
     private float yThreshold = 11.0f; //Velocity threshold for jumping
     private float negyThreshold = -3.0f; //Velocity threshold for falling
     private float walkingyThreshold = 0.1f;
+    private float fallDamageThreshold = 25f;
+    private float fallY;
     //Variables for dashing
     public float dashSpeed = 25f; //Velocity during dash
     public float startDashTime = 0.2f;//Dash duration
@@ -62,6 +64,11 @@ public class PlayerMovement : MonoBehaviour
     private bool dashing = false; //Is the player currently dashing?
     public bool dashAvailable = false; //Can the player dash? (dash resets when on ground)
     public bool freeDash = false; //Can the player infinitely dash?
+    public bool inDashPath = false;
+    public float dashAngle = 1f;
+    private bool DashPathActivated = false;
+    private bool wasInPath = false;
+
 
     private int PlayerLives = 3; // Player lives
     public Image[] hearts;
@@ -69,6 +76,9 @@ public class PlayerMovement : MonoBehaviour
     public Sprite emptyContainer;
     public Image dashtracker;
     public Sprite fullDash;
+    public Slider ghostSlider;
+    private float timeSpent = 0f;
+    private float maxTime = 200f;
 
     private Vector3 spawnPoint;//The players starting point
 
@@ -95,7 +105,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!dying)
         {
-
+            if (endingAnimation == 0)
+            {
+                if (timeSpent >= maxTime)
+                {
+                    //level failed, took too long
+                }
+                else
+                {
+                    ghostSlider.value = timeSpent / maxTime;
+                    timeSpent += Time.deltaTime;
+                }
+            }
             if (dashAvailable || freeDash)
             {
                 dashtracker.sprite = fullDash;
@@ -137,22 +158,33 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (!dashing)//If the player is not currently dashing
                 {
-                    if (!dashAvailable || isFalling)//If the player has no dash available or if the player is currently falling
-                    {
-                        if (IsGrounded()) //If the player is currently standing on the ground
-                        {
-                            dashAvailable = true;
-                            isFalling = false;
-                            PlayerAnimator.SetBool("Falling", false);
-                        }
-                    }
                     if (PlayerRB.velocity.y < yThreshold && PlayerRB.velocity.y > walkingyThreshold)
                     {
                         isJumping = false;
                     }
-                    if (PlayerRB.velocity.y < negyThreshold) //If the player is falling
+                    if (IsGrounded(0.8f)) //If the player is currently standing on the ground
                     {
-                        isFalling = true;
+                        if (!dashAvailable && IsGrounded(0.1f))
+                        {
+                            dashAvailable = true;
+                        }
+                        if (isFalling)
+                        {
+                            if (fallY - transform.position.y > fallDamageThreshold)
+                            {
+                                takeDamage(Vector2.zero);
+                            }
+                            isFalling = false;
+                            PlayerAnimator.SetBool("Falling", false);
+                        }
+                    }
+                    else if (PlayerRB.velocity.y < negyThreshold) //If the player is falling
+                    {
+                        if (!isFalling)
+                        {
+                            isFalling = true;
+                            fallY = transform.position.y;
+                        }
                         isJumping = false;
                         PlayerAnimator.SetBool("Jump", false);
                         PlayerAnimator.SetBool("Falling", true);
@@ -164,7 +196,7 @@ public class PlayerMovement : MonoBehaviour
                         PlayerAnimator.SetBool("Jump", true);
                         PlayerAnimator.SetBool("Falling", false);
                     }
-                    if (!isJumping && !isFalling && IsGrounded())
+                    if (!isJumping && !isFalling && IsGrounded(0.1f))
                     {
                         Vector2 vel = PlayerRB.velocity;
                         if (vel.y > walkingyThreshold)
@@ -173,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
                             PlayerRB.velocity = vel;
                         }
                     }
-                    if (Input.GetKey(KeyCode.Space) && (dashAvailable || freeDash) && endingAnimation == 0)//If the player presses down the space key and can dash
+                    if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z)) && (dashAvailable || freeDash) && endingAnimation == 0)//If the player presses down the space key and can dash
                     {
                         Dash();
                     }
@@ -196,7 +228,7 @@ public class PlayerMovement : MonoBehaviour
                         }
                         vel.x = horizontal * maxspeed; //Alter horizontal velocity
                         PlayerAnimator.SetFloat("Speed", Mathf.Abs(horizontal * maxspeed));
-                        if (horizontal != 0 && IsGrounded())//If the player is moving and on the ground, play the footstep sound
+                        if (horizontal != 0 && IsGrounded(0.1f))//If the player is moving and on the ground, play the footstep sound
                         {
                             PlayerAnimator.SetBool("Jump", false);
                             if (PlayerAudio.clip == PlayerStep)
@@ -281,6 +313,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     dashtracker.sprite = emptyContainer;
                 }
+                isFalling = false;
                 dashing = true;
                 PlayerAnimator.SetBool("Jump", false);
                 PlayerAnimator.SetBool("Falling", false);
@@ -295,44 +328,108 @@ public class PlayerMovement : MonoBehaviour
             if (dashHor == -1 && dashVert == 0) //Dash left
             {
                 PlayerRB.velocity = new Vector2(-1f * pythDash, 0f);
+                if (inDashPath && dashAngle == 180)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == -1 && dashVert == 1)//Dash top left
             {
                 PlayerRB.velocity = new Vector2(-1f * dashSpeed, 1f * dashSpeed);
+                if (inDashPath && dashAngle == 135)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == 0 && dashVert == 1)//Dash up
             {
                 PlayerRB.velocity = new Vector2(0f, 1f * pythDash);
+                if (inDashPath && dashAngle == 90)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == 1 && dashVert == 1)//Dash top right
             {
                 PlayerRB.velocity = new Vector2(1f * dashSpeed, 1f * dashSpeed);
+                if (inDashPath && dashAngle == 45)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == 1 && dashVert == 0)//Dash right
             {
                 PlayerRB.velocity = new Vector2(1f * pythDash, 0f);
+                if (inDashPath && dashAngle == 0)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == 1 && dashVert == -1)//Dash bottom right
             {
                 PlayerRB.velocity = new Vector2(1f * dashSpeed, -1f * dashSpeed);
+                if (inDashPath && dashAngle == 315)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == 0 && dashVert == -1)//Dash bottom
             {
                 PlayerRB.velocity = new Vector2(0f, -1f * pythDash);
+                if (inDashPath && dashAngle == 270)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
             }
             else if (dashHor == -1 && dashVert == -1)//Dash bottom left
             {
                 PlayerRB.velocity = new Vector2(-1f * dashSpeed, -1f * dashSpeed);
+                if (inDashPath && dashAngle == 225)
+                {
+                    DashPathActivated = true;
+                    wasInPath = true;
+                }
+            }
+            if (!inDashPath)
+            {
+                DashPathActivated = false;
             }
             if (dashTime <= 0)//If the dash is done
             {
-                dashHor = 0f;
-                dashVert = 0f;
-                dashTime = startDashTime;
-                PlayerRB.velocity = new Vector2(0f, 0f); //Reset velocity
-                dashing = false;
-                PlayerAnimator.SetBool("Dashing", false);
-                ghost.makeGhost = false;
+                if (DashPathActivated)
+                {
+                    dashTime = startDashTime;
+                    PlayerAudio.Stop();
+                    PlayerAudio.clip = PlayerDash;
+                    PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+                    PlayerAudio.Play();
+                }
+                else
+                {
+                    dashHor = 0f;
+                    dashVert = 0f;
+                    dashTime = startDashTime;
+                    dashAngle = 1f;
+                    if (!wasInPath)
+                    {
+                        PlayerRB.velocity = new Vector2(0f, 0f); //Reset velocity
+                    }
+                    else
+                    {
+                        PlayerRB.velocity = new Vector2(dashHor * dashSpeed, dashVert * dashSpeed);
+                    }
+                    wasInPath = false;
+                    dashing = false;
+                    PlayerAnimator.SetBool("Dashing", false);
+                    ghost.makeGhost = false;
+                }
             }
             else //If the dash is not yet done
             {
@@ -343,7 +440,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump() //Function to make the player jump
     {
-        if (IsGrounded())//If the player is standing on the ground
+        if (IsGrounded(0.3f))//If the player is standing on the ground
         {
             dashAvailable = true;
             PlayerAnimator.SetBool("Jump", true);
@@ -357,12 +454,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    bool IsGrounded()//Checks if the player is standing on the ground, by checking for the groundlayer with raycasts on 3 points below the player.
+    bool IsGrounded(float offset)//Checks if the player is standing on the ground, by checking for the groundlayer with raycasts on 3 points below the player.
     {
         Vector2 position = transform.position; //Gets player position
-        float x = (PlayerBox.bounds.size.x / 2) - 0.08f;//Gets half the width of the player boxcollider, -0.1f to not jump when against a wall
+        position.y -= 1.40f;
+        float x = (PlayerBox.bounds.size.x / 2);//Gets half the width of the player boxcollider
         Vector2 direction = Vector2.down;//(0,-1)
-        float distance = 1.8f;//Distance the raycast travels
+        float distance = 0.1f + offset;//Distance the raycast travels
 
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer); //Raycast in the middle of the player box collider
         if (hit.collider != null)//If ground layer has been hit
@@ -384,6 +482,7 @@ public class PlayerMovement : MonoBehaviour
         if (invincible)
         {
             position = transform.position;
+            position.y -= 1.40f;
             hit = Physics2D.Raycast(position, direction, distance, hazardLayer); //Raycast in the middle of the player box collider
             if (hit.collider != null)//If ground layer has been hit
             {
@@ -423,6 +522,9 @@ public class PlayerMovement : MonoBehaviour
         dashVert = 0f;
         dashTime = startDashTime;
         dashing = false;
+        isFalling = false;
+        isJumping = false;
+        ghost.makeGhost = false;
     }
     void Die()
     {
