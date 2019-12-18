@@ -8,7 +8,9 @@ public class Monster : MonoBehaviour
 
     int stepsRemaining = 0;
 
-   
+    [HideInInspector]
+    public bool isMoving = false;
+
     public List<Vector3> waypointList = new List<Vector3>();
     int stepsCompleted  = 0; // 0 is start, 1 is group start pos, 2 is tier1, 3 is tier2 etc
 
@@ -30,7 +32,7 @@ public class Monster : MonoBehaviour
     }
     void FinishOneMovement()
     {
-        
+        isMoving = false;
         stepsCompleted++;
         stepsRemaining--;
         if (MonsterAtGroup() == true)
@@ -49,7 +51,7 @@ public class Monster : MonoBehaviour
     public IEnumerator MoveMonster (Vector3 targetVector)
     {
         //  Debug.Log("moving mnster for steps: "   + " to x: " + waypointList[stepsCompleted  ].x + " and y: "+ waypointList[stepsCompleted  ].y);
-         
+        isMoving = true;
         int count = 0; 
         while (gameObject.transform.localPosition != targetVector)
         {

@@ -13,6 +13,7 @@ public class Narrator : MonoBehaviour
     bool levelSuccessfulEventPanelOpen = false;
     bool dangerDodgedPanelOpen = false;
     bool spookedEventPanelOpen = false;
+    bool endEventPanelOpen = false;
     bool deadVillagerEventPanelOpen = false;
     bool introductionDone = false;
     bool fastFinishCoroutine = false;
@@ -21,6 +22,7 @@ public class Narrator : MonoBehaviour
     [Header("Assigns")]
     public GameObject introPanel;
     public GameObject eventPanel;
+    public GameObject endEventPanel;
     public GameObject screen1Holder;
     public GameObject screen2Holder;
     public GameObject screen3Holder;
@@ -45,6 +47,7 @@ public class Narrator : MonoBehaviour
     public Image eventPanelImage;
     public Image eventPanelCrossImage;
     public TextMeshProUGUI eventPanelText;
+    public TextMeshProUGUI endEventPanelText;
 
     [Header("Intro General")]
     public float transitionDelay; // in seconds
@@ -109,8 +112,12 @@ public class Narrator : MonoBehaviour
                 CloseDeadVillagerEventPanel();
             else if (dangerDodgedPanelOpen == true)
                 CloseDangerDodgedPanel();
-            else if (eventPanelOpen == true || levelSuccessfulEventPanelOpen == true)
-                CloseEventPanel();
+            else if (eventPanelOpen == true )
+                CloseEventPanel();      
+            else if ( levelSuccessfulEventPanelOpen == true)
+                CloseLevelClearedEventPanel();    
+            else if (endEventPanelOpen == true)
+                UIController.Instance.FadeToCredits(); 
 
             
         }
@@ -119,7 +126,7 @@ public class Narrator : MonoBehaviour
             //if (introductionDone == true)
             //    ShowLastEventPanel();
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
         {
             if ( GameController.Instance.GetGameState() == GameController.GameState.Introduction)
                   SkipRestOfIntroduction();
@@ -147,7 +154,14 @@ public class Narrator : MonoBehaviour
         eventPanelImage.gameObject.SetActive(false); 
         eventPanelCrossImage.gameObject.SetActive(false);
         eventPanelText.text = text;
+    }  
+    public void OpenEndEventPanel()
+    {
+        endEventPanelOpen = true;
+        endEventPanel.SetActive(true); 
+        endEventPanelText.text = VillageController.Instance.GetFinalGroupString();
     }
+    
     public void OpenSuccessfulLevelEventPanel()
     {
       
@@ -202,8 +216,7 @@ public class Narrator : MonoBehaviour
         SoundController.Instance.PlayMonsterEatsVillagerSound();
     }
     public void OpenDeadVillagerEventPanel(   )
-    {
-        Debug.Log("opening");
+    { 
         deadVillagerEventPanelOpen = true;
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(true);
@@ -228,22 +241,29 @@ public class Narrator : MonoBehaviour
     }
     IEnumerator ShowCrossAfterDelay()
     {
-        for (int i = 0; i < 50; i++)        
-            yield return null;        
+
+        for (int i = 0; i < 50; i++)
+        {
+            if (i == 48)
+                SoundController.Instance.PlayXAppears();
+            yield return null;
+        }
         waitingForCross = false;
+      
         eventPanelCrossImage.gameObject.SetActive(true);
     }
-    public void OpenEndEventPanel(  )
-    {
-        eventPanelOpen = true;
-        eventPanel.SetActive(true);
-        eventPanelImage.gameObject.SetActive(true);
-        eventPanelCrossImage.gameObject.SetActive(false);
-        eventPanelImage.sprite = SpriteCollection.Instance.endSprite;
-        string str = "";
-        str += " run to safety..";
-        eventPanelText.text = str;
-    }
+    //public void OpenEndEventPanel(  )
+    //{
+    //    SoundController.Instance.PlayEndMusic();
+    //    eventPanelOpen = true;
+    //    eventPanel.SetActive(true);
+    //    eventPanelImage.gameObject.SetActive(true);
+    //    eventPanelCrossImage.gameObject.SetActive(false);
+    //    eventPanelImage.sprite = SpriteCollection.Instance.endSprite;
+    //    string str = "";
+    //    str += " run to safety..";
+    //    eventPanelText.text = str;
+    //}
     void ShowLastEventPanel()
     {
         eventPanelOpen = true;
@@ -255,13 +275,22 @@ public class Narrator : MonoBehaviour
         eventPanelOpen = false;
         levelSuccessfulEventPanelOpen = false;
         eventPanel.SetActive(false);
-        OverworldController.Instance.EventPanelGotClosed();
+        OverworldController.Instance.EventPanelGotClosed(true);
+    }
+    void CloseLevelClearedEventPanel()
+    {
+        //    Debug.Log("close vent normal");
+        levelSuccessfulEventPanelOpen = false; 
+        eventPanel.SetActive(false);
+        OverworldController.Instance.EventPanelGotClosed(true);
+        if (SceneController.Instance.lastLevelMonsterEvaded == false)
+            OverworldController.Instance.monster.MoveForward();
     }
     void CloseDangerEventPanel()
     {
         dangerEventPanelOpen = false;
         eventPanel.SetActive(false);
-        OverworldController.Instance.EventPanelGotClosed();
+        OverworldController.Instance.EventPanelGotClosed(true);
         OpenDeadVillagerEventPanel(); 
     }
     void CloseDangerDodgedPanel()
@@ -269,7 +298,7 @@ public class Narrator : MonoBehaviour
         OverworldController.Instance.monster.MoveForward();
         dangerDodgedPanelOpen = false;
         eventPanel.SetActive(false);
-        OverworldController.Instance.EventPanelGotClosed();
+        OverworldController.Instance.EventPanelGotClosed(false);
         
     }
     void CloseDeadVillagerEventPanel()
@@ -287,7 +316,7 @@ public class Narrator : MonoBehaviour
           
         deadVillagerEventPanelOpen = false;
         eventPanel.SetActive(false);
-        OverworldController.Instance.EventPanelGotClosed();
+        OverworldController.Instance.EventPanelGotClosed(false);
     }
     
     bool spookException = false;
@@ -295,7 +324,7 @@ public class Narrator : MonoBehaviour
     { 
         spookedEventPanelOpen = false;
         eventPanel.SetActive(false);
-        OverworldController.Instance.EventPanelGotClosed();
+        OverworldController.Instance.EventPanelGotClosed(true);
         spookException = true;
         OpenDeadVillagerEventPanel(); 
     }
@@ -311,6 +340,7 @@ public class Narrator : MonoBehaviour
         introPanel.SetActive(false); 
         introductionDone = true;
         ClearIntroPanel();
+        SoundController.Instance.PlayOverworldBackgroundMusic();
     }
     void FinishIntroduction()
     {
@@ -319,6 +349,7 @@ public class Narrator : MonoBehaviour
         OpenEventPanel(SpriteCollection.Instance.heroStandsUpSprite, heroStandsUpString);
         introductionDone = true;
         ClearIntroPanel();
+        SoundController.Instance.PlayOverworldBackgroundMusic();
     }
     void LoadContentIntoScreens()
     {
@@ -343,6 +374,7 @@ public class Narrator : MonoBehaviour
         {
             if (stage == 1)
             {
+                SoundController.Instance.PlayIntroMusic1();
                 PrepScreen1();
                 StartCoroutine(Screen1Routine());
             }
@@ -353,6 +385,7 @@ public class Narrator : MonoBehaviour
             }
             if (stage == 3)
             {
+                SoundController.Instance.PlayIntroMusic2();
                 PrepScreen3();
                 StartCoroutine(Screen3Routine());
             }

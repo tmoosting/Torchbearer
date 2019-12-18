@@ -25,6 +25,7 @@ public class SoundController : MonoBehaviour
     public AudioClip levelDoubleSuccessful;
     public AudioClip appearX;
 
+    bool monsterMoving = false;
      
 
     private void Awake()
@@ -47,6 +48,7 @@ public class SoundController : MonoBehaviour
     {
         //     playMonsterMovement  = true; 
         //   StartCoroutine(MonsterMove());
+        if (monsterMoving == false)
         StartCoroutine(PlayDoubleMonsterSound());
     }
     //  public void StopMonsterWalk()
@@ -64,11 +66,16 @@ public class SoundController : MonoBehaviour
         fxAudio.PlayOneShot(groupWalk);
     }
     IEnumerator PlayDoubleMonsterSound()
-    { 
+    {
+        monsterMoving = true;
         fxAudio.PlayOneShot(monsterWalk);
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 45; i++)
             yield return null;
         fxAudio.PlayOneShot(monsterWalk);
+        for (int i = 0; i < 45; i++)
+            yield return null;
+        fxAudio.PlayOneShot(monsterWalk);
+        monsterMoving = false;
     }
     //IEnumerator GroupMove()
     //{
@@ -88,6 +95,38 @@ public class SoundController : MonoBehaviour
     //    }
     //}
 
+    public void PlayIntroMusic1()
+    {
+        bgAudio.volume = 0.2f;
+        bgAudio.Stop();
+        bgAudio.clip = intro1Music;
+        bgAudio.Play();
+    }
+    public void PlayIntroMusic2()
+    {
+        bgAudio.volume = 0.8f;
+        bgAudio.Stop();
+        bgAudio.clip = intro2Music;
+        bgAudio.Play();
+    }
+    public void PlayOverworldBackgroundMusic()
+    {
+        bgAudio.volume = 0.2f; 
+        bgAudio.Stop();
+        bgAudio.clip = overworldMusic;
+        bgAudio.Play();
+    }
+    public void StopOverworldBackgroundMusic()
+    { 
+        bgAudio.Stop();
+    }
+    public void PlayEndMusic()
+    {
+        bgAudio.volume = 0.2f;
+        bgAudio.Stop();
+        bgAudio.clip = endMusic;
+        bgAudio.Play();
+    }
     public void PlayHeroMoves()
     {
         fxAudio.PlayOneShot(heroDash);

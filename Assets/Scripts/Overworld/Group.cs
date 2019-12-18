@@ -6,6 +6,8 @@ public class Group : MonoBehaviour
 {
     public float movementSpeed;
 
+    [HideInInspector]
+    public bool isMoving = false;
 
     public void MoveGroupToMarker(DangerMarker marker)
     {  
@@ -16,7 +18,7 @@ public class Group : MonoBehaviour
     public IEnumerator MoveGroup(DangerMarker marker)
     {
         Vector3 markerPos = new Vector3(marker.gameObject.transform.localPosition.x, marker.gameObject.transform.localPosition.y , marker.gameObject.transform.localPosition.z);
-
+        isMoving = true;
         int count = 0;
         
         while (gameObject.transform.localPosition != markerPos)
@@ -26,7 +28,8 @@ public class Group : MonoBehaviour
                 break;
             yield return null;
         }
-     //   SoundControllers.Instance.StopGroupWalk();
+        //   SoundControllers.Instance.StopGroupWalk();
+        isMoving = false;
         OverworldController.Instance.FinishGroupMovement(marker);
     }
     public IEnumerator MoveGroupToVector(Vector3 markerPos)

@@ -45,9 +45,26 @@ public class OverworldController : MonoBehaviour
         SetSpritesFromCollection();
     }
 
+    bool IsTowerClickAllowed()
+    {
+        if (proceedAllowed == false)
+            return false;
+        if (UIController.Instance.narrator.EventPanelOpened() == true)
+            return false;
+
+        if (monster.isMoving == true)
+            return false;
+
+        if (groupObject.GetComponent<Group>().isMoving == true)
+            return false;
+
+        if (heroObject.GetComponent<Hero>().isMoving == true)
+            return false;
+        return true;
+    }
     public void ClickTower(Tower tower)
     {
-        if (proceedAllowed == true && UIController.Instance.narrator.EventPanelOpened() == false)
+        if (IsTowerClickAllowed() == true)
         {
             chosenTowerID = tower.towerID;
             StartCoroutine(heroObject.GetComponent<Hero>().MoveHeroToTower(tower));
@@ -67,6 +84,7 @@ public class OverworldController : MonoBehaviour
         {
             FailStage();
         }
+        SoundController.Instance.PlayOverworldBackgroundMusic();
     }  
     public void SucceedStage(int monsterSteps)
     {
@@ -130,7 +148,7 @@ public class OverworldController : MonoBehaviour
 
     public void FinishFinalGroupMovement()
     {
-        narrator.OpenEventPanel(VillageController.Instance.GetFinalGroupString());
+        narrator.OpenEndEventPanel();
     }
     void ProgressStage()
     {
@@ -142,15 +160,19 @@ public class OverworldController : MonoBehaviour
             finalStageJustCompleted = true;
     }
 
-    public void EventPanelGotClosed()
+    public void EventPanelGotClosed(bool hasNextScreen)
     {
+
         if (finalStageJustCompleted == true)
-        {
-            narrator.OpenEndEventPanel();
-
-            postFinalStageMessageClickedAway = true;
-
+        { 
+            postFinalStageMessageClickedAway = true; 
             finalStageJustCompleted = false;
+            if (hasNextScreen == false)
+            {
+                MoveGroupToEndPoint();
+                postFinalStageMessageClickedAway = false;
+                veryLastMessageClickedAway = true;
+            }
         }
         else if (postFinalStageMessageClickedAway == true)
         {
@@ -160,7 +182,7 @@ public class OverworldController : MonoBehaviour
         }
         else if (veryLastMessageClickedAway == true)
         {
-            UIController.Instance.FadeToBlack();
+            UIController.Instance.FadeToCredits();
         }
 
     }

@@ -14,8 +14,7 @@ public class Villager : ScriptableObject
     //    Beekeeper, Armorer, Fisher, Fletcher, Courier, Carpenter, Shaman, Poet, Innkeeper, Herbalist
     //}
 
-    public enum Occupation { Unassigned, Gravedigger, Smith, Juggler, Executioner, Farmer, Gemcutter, Scribe, Guard, Weaver, Shepherd,  
-        Beekeeper, Armorer, Fisher, Fletcher, Courier, Carpenter, Shaman, Poet, Innkeeper, Herbalist   }
+    public enum Occupation { Unassigned, Gravedigger, Smith,      Guard, Weaver, Shepherd,Beekeeper,    Courier, Carpenter, Innkeeper, Herbalist   }
     public enum Power { Unassigned, Dash, Summon, FireBees, Pokerface }
 
     public string villagerID;
