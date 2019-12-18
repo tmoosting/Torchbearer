@@ -182,7 +182,7 @@ public class OverworldController : MonoBehaviour
         }
         else if (veryLastMessageClickedAway == true)
         {
-            UIController.Instance.FadeToBlack();
+            UIController.Instance.FadeToCredits();
         }
 
     }

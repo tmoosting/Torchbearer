@@ -2284,7 +2284,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 232766651
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1001 &665170388
 PrefabInstance:
@@ -4974,6 +4974,7 @@ MonoBehaviour:
   madeTransition: 0
   lastLevelSuccess: 0
   lastLevelMonsterEvaded: 0
+  levelFullyLoaded: 0
 --- !u!1 &1412336009
 GameObject:
   m_ObjectHideFlags: 0

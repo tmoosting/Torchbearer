@@ -57,13 +57,13 @@ public class UIController : MonoBehaviour
     //{
        
     //}
-    public void FadeToBlack()
+    public void FadeToCredits()
     {
         blackFadePanel.SetActive(true);
-        StartCoroutine(FadeInBlackPanel());
+        StartCoroutine(FadeInBlackPanelForCredits());
     }
 
-    IEnumerator FadeInBlackPanel()
+    IEnumerator FadeInBlackPanelForCredits()
     {
         Image bgImage = blackFadePanel.GetComponent<Image>();
         Color tempColor = bgImage.color;

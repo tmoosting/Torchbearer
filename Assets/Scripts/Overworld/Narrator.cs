@@ -117,7 +117,7 @@ public class Narrator : MonoBehaviour
             else if ( levelSuccessfulEventPanelOpen == true)
                 CloseLevelClearedEventPanel();    
             else if (endEventPanelOpen == true)
-                UIController.Instance.FadeToBlack(); 
+                UIController.Instance.FadeToCredits(); 
 
             
         }

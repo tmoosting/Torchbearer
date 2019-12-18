@@ -97,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
         dashTime = startDashTime; //Sets first dash to have full duration
         spawnPoint = transform.position; //Gets original player position as spawnpoint
         OriginalPitch = PlayerAudio.pitch;//Saves the original pitch
-        
+        SceneController.Instance.levelFullyLoaded = true;
     }
 
     // Update is called once per frame
