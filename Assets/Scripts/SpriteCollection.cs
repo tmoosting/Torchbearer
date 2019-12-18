@@ -53,11 +53,7 @@ public class SpriteCollection : MonoBehaviour
     public Sprite villager8Sprite;
     public Sprite villager9Sprite;
     public Sprite villager10Sprite;  
-    public Sprite villager11Sprite;  
-    public Sprite villager12Sprite;  
-    public Sprite villager13Sprite;  
-    public Sprite villager14Sprite;  
-    public Sprite villager15Sprite;
+ 
 
     [Header("Overworld - Narrative")]
     public Sprite spookedSprite;
