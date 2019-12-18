@@ -8,16 +8,8 @@ public class Group : MonoBehaviour
 
 
     public void MoveGroupToMarker(DangerMarker marker)
-    {
-        if (SoundControllers.Instance == null)
-        {
-            Debug.Log("scontroller is null!");
-        }
-        else
-        {
-        SoundControllers.Instance.StartGroupWalk();
-            Debug.Log("scontroller is null!");
-        }
+    {  
+        SoundController.Instance.StartGroupWalk();  
         StartCoroutine(MoveGroup(marker));
     }
 
