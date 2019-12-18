@@ -205,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
                             PlayerRB.velocity = vel;
                         }
                     }
-                    if (Input.GetKey(KeyCode.Space) && (dashAvailable || freeDash) && endingAnimation == 0)//If the player presses down the space key and can dash
+                    if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.Z)) && (dashAvailable || freeDash) && endingAnimation == 0)//If the player presses down the space key and can dash
                     {
                         Dash();
                     }
