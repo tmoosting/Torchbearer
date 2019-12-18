@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public Color flashColor; //Sprite color while flashing
     public Color normalColor; //sprite color when normal
     private float knockbackSpeed = 20f;//knockback from damage
-    private bool respawn = true;
+    private bool respawn = false;
     private bool dying = false;
     public int endingAnimation = 0;//0 not active, 1 waittillbeaconhit, 2 castanimation, 3 wait, 4 walkoffscreen
 
@@ -69,8 +69,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashAngle = 1f;
     private bool DashPathActivated = false;
     private bool wasInPath = false;
-
-
+  
     private int PlayerLives = 3; // Player lives
     public Image[] hearts;
     public Sprite fullHeart;
@@ -79,7 +78,8 @@ public class PlayerMovement : MonoBehaviour
     public Sprite fullDash;
     public Slider ghostSlider;
     private float timeSpent = 0f;
-    private float maxTime = 200f;
+    private float maxTime = 10f;
+    public bool withinTime = true;
 
     private Vector3 spawnPoint;//The players starting point
 
@@ -106,11 +106,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!dying)
         {
-            if (endingAnimation == 0)
+            if (endingAnimation == 0 && withinTime)
             {
                 if (timeSpent >= maxTime)
                 {
-                    //level failed, took too long
+                    withinTime = false;
                 }
                 else
                 {
@@ -548,8 +548,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!respawn)
         {
-            Debug.Log("Died");
-            //End level
+            SceneController.Instance.EndLevel(false, false);
         }
         else
         {
