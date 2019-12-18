@@ -16,11 +16,11 @@ public class Finish : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-            SceneController.Instance.EndLevel(false, false);
-        if (Input.GetMouseButtonDown(1))
-            SceneController.Instance.EndLevel(true, false);
-        if (Input.GetMouseButtonDown(2))
-            SceneController.Instance.EndLevel(true, true);
+        //if (Input.GetMouseButtonDown(0))
+        //    SceneController.Instance.EndLevel(false, false);
+       // if (Input.GetMouseButtonDown(1))
+        //    SceneController.Instance.EndLevel(true, false);
+       // if (Input.GetMouseButtonDown(2))
+         //   SceneController.Instance.EndLevel(true, true);
     }
 }

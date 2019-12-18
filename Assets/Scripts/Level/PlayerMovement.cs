@@ -46,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     private float knockbackSpeed = 20f;//knockback from damage
     private bool respawn = false;
     private bool dying = false;
+    private bool deathHandled = false;
     public int endingAnimation = 0;//0 not active, 1 waittillbeaconhit, 2 castanimation, 3 wait, 4 walkoffscreen
 
     public bool isFalling = false; //For animation, is the player falling?
@@ -291,8 +292,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("DeathEnd"))
+            if (PlayerAnimator.GetCurrentAnimatorStateInfo(0).IsName("DeathEnd") && !deathHandled)
             {
+                deathHandled = true;
                 DeathHandler();
             }
         }
