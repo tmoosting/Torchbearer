@@ -20,6 +20,7 @@ public class SceneController : MonoBehaviour
 
     public void LoadLevel()
     {
+        SoundController.Instance.StopOverworldBackgroundMusic();
         UIController.Instance.overworldHolder.SetActive(false);
         madeTransition = true;
         if (OverworldController.Instance.chosenTowerID == 1)        

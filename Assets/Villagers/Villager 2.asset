@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Villager 2
   m_EditorClassIdentifier: 
   villagerID: Vill2
-  occupation: 19
+  occupation: 1
   power: 0
-  isAlive: 1
+  isAlive: 0
   sprite: {fileID: 21300000, guid: dd9fd6bd0edd23943a88c300a7c812a9, type: 3}
