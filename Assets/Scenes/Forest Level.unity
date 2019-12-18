@@ -910,12 +910,12 @@ PrefabInstance:
     - target: {fileID: 9026801295584451849, guid: f30264556aa7a9341979fa93c3fb0c1e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.5
+      value: -9.03
       objectReference: {fileID: 0}
     - target: {fileID: 9026801295584451849, guid: f30264556aa7a9341979fa93c3fb0c1e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.4
+      value: -6.3
       objectReference: {fileID: 0}
     - target: {fileID: 9026801295584451849, guid: f30264556aa7a9341979fa93c3fb0c1e,
         type: 3}
@@ -72396,6 +72396,11 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2275090977568979029, guid: f98a3470d71c67741976c73fec27fdd5,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f98a3470d71c67741976c73fec27fdd5, type: 3}
 --- !u!1 &1378572036
@@ -73597,6 +73602,7 @@ GameObject:
   - component: {fileID: 1550593866}
   - component: {fileID: 1550593865}
   - component: {fileID: 1550593864}
+  - component: {fileID: 1550593868}
   m_Layer: 0
   m_Name: CameraConfine
   m_TagString: Untagged
@@ -73638,7 +73644,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 1
-  m_Offset: {x: 86.57549, y: 40.152603}
+  m_Offset: {x: 86.57549, y: 22.890968}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -73649,7 +73655,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 204.63979, y: 119.939026}
+  m_Size: {x: 204.63979, y: 85.41576}
   m_EdgeRadius: 0
 --- !u!66 &1550593866
 CompositeCollider2D:
@@ -73674,16 +73680,30 @@ CompositeCollider2D:
     - - X: 1888953827
         Y: -198169104
       - X: 1888953827
-        Y: 1001221184
+        Y: 655988480
       - X: -157444000
-        Y: 1001221155
+        Y: 655988451
       - X: -157443971
         Y: -198169104
+  - m_Collider: {fileID: 1550593868}
+    m_ColliderPaths:
+    - - X: 1446954595
+        Y: 397783616
+      - X: 1446954595
+        Y: 997388736
+      - X: -155124352
+        Y: 997388707
+      - X: -155124323
+        Y: 397783616
   m_CompositePaths:
     m_Paths:
     - - {x: 188.89539, y: -19.81691}
-      - {x: 188.89539, y: 100.122116}
-      - {x: -15.7444, y: 100.122116}
+      - {x: 188.89539, y: 65.59885}
+      - {x: 144.69547, y: 65.59885}
+      - {x: 144.69547, y: 99.73888}
+      - {x: -15.512435, y: 99.73887}
+      - {x: -15.512437, y: 65.59885}
+      - {x: -15.7444, y: 65.59884}
       - {x: -15.744393, y: -19.81691}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.000005
@@ -73701,6 +73721,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1550593868
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550593863}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 64.591515, y: 69.75862}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 160.2079, y: 59.960518}
+  m_EdgeRadius: 0
 --- !u!1 &1555883337
 GameObject:
   m_ObjectHideFlags: 0
@@ -101537,12 +101583,12 @@ PrefabInstance:
     - target: {fileID: 8176376522341251511, guid: 6215db441339de846bf442c6bea427cf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.5
+      value: -9.03
       objectReference: {fileID: 0}
     - target: {fileID: 8176376522341251511, guid: 6215db441339de846bf442c6bea427cf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.4
+      value: -6.3
       objectReference: {fileID: 0}
     - target: {fileID: 8176376522341251511, guid: 6215db441339de846bf442c6bea427cf,
         type: 3}
@@ -103528,7 +103574,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7551088416884420906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.85937977, y: -6.4, z: -10}
+  m_LocalPosition: {x: 1.3197384, y: -6.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

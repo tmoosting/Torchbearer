@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip PlayerJump;
     public AudioClip PlayerDash;
     public AudioClip PlayerDamage;
+    public AudioClip PlayerCast;
     public float PitchRange = 0.2f; //Maximum deviation from starting pitch
     private float OriginalPitch; //.9 is recommended
     //Cinemachine components
@@ -613,6 +614,15 @@ public class PlayerMovement : MonoBehaviour
 
     public void LevelEnd()
     {
+        PlayerRB.velocity = new Vector2(0f, 0f);
+        endingAnimation++;
         inControl = false;
+    }
+
+    public void castSound()
+    {
+        PlayerAudio.Stop();
+        PlayerAudio.clip =PlayerCast;
+        PlayerAudio.Play();
     }
 }
