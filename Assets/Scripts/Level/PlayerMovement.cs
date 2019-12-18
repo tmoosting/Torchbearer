@@ -547,7 +547,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void DeathHandler()
-    {
+    { 
         if (!respawn)
         {
             SceneController.Instance.EndLevel(false, false);
