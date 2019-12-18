@@ -9,6 +9,7 @@ public class Hero : MonoBehaviour
 
     public IEnumerator MoveHeroToTower(Tower tower)
     {
+        SoundController.Instance.PlayHeroMoves();
         Vector3 towerPos = new Vector3(tower.gameObject.transform.localPosition.x, tower.gameObject.transform.localPosition.y - 2.2f, tower.gameObject.transform.localPosition.z); 
 
         int count = 0;

@@ -10,6 +10,7 @@ public class Narrator : MonoBehaviour
     int currentStage = 0;
     bool eventPanelOpen = false;
     bool dangerEventPanelOpen = false;
+    bool levelSuccessfulEventPanelOpen = false;
     bool dangerDodgedPanelOpen = false;
     bool spookedEventPanelOpen = false;
     bool deadVillagerEventPanelOpen = false;
@@ -100,7 +101,7 @@ public class Narrator : MonoBehaviour
                 fastFinishCoroutine = true;
          //       SetStage(currentStage += 1);  //TODO: Make a click first complete the current screen, then proceed on next click
             }
-            if (dangerEventPanelOpen == true)
+            if (dangerEventPanelOpen == true )
                 CloseDangerEventPanel();
             else if (spookedEventPanelOpen == true)
                 CloseSpookedEventPanel();
@@ -108,15 +109,15 @@ public class Narrator : MonoBehaviour
                 CloseDeadVillagerEventPanel();
             else if (dangerDodgedPanelOpen == true)
                 CloseDangerDodgedPanel();
-            else if (eventPanelOpen == true )
+            else if (eventPanelOpen == true || levelSuccessfulEventPanelOpen == true)
                 CloseEventPanel();
 
             
         }
         if (Input.GetMouseButtonDown(1))
         {
-            if (introductionDone == true)
-                ShowLastEventPanel();
+            //if (introductionDone == true)
+            //    ShowLastEventPanel();
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -149,7 +150,12 @@ public class Narrator : MonoBehaviour
     }
     public void OpenSuccessfulLevelEventPanel()
     {
-        dangerEventPanelOpen = true;
+      
+        if (SceneController.Instance.lastLevelMonsterEvaded == true)
+            SoundController.Instance.PlayLevelDoubleSuccessful();
+        else
+            SoundController.Instance.PlayLevelSuccessful();
+        levelSuccessfulEventPanelOpen = true;
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(true);
         eventPanelCrossImage.gameObject.SetActive(false);
@@ -158,6 +164,7 @@ public class Narrator : MonoBehaviour
     }
     public void OpenDangerDodgedEventPanel()
     {
+        SoundController.Instance.PlayDangerDodged();
         dangerDodgedPanelOpen = true;
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(true);
@@ -167,6 +174,7 @@ public class Narrator : MonoBehaviour
     }
     public void OpenDangerHitEventPanel (Danger danger)
     {
+        SoundController.Instance.PlayDangerDeath();
         dangerEventPanelOpen = true;
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(true);
@@ -191,10 +199,11 @@ public class Narrator : MonoBehaviour
         str += "A villager got spooked!"; 
         str += "\n\n"; 
         eventPanelText.text = str;
-        SoundControllers.Instance.PlayMonsterEatsVillagerSound();
+        SoundController.Instance.PlayMonsterEatsVillagerSound();
     }
     public void OpenDeadVillagerEventPanel(   )
     {
+        Debug.Log("opening");
         deadVillagerEventPanelOpen = true;
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(true);
@@ -223,7 +232,6 @@ public class Narrator : MonoBehaviour
             yield return null;        
         waitingForCross = false;
         eventPanelCrossImage.gameObject.SetActive(true);
-        SoundControllers.Instance.PlayCrossAppearSound();
     }
     public void OpenEndEventPanel(  )
     {
@@ -245,6 +253,7 @@ public class Narrator : MonoBehaviour
     {
     //    Debug.Log("close vent normal");
         eventPanelOpen = false;
+        levelSuccessfulEventPanelOpen = false;
         eventPanel.SetActive(false);
         OverworldController.Instance.EventPanelGotClosed();
     }

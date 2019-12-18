@@ -2,39 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//whoopsie name
-public class SoundControllers : MonoBehaviour
+
+public class SoundController : MonoBehaviour
 {
-    public static SoundControllers Instance;
+    public static SoundController Instance;
 
     public AudioSource fxAudio;
-    public AudioSource bgAudio; 
+    public AudioSource bgAudio;
 
     public AudioClip intro1Music;
     public AudioClip intro2Music;
     public AudioClip overworldMusic;
-    public AudioClip endMusic; 
+    public AudioClip endMusic;
 
     public AudioClip heroDash;
     public AudioClip groupWalk;
     public AudioClip monsterWalk;
-    public AudioClip monsterEat;
-    public AudioClip crossAppears;
+    public AudioClip monsterEat; 
     public AudioClip dangerX;
+    public AudioClip dangerDodged;
+    public AudioClip levelSuccessful;
+    public AudioClip levelDoubleSuccessful;
 
-
-
-    float groupSoundDelay = 0.5f;
-    float monsterSoundDelay = 1.2f;
-    bool playGroupMovement = false; 
-    bool playMonsterMovement = false; 
-
+     
 
     private void Awake()
     {
-        Instance = this; 
+        Instance = this;
     }
-   
+
     public void StartGroupWalk()
     {
         //     playGroupMovement = true;
@@ -48,30 +44,30 @@ public class SoundControllers : MonoBehaviour
     //}
     public void StartMonsterWalk()
     {
-   //     playMonsterMovement  = true; 
-  //   StartCoroutine(MonsterMove());
+        //     playMonsterMovement  = true; 
+        //   StartCoroutine(MonsterMove());
         StartCoroutine(PlayDoubleMonsterSound());
     }
-  //  public void StopMonsterWalk()
-  //  { 
-  ////       playMonsterMovement = false;
-  //  }
+    //  public void StopMonsterWalk()
+    //  { 
+    ////       playMonsterMovement = false;
+    //  }
     IEnumerator PlayTripleGroupSound()
     {
         fxAudio.PlayOneShot(groupWalk);
-        for (int i = 0; i < 20; i++)        
+        for (int i = 0; i < 20; i++)
             yield return null;
         fxAudio.PlayOneShot(groupWalk);
         for (int i = 0; i < 20; i++)
             yield return null;
-        fxAudio.PlayOneShot(groupWalk);  
+        fxAudio.PlayOneShot(groupWalk);
     }
     IEnumerator PlayDoubleMonsterSound()
-    {
+    { 
         fxAudio.PlayOneShot(monsterWalk);
         for (int i = 0; i < 20; i++)
             yield return null;
-        fxAudio.PlayOneShot(monsterWalk); 
+        fxAudio.PlayOneShot(monsterWalk);
     }
     //IEnumerator GroupMove()
     //{
@@ -91,12 +87,29 @@ public class SoundControllers : MonoBehaviour
     //    }
     //}
 
+    public void PlayHeroMoves()
+    {
+        fxAudio.PlayOneShot(heroDash);
+
+    }
     public void PlayMonsterEatsVillagerSound()
     {
-   //     fxAudio.PlayOneShot(monsterEat);
+            fxAudio.PlayOneShot(monsterEat);
     }
-    public void PlayCrossAppearSound()
+    public void PlayDangerDeath()
     {
-    //    fxAudio.PlayOneShot(crossAppears); 
+          fxAudio.PlayOneShot(dangerX); 
+    }
+    public void PlayDangerDodged()
+    {
+        fxAudio.PlayOneShot(dangerDodged);
+    }
+    public void PlayLevelSuccessful()
+    {
+        fxAudio.PlayOneShot(levelSuccessful);
+    }
+    public void PlayLevelDoubleSuccessful()
+    {
+        fxAudio.PlayOneShot(levelDoubleSuccessful);
     }
 }
