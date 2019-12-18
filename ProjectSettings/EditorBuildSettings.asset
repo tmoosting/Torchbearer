@@ -15,9 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Desert Level.unity
     guid: a4988733cc235b9499a71fa57ae04bdf
   - enabled: 1
-    path: Assets/Scenes/Cave Level.unity
-    guid: 42fc85a490b82ed41908130834f0b199
-  - enabled: 1
     path: Assets/Scenes/Forest Level.unity
     guid: 8ec86d507a59a80429cee0997824033a
+  - enabled: 1
+    path: Assets/Scenes/Cave Level.unity
+    guid: 6e1c5feb980d80f49b505950a78e1db4
   m_configObjects: {}
