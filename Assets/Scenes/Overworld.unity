@@ -265,19 +265,19 @@ MonoBehaviour:
   screen3Sprite2: {fileID: 21300000, guid: b09b4b3cff2ffe346b2d13c08e35f2f0, type: 3}
   screen4Sprite: {fileID: 21300000, guid: c0570ce94a7d7d14b91f29e6953f343d, type: 3}
   heroStandsUpSprite: {fileID: 21300000, guid: 72f547efcdd315d4ead85fbe8a2c10b0, type: 3}
-  successfulLevelSprite: {fileID: 21300000, guid: a863776a3f8a444409635e440f2da45b,
+  successfulLevelSprite: {fileID: 21300000, guid: a81ac6d4ca1e52749bed2e84f751bff9,
     type: 3}
-  dangerDodgedSprite: {fileID: 21300000, guid: 742399161961a5a4eadf238a65a7c7b4, type: 3}
+  successfulLevelAndTimeSprite: {fileID: 21300000, guid: 6d8caa28cd4687047a015a7fb689456d,
+    type: 3}
+  dangerDodgedSprite: {fileID: 21300000, guid: 1d38861d481c0184fa06ab7cb4d2bc15, type: 3}
   danger1Sprite: {fileID: 21300000, guid: e368ac0f1039d274687d5d9b817ce928, type: 3}
-  danger2Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
-  danger3Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
+  danger2Sprite: {fileID: 21300000, guid: 5cbf28ccfb699064090b220f4b60a6dd, type: 3}
+  danger3Sprite: {fileID: 21300000, guid: 3cff1abccd0666c48b7c98fce7744f64, type: 3}
   danger4Sprite: {fileID: 21300000, guid: f67b76f159cb6044690271958018fbf7, type: 3}
   danger5Sprite: {fileID: 21300000, guid: 10ae4a672260e424fae7340ccadaff5e, type: 3}
-  danger6Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
-  danger7Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
-  danger8Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
-  danger9Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
-  danger10Sprite: {fileID: 21300000, guid: a9f6109676e23b249b5f094f93051a40, type: 3}
+  danger6Sprite: {fileID: 21300000, guid: 2ac406c1520eb1448a43b94d3218b7df, type: 3}
+  danger7Sprite: {fileID: 21300000, guid: a5022eeb449fcf149881e8d575545bd2, type: 3}
+  danger8Sprite: {fileID: 21300000, guid: f2c83039bc26dbd4abb83f84f92e9c74, type: 3}
   villager1Sprite: {fileID: 21300000, guid: 666a2f0457a4da448b9d54f5bc5b932c, type: 3}
   villager2Sprite: {fileID: 21300000, guid: dd9fd6bd0edd23943a88c300a7c812a9, type: 3}
   villager3Sprite: {fileID: 21300000, guid: d5fe6e8591a44a148afb28c67954fe09, type: 3}
@@ -288,7 +288,7 @@ MonoBehaviour:
   villager8Sprite: {fileID: 21300000, guid: ce725dcc0ec15694b8ff78213981637c, type: 3}
   villager9Sprite: {fileID: 21300000, guid: 7d85d6349a0843646aa61af01ba4d3be, type: 3}
   villager10Sprite: {fileID: 21300000, guid: 912bf7bbb3a40fd469e9416d2e49c8bd, type: 3}
-  spookedSprite: {fileID: 21300000, guid: 5057905081c383f4b980eaa8c45fab21, type: 3}
+  spookedSprite: {fileID: 21300000, guid: 0b0470a0f73b4114d922727cb623df22, type: 3}
   endSprite: {fileID: 21300000, guid: e7275f8619eaf144ba7953918c0c5936, type: 3}
   towerSprite: {fileID: 21300000, guid: 84121017115b0ea4186758d566b930b9, type: 3}
   towerSpriteHi: {fileID: 21300000, guid: dcf553dceddf6c04d9fae26614abcda9, type: 3}

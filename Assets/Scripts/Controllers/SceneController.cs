@@ -71,11 +71,9 @@ public class SceneController : MonoBehaviour
 
     public void EndLevel (bool levelCompleted, bool withinTimeLimit)
     {
+      //   Debug.Log("ending with " + levelCompleted + " and timelimit " + withinTimeLimit);
         levelFullyLoaded = false; 
-        StartCoroutine(FadeFromLevel (levelCompleted, withinTimeLimit));
-
-        //  Debug.Log("ending with " + levelCompleted + " and timelimit " + withinTimeLimit);
-  
+        StartCoroutine(FadeFromLevel (levelCompleted, withinTimeLimit)); 
     }
     IEnumerator FadeFromLevel(bool levelCompleted, bool withinTimeLimit)
     {

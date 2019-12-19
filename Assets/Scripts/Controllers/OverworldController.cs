@@ -19,8 +19,7 @@ public class OverworldController : MonoBehaviour
     int numberOfStages = 4;
     [HideInInspector]
     public int chosenTowerID; 
-    [HideInInspector]
-    public Dictionary<int, bool> towerCompletion = new Dictionary<int, bool>();
+    [HideInInspector] 
     bool proceedAllowed = true;
     [HideInInspector]
     public bool finalStageJustCompleted = false;
@@ -89,15 +88,13 @@ public class OverworldController : MonoBehaviour
     public void SucceedStage(int monsterSteps)
     {
         this.monsterSteps = monsterSteps;
-        levelSucceeded = true;
-        towerCompletion.Add(chosenTowerID, true);
+        levelSucceeded = true; 
         TakeSafeRoute(); 
     }
     public void FailStage()
     {
         this.monsterSteps = 2;
-        levelSucceeded = false;
-        towerCompletion.Add(chosenTowerID, false);
+        levelSucceeded = false; 
         TakeRandomRoute(); 
     } 
     void TakeSafeRoute()

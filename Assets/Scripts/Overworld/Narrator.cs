@@ -166,15 +166,20 @@ public class Narrator : MonoBehaviour
     {
       
         if (SceneController.Instance.lastLevelMonsterEvaded == true)
+        {
             SoundController.Instance.PlayLevelDoubleSuccessful();
+        eventPanelImage.sprite = SpriteCollection.Instance.successfulLevelAndTimeSprite;
+        }
+
         else
+        {
             SoundController.Instance.PlayLevelSuccessful();
+            eventPanelImage.sprite = SpriteCollection.Instance.successfulLevelSprite;
+        }
         levelSuccessfulEventPanelOpen = true;
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(true);
-        eventPanelCrossImage.gameObject.SetActive(false);
-        eventPanelImage.sprite = SpriteCollection.Instance.successfulLevelSprite;
-        eventPanelText.text = successfulLevelString;
+        eventPanelCrossImage.gameObject.SetActive(false); 
     }
     public void OpenDangerDodgedEventPanel()
     {
