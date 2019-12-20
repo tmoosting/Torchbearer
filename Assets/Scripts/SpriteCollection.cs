@@ -60,6 +60,9 @@ public class SpriteCollection : MonoBehaviour
     public Sprite towerSprite;
     public Sprite towerSpriteHi;
     public Sprite dangerMarkerSprite;
+    public Sprite dangerMarkerRipGhost;
+    public Sprite dangerMarkerRipDanger;
+    public Sprite dangerMarkerRipBoth;
 
  
 

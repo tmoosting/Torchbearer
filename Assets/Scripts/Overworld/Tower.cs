@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    public Sprite towerLo;
-    public Sprite towerHi;
+    public Sprite levelSuccessSprite;
+    public Sprite levelFailSprite;
+    public Sprite flagSprite;
     [HideInInspector]
     public bool explorable = false;
     [HideInInspector]
@@ -28,5 +29,16 @@ public class Tower : MonoBehaviour
             OverworldController.Instance.ClickTower(this);
         }
 
+    }
+    public void SetCompletionSprite()
+    {
+        if (SceneController.Instance.lastLevelSuccess == true)
+            gameObject.GetComponent<SpriteRenderer>().sprite = levelSuccessSprite;
+        else 
+            gameObject.GetComponent<SpriteRenderer>().sprite = levelFailSprite;
+    }
+    public void SetFlagSprite()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = flagSprite;
     }
 }

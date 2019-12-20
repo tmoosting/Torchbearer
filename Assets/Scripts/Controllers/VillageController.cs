@@ -116,19 +116,30 @@ public class VillageController : MonoBehaviour
     public string GetFinalGroupString()
     {
         string finalString = "";
-        finalString += "The night has cleared! But now,\n\n";
-        finalString += "The village will have to cope without their ";
-        int counted = 0;
-        foreach (Villager deadVillager in GetDeceasedVillagers())
+        if (NoVillagersDied() == true)
         {
-            counted++;
-            finalString += deadVillager.occupation.ToString();
-            if (counted < GetDeceasedVillagers().Count) 
-                 finalString += ", ";
+            finalString += "The night has cleared! And now,\n\n";
+            finalString += "The village can rebuild with spectacular capacity!\n\n";
+            finalString += "A perfect score! ";
         }
-        finalString += ".\n\n";
+        else
+        {
+            finalString += "The night has cleared! But now,\n\n";
+            finalString += "The village will have to cope without their ";
+            int counted = 0;
+            foreach (Villager deadVillager in GetDeceasedVillagers())
+            {
+                counted++;
+                finalString += deadVillager.occupation.ToString();
+                if (counted < GetDeceasedVillagers().Count)
+                    finalString += ", ";
+            }
+            finalString += ".\n\n";
 
-        finalString += CheckForCombinations();
+            finalString += CheckForCombinations();
+        }
+        
+
         return finalString;
     }
 
@@ -139,12 +150,19 @@ public class VillageController : MonoBehaviour
         recentlyDeceasedVillager.isAlive = false;
     }
     public void MonsterSpooksVillager()
-    {
+    { 
         recentlySpookedVillager = GetRandomLivingVillager();
         recentlySpookedVillager.isAlive = false;
         OverworldController.Instance.GetNarrator().OpenSpookedEventPanel();
     }
      
+    bool NoVillagersDied()
+    {
+        foreach (Villager villager in villagerList)        
+            if (villager.isAlive == false)
+                return false;        
+        return true;
+    }
     public Villager GetRandomLivingVillager()
     {
         List<Villager> livingVillagers = new List<Villager>();

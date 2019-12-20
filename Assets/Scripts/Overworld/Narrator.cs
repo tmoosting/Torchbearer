@@ -157,6 +157,7 @@ public class Narrator : MonoBehaviour
     }  
     public void OpenEndEventPanel()
     {
+        SoundController.Instance.PlayEndMusic();
         endEventPanelOpen = true;
         endEventPanel.SetActive(true); 
         endEventPanelText.text = VillageController.Instance.GetFinalGroupString();
@@ -243,6 +244,7 @@ public class Narrator : MonoBehaviour
         eventPanelText.text = str;
         waitingForCross = true;
         StartCoroutine(ShowCrossAfterDelay());
+        OverworldController.Instance.SetRipSprites();
     }
     IEnumerator ShowCrossAfterDelay()
     {
@@ -287,7 +289,7 @@ public class Narrator : MonoBehaviour
         //    Debug.Log("close vent normal");
         levelSuccessfulEventPanelOpen = false; 
         eventPanel.SetActive(false);
-        OverworldController.Instance.EventPanelGotClosed(true);
+        OverworldController.Instance.EventPanelGotClosed(false);
         if (SceneController.Instance.lastLevelMonsterEvaded == false)
             OverworldController.Instance.monster.MoveForward();
     }

@@ -36,9 +36,19 @@ public class Monster : MonoBehaviour
         stepsCompleted++;
         stepsRemaining--;
         if (MonsterAtGroup() == true)
+        {
+            OverworldController.Instance.villagerSpooked = true;
             VillageController.Instance.MonsterSpooksVillager();
+        }
         else if (stepsRemaining > 0 && OverworldController.Instance.finalStageJustCompleted == false && stepsCompleted < 5)
+        {
+            OverworldController.Instance.villagerSpooked = false;
             MoveMonsterToVector(waypointList[stepsCompleted]);
+        }
+        else
+        {
+            OverworldController.Instance.villagerSpooked = false; 
+        }
     }
     public void MoveMonsterToVector(Vector3 targetVector)
     {
