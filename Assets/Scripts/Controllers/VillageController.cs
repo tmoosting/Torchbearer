@@ -118,14 +118,15 @@ public class VillageController : MonoBehaviour
         string finalString = "";
         if (NoVillagersDied() == true)
         {
-            finalString += "The night has cleared! And now,\n\n";
-            finalString += "The village can rebuild with spectacular capacity!\n\n";
-            finalString += "A perfect score! ";
+            finalString += "The night has cleared! New lands and lives await.\n\n";
+            finalString += "Now, the villagers can rebuild their homes with spectacular capacity!\n\n";
+            finalString += "And nobody died! It's a perfect ending to a minor mishap! ";
         }
         else
         {
-            finalString += "The night has cleared! But now,\n\n";
-            finalString += "The village will have to cope without their ";
+            finalString += "The night has cleared! New lands and lives await.\n\n";
+            finalString += "Now, the villagers can rebuild their homes in spectacular capacity!\n\n\n";
+            finalString += "Without the help, however, of their \n\n";
             int counted = 0;
             foreach (Villager deadVillager in GetDeceasedVillagers())
             {

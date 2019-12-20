@@ -209,7 +209,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &64395109
 RectTransform:
   m_ObjectHideFlags: 0
@@ -548,11 +548,11 @@ RectTransform:
   m_Father: {fileID: 1567592711}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 26.390015, y: -15.16}
-  m_SizeDelta: {x: 360.09998, y: 39}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 14.963}
+  m_SizeDelta: {x: 103.5, y: 25.415}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &164398249
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -610,13 +610,13 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 2
   m_textAlignment: 257
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -662,7 +662,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
@@ -708,8 +708,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -30.900024, y: 31.51001}
-  m_SizeDelta: {x: 263.30005, y: 46.820007}
+  m_AnchoredPosition: {x: -61, y: 53}
+  m_SizeDelta: {x: 199.2, y: 48.5}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &179098748
 CanvasRenderer:
@@ -866,8 +866,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.0000076293945, y: -82.83984}
-  m_SizeDelta: {x: 1163, y: 575}
+  m_AnchoredPosition: {x: 0, y: -59}
+  m_SizeDelta: {x: 1306.9, y: 646.1}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &195567178
 CanvasRenderer:
@@ -2464,11 +2464,11 @@ RectTransform:
   m_Father: {fileID: 64395109}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -491, y: -574}
-  m_SizeDelta: {x: 723.6, y: 474.8}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 21.72998, y: 23.72998}
+  m_SizeDelta: {x: 909.2, y: 596.6}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &672176627
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2616,8 +2616,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 6.4, y: -60}
-  m_SizeDelta: {x: 1004.7, y: 381.1}
+  m_AnchoredPosition: {x: 0, y: -22.400024}
+  m_SizeDelta: {x: 1121.9, y: 425.6}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &692490281
 CanvasRenderer:
@@ -3319,8 +3319,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -82.83984}
-  m_SizeDelta: {x: 1163, y: 575}
+  m_AnchoredPosition: {x: 0.000017150374, y: -25.440002}
+  m_SizeDelta: {x: 1386.6, y: 685.6}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1021663652
 CanvasRenderer:
@@ -3617,8 +3617,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 23.109985, y: 33.75}
-  m_SizeDelta: {x: 356.90002, y: 59}
+  m_AnchoredPosition: {x: 23.109985, y: 55.01999}
+  m_SizeDelta: {x: 356.9, y: 47.1}
   m_Pivot: {x: 0, y: 0}
 --- !u!1 &1093310711
 GameObject:
@@ -3770,9 +3770,10 @@ MonoBehaviour:
   eventPanelText: {fileID: 1977458767}
   endEventPanelText: {fileID: 1864267455}
   transitionDelay: 9999
-  screen1String: These villagers each have a unique special power..
+  screen1String: 'In this village, each member has a unique special power.. '
   screen1ImageAppearSpeed: 0.5
-  screen2String1: But this one has been strictly forbidden to use theirs.
+  screen2String1: But some of these powers are risky, and this one has been strictly
+    forbidden to use theirs.
   screen2String2: "Sneak off and screw \u2018em!"
   screen2Image1AppearSpeed: 1
   screen2Text1AppearDelay: 1
@@ -3780,14 +3781,14 @@ MonoBehaviour:
   screen2Image2AppearSpeed: 1
   screen2Text2AppearDelay: 1
   screen3String1: Whoops!
-  screen3String2: The villagers flee into the night..
+  screen3String2: ..she says, as the villagers flee into the night..
   screen3Image1AppearSpeed: 1
   screen3Text1AppearDelay: 1
   screen3TransitionTime: 9999
   screen3Image2AppearSpeed: 1
   screen3Text2AppearDelay: 1
-  screen4String: 'Which is dark and full of dangers.  These old beacons could light
-    the way.  '
+  screen4String: '..which is dark and full of dangers.  These old beacons could light
+    the way, if someone were to ignite them. Quickly! '
   screen4ImageAppearSpeed: 1
   screen4TextAppearDelay: 1
   heroStandsUpString: 'A dashing hero steps forward! '
@@ -3861,14 +3862,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1632539680816478092, guid: fd31fa5c935b33a4f8adc71d0f29df98,
-        type: 3}
-      propertyPath: isSafe
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3823176842141905122, guid: fd31fa5c935b33a4f8adc71d0f29df98,
         type: 3}
       propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632539680816478092, guid: fd31fa5c935b33a4f8adc71d0f29df98,
+        type: 3}
+      propertyPath: isSafe
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3940,14 +3941,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1632539680816478092, guid: fd31fa5c935b33a4f8adc71d0f29df98,
-        type: 3}
-      propertyPath: isSafe
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3823176842141905122, guid: fd31fa5c935b33a4f8adc71d0f29df98,
         type: 3}
       propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632539680816478092, guid: fd31fa5c935b33a4f8adc71d0f29df98,
+        type: 3}
+      propertyPath: isSafe
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -4349,11 +4350,11 @@ RectTransform:
   m_Father: {fileID: 1567592711}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -649, y: -729.6}
-  m_SizeDelta: {x: 435.7, y: 276.5}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 16.130005, y: 11.429993}
+  m_SizeDelta: {x: 755.5, y: 479.5}
+  m_Pivot: {x: 0, y: 0}
 --- !u!222 &1230943828
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5936,7 +5937,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1563740419
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6064,14 +6065,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1632539680816478092, guid: fd31fa5c935b33a4f8adc71d0f29df98,
-        type: 3}
-      propertyPath: isSafe
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3823176842141905122, guid: fd31fa5c935b33a4f8adc71d0f29df98,
         type: 3}
       propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632539680816478092, guid: fd31fa5c935b33a4f8adc71d0f29df98,
+        type: 3}
+      propertyPath: isSafe
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -6323,8 +6324,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 33.549927, y: -51.440002}
-  m_SizeDelta: {x: 180.5, y: 96.70001}
+  m_AnchoredPosition: {x: 40.48001, y: -132.1}
+  m_SizeDelta: {x: 164.4, y: 51.7}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &1711428581
 CanvasRenderer:
@@ -6482,7 +6483,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -17.190063, y: 18.70996}
-  m_SizeDelta: {x: 180.5, y: 96.70001}
+  m_SizeDelta: {x: 180.5, y: 68.7}
   m_Pivot: {x: 1, y: 0}
 --- !u!222 &1740860376
 CanvasRenderer:
@@ -7159,14 +7160,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1632539680816478092, guid: fd31fa5c935b33a4f8adc71d0f29df98,
-        type: 3}
-      propertyPath: isSafe
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3823176842141905122, guid: fd31fa5c935b33a4f8adc71d0f29df98,
         type: 3}
       propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1632539680816478092, guid: fd31fa5c935b33a4f8adc71d0f29df98,
+        type: 3}
+      propertyPath: isSafe
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7593,11 +7594,11 @@ RectTransform:
   m_Father: {fileID: 64395109}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 449, y: -67}
-  m_SizeDelta: {x: 723.6, y: 474.8}
-  m_Pivot: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -12.619995, y: -18.28003}
+  m_SizeDelta: {x: 905.1, y: 593.9}
+  m_Pivot: {x: 1, y: 1}
 --- !u!222 &1978339620
 CanvasRenderer:
   m_ObjectHideFlags: 0
