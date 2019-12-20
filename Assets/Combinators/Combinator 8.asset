@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5f7d1dfeae38d4fa72d3d5c3c57855, type: 3}
   m_Name: Combinator 8
   m_EditorClassIdentifier: 
-  combinationString: courcarpinn
+  combinationString: 
   occupation1: 8
-  occupation2: 9
-  occupation3: 10
+  occupation2: 0
+  occupation3: 0
   occupation4: 0
   occupation5: 0
   occupation6: 0
   occupation7: 0
   occupation8: 0
-  combinatorSize: 0
+  combinatorSize: 2
