@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!dying && !deathHandled && PlayerLives <= 0)
+        if (!dying && !deathHandled && PlayerLives == 0)
         {
             Die();
         }
@@ -578,7 +578,7 @@ public class PlayerMovement : MonoBehaviour
         if (!invincible)
         {
             PlayerLives -= 1;
-            if (PlayerLives <= 0)
+            if (PlayerLives == 0)
             {
                 hearts[PlayerLives].sprite = emptyContainer;
                 Die();
