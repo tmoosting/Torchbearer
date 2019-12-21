@@ -96,17 +96,17 @@ public class VillageController : MonoBehaviour
         {
             if (combinator.HasExactOccupations(deadLabors))
             {
-                Debug.Log("exavctmatch");
+             //   Debug.Log("exavctmatch");
                 return combinator.combinationString;
             } 
         }
         foreach (Combinator combinator in sortedCombinatorList)
         {
-            Debug.Log("checkpartialmatch");
+          //  Debug.Log("checkpartialmatch");
 
             if (combinator.IsCoveredByList(deadLabors))
             {
-                Debug.Log("partialmatch");
+          //      Debug.Log("partialmatch");
                 return combinator.combinationString;
             }
         }
@@ -132,12 +132,16 @@ public class VillageController : MonoBehaviour
             {
                 counted++;
                 finalString += deadVillager.occupation.ToString();
-                if (counted < GetDeceasedVillagers().Count-1)
+                if (GetDeceasedVillagers().Count == 1)
+                    finalString += "";
+                else if (GetDeceasedVillagers().Count == 2 && counted == GetDeceasedVillagers().Count - 1)
+                    finalString += " and ";
+                else if (counted < GetDeceasedVillagers().Count - 1)
                     finalString += ", ";
-                else if (counted == (GetDeceasedVillagers().Count-1) && counted > 2)
+                else if (counted == (GetDeceasedVillagers().Count - 1) && counted > 2)
                     finalString += " and ";
 
-                Debug.Log("occ "+ deadVillager.occupation.ToString() + "  counted: " + counted + " lsitcount: " + GetDeceasedVillagers().Count);
+           //     Debug.Log("occ "+ deadVillager.occupation.ToString() + "  counted: " + counted + " lsitcount: " + GetDeceasedVillagers().Count);
             }
             finalString += ".\n\n";
 

@@ -60,9 +60,11 @@ public class UIController : MonoBehaviour
     public void FadeToCredits()
     {
         OverworldController.Instance.GetNarrator().endEventPanel.SetActive(false);
+        GameController.Instance.SetGameState(GameController.GameState.GameFinished);
 
         blackFadePanel.SetActive(true);
         StartCoroutine(FadeInBlackPanelForCredits());
+        StartCoroutine(OverworldController.Instance.heroObject.GetComponent<Hero>().MoveHeroToEndMarker()); 
     }
 
     IEnumerator FadeInBlackPanelForCredits()
