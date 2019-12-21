@@ -132,8 +132,12 @@ public class VillageController : MonoBehaviour
             {
                 counted++;
                 finalString += deadVillager.occupation.ToString();
-                if (counted < GetDeceasedVillagers().Count)
+                if (counted < GetDeceasedVillagers().Count-1)
                     finalString += ", ";
+                else if (counted == (GetDeceasedVillagers().Count-1) && counted > 2)
+                    finalString += " and ";
+
+                Debug.Log("occ "+ deadVillager.occupation.ToString() + "  counted: " + counted + " lsitcount: " + GetDeceasedVillagers().Count);
             }
             finalString += ".\n\n";
 
