@@ -27,4 +27,21 @@ public class Hero : MonoBehaviour
         isMoving = false;
         GameController.Instance.TransitionToLevel();
     }
+    public IEnumerator MoveHeroToEndMarker ()
+    {
+        isMoving = true;
+        SoundController.Instance.PlayHeroMoves();
+        Vector3 towerPos = OverworldController.Instance.endMarker.transform.localPosition;
+
+        int count = 0;
+
+        while (gameObject.transform.localPosition != towerPos)
+        {
+            gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, towerPos, movementSpeed);
+            if (count > 100000)
+                break;
+            yield return null;
+        }
+        isMoving = false; 
+    }
 }
