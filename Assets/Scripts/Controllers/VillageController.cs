@@ -125,7 +125,7 @@ public class VillageController : MonoBehaviour
         else
         {
             finalString += "The night has cleared! New lands and lives await.\n\n";
-            finalString += "Now, the villagers can rebuild their homes in spectacular capacity!\n\n\n";
+            finalString += "Now, the villagers can rebuild their homes in spectacular capacity!\n\n";
             finalString += "Without the help, however, of their \n\n";
             int counted = 0;
             foreach (Villager deadVillager in GetDeceasedVillagers())

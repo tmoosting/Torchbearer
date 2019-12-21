@@ -965,24 +965,15 @@ MonoBehaviour:
   recentlySpookedVillager: {fileID: 0}
   combinatorList:
   - {fileID: 11400000, guid: 641ca3513c0614c448fed2d16de3f9f3, type: 2}
-  - {fileID: 11400000, guid: a4267d990c4cd2640bba69db43b43153, type: 2}
-  - {fileID: 11400000, guid: a625a6ff1f3f4d74486d3d2ac1545dc0, type: 2}
-  - {fileID: 11400000, guid: 36cf780bf996bc74a878f18d73c250b1, type: 2}
-  - {fileID: 11400000, guid: 2498c5e2bfa62704fb41d93c8dd1d76c, type: 2}
-  - {fileID: 11400000, guid: b1bbc3a6c73985a45a915f04004a92c0, type: 2}
-  - {fileID: 11400000, guid: f2ae0de6bdd4fee4bb26a4f59b7aefab, type: 2}
-  - {fileID: 11400000, guid: abe7d6872590932479c64a462db71f26, type: 2}
-  - {fileID: 11400000, guid: 421ee4c7572da4445a0158ae3c0d8550, type: 2}
-  - {fileID: 11400000, guid: 6932d428baf588f46ac8b3da9f217aff, type: 2}
-  - {fileID: 11400000, guid: 20d631a9110b51449add4d5bb35f4ab3, type: 2}
-  - {fileID: 11400000, guid: 13899c43278797f49a027c752eda9262, type: 2}
-  - {fileID: 11400000, guid: 30da84ae9ada9844c895bdbeb786277d, type: 2}
-  - {fileID: 11400000, guid: e96e9094c92d4e34e94429b74b5bdf50, type: 2}
-  - {fileID: 11400000, guid: 5c4eb979133d3d544a03642a1f68f063, type: 2}
-  - {fileID: 11400000, guid: 95b415c4bc059e4469ea681a5dac1922, type: 2}
-  - {fileID: 11400000, guid: 7f297730c5c87684aadfb3c9a8c7b4c6, type: 2}
-  - {fileID: 11400000, guid: cb6971b8aadeef54c9002b2a195e55c1, type: 2}
-  - {fileID: 11400000, guid: 80756399b5ad72e499da9212d8d5127e, type: 2}
+  - {fileID: 11400000, guid: 2d368e7013ace17408711fd8c83a9fcf, type: 2}
+  - {fileID: 11400000, guid: 9f26291b82891bc47a0bddd1f013c717, type: 2}
+  - {fileID: 11400000, guid: 915bbc91cc7b9654485e488b5c17067c, type: 2}
+  - {fileID: 11400000, guid: 7199c0ef012c4bb409dcfe813f7fbd35, type: 2}
+  - {fileID: 11400000, guid: 1591c166f5ee31046b6d263c3dc12a38, type: 2}
+  - {fileID: 11400000, guid: 3437589048ac3884aa0894f69bc4bcc1, type: 2}
+  - {fileID: 11400000, guid: b66d7fbdc410e434caf047afe69e81f1, type: 2}
+  - {fileID: 11400000, guid: 6d8d2c6c64447ff449ac6384ca9039ef, type: 2}
+  - {fileID: 11400000, guid: 4d6755ce3cefc6741a1dc73ce4708a59, type: 2}
   sortedCombinatorList: []
 --- !u!1001 &312975958
 PrefabInstance:

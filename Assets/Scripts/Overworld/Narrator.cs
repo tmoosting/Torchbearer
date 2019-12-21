@@ -344,6 +344,7 @@ public class Narrator : MonoBehaviour
     void SkipRestOfIntroduction()
     {
         GameController.Instance.introCompleted = true;
+        GameController.Instance.SetGameState(GameController.GameState.Overworld);
         introPanel.SetActive(false); 
         introductionDone = true;
         ClearIntroPanel();
@@ -352,6 +353,7 @@ public class Narrator : MonoBehaviour
     void FinishIntroduction()
     {
         GameController.Instance.introCompleted = true;
+        GameController.Instance.SetGameState(GameController.GameState.Overworld);
         introPanel.SetActive(false);
         OpenEventPanel(SpriteCollection.Instance.heroStandsUpSprite, heroStandsUpString);
         introductionDone = true;
