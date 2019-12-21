@@ -59,6 +59,8 @@ public class UIController : MonoBehaviour
     //}
     public void FadeToCredits()
     {
+        OverworldController.Instance.GetNarrator().endEventPanel.SetActive(false);
+
         blackFadePanel.SetActive(true);
         StartCoroutine(FadeInBlackPanelForCredits());
     }
@@ -78,7 +80,6 @@ public class UIController : MonoBehaviour
     }
     void ShowCredits()
     {
-        OverworldController.Instance.GetNarrator().endEventPanel.SetActive(false);
         creditsText.gameObject.SetActive(true);
     }
 }
