@@ -19,6 +19,8 @@ public class PlayerMovement : MonoBehaviour
     SpriteRenderer PlayerSprite;
     public Animator PlayerAnimator;
     public Animator BeaconAnimator;
+    public Animator LitAnimator;
+    public Animator NotLitAnimator;
     //Player Audio Components
     public AudioSource PlayerAudio;
     public AudioClip PlayerStep;
@@ -105,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!dying && !deathHandled && PlayerLives <= 0)
+        if (!dying && !deathHandled && PlayerLives == 0)
         {
             Die();
         }
@@ -231,6 +233,7 @@ public class PlayerMovement : MonoBehaviour
                         else if (endingAnimation == 4)
                         {
                             horizontal = 1f;
+                            LitAnimator.SetTrigger("Lit");
                         }
                         vel.x = horizontal * maxspeed; //Alter horizontal velocity
                         PlayerAnimator.SetFloat("Speed", Mathf.Abs(horizontal * maxspeed));
@@ -542,6 +545,7 @@ public class PlayerMovement : MonoBehaviour
         }
         inControl = false;
         dying = true;
+        NotLitAnimator.SetTrigger("NotLit");
         PlayerAnimator.SetBool("Dashing", false);
         PlayerAnimator.SetBool("Falling", false);
         PlayerAnimator.SetBool("Jump", false);
@@ -574,7 +578,7 @@ public class PlayerMovement : MonoBehaviour
         if (!invincible)
         {
             PlayerLives -= 1;
-            if (PlayerLives <= 0)
+            if (PlayerLives == 0)
             {
                 hearts[PlayerLives].sprite = emptyContainer;
                 Die();
@@ -621,7 +625,7 @@ public class PlayerMovement : MonoBehaviour
     {
         PlayerRB.velocity = new Vector2(0f, 0f);
         endingAnimation++;
-        inControl = false;
+        inControl = false; 
     }
 
     public void castSound()

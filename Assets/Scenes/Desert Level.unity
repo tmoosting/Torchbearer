@@ -94475,6 +94475,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &471218056 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1562407935940855497, guid: a0ea194cd75309843bc09b15a90acacf,
+    type: 3}
+  m_PrefabInstance: {fileID: 471218054}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &471218057 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5893463973634655623, guid: a0ea194cd75309843bc09b15a90acacf,
+    type: 3}
+  m_PrefabInstance: {fileID: 471218054}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &478832781
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -95682,6 +95694,16 @@ PrefabInstance:
       propertyPath: BeaconAnimator
       value: 
       objectReference: {fileID: 1110361586}
+    - target: {fileID: 6428960009663657171, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: NotLitAnimator
+      value: 
+      objectReference: {fileID: 471218056}
+    - target: {fileID: 6428960009663657171, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: LitAnimator
+      value: 
+      objectReference: {fileID: 471218057}
     - target: {fileID: 8176376522341251404, guid: 6215db441339de846bf442c6bea427cf,
         type: 3}
       propertyPath: MinDistance

@@ -65158,6 +65158,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &823447229 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5893463973634655623, guid: a0ea194cd75309843bc09b15a90acacf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1071537254}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &828147699
 GameObject:
   m_ObjectHideFlags: 0
@@ -69320,6 +69326,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1268063004 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1562407935940855497, guid: a0ea194cd75309843bc09b15a90acacf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1071537254}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1270794137
 GameObject:
   m_ObjectHideFlags: 0
@@ -100867,6 +100879,16 @@ PrefabInstance:
       propertyPath: BeaconAnimator
       value: 
       objectReference: {fileID: 639156205}
+    - target: {fileID: 6428960009663657171, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: LitAnimator
+      value: 
+      objectReference: {fileID: 823447229}
+    - target: {fileID: 6428960009663657171, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: NotLitAnimator
+      value: 
+      objectReference: {fileID: 1268063004}
     - target: {fileID: 8176376522341251404, guid: 6215db441339de846bf442c6bea427cf,
         type: 3}
       propertyPath: spreadCustomCurve.m_Curve.Array.size
@@ -103033,7 +103055,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7551088416884420906}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.2367382, y: -6.3, z: -10}
+  m_LocalPosition: {x: 1.3197384, y: -6.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
