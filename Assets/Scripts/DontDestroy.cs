@@ -9,6 +9,7 @@ public class DontDestroy : MonoBehaviour
 
     private void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;
@@ -19,5 +20,4 @@ public class DontDestroy : MonoBehaviour
             DestroyImmediate(gameObject);
         }
     } 
-     
 }

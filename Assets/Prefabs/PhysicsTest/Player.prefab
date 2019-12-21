@@ -151,9 +151,6 @@ MonoBehaviour:
   hazardLayer:
     serializedVersion: 2
     m_Bits: 1024
-  fallthroughLayer:
-    serializedVersion: 2
-    m_Bits: 2048
   ghost: {fileID: 8176376522341251510}
   cineMachine: {fileID: 0}
   camObj: {fileID: 0}
@@ -164,6 +161,7 @@ MonoBehaviour:
   PlayerJump: {fileID: 8300000, guid: 90d1be86ecd640c4c8be00787722a850, type: 3}
   PlayerDash: {fileID: 8300000, guid: 4c30ebe24d09a044daf445563d2cb3cc, type: 3}
   PlayerDamage: {fileID: 8300000, guid: 6478c4256fbf6b94b9106d281841e2b5, type: 3}
+  PlayerCast: {fileID: 8300000, guid: 8536a9b6d103dd641bce6a6612ea2bd2, type: 3}
   PitchRange: 0.1
   maxspeed: 11
   jumpvelocity: 14
@@ -175,11 +173,14 @@ MonoBehaviour:
   startDashTime: 0.2
   dashAvailable: 0
   freeDash: 0
+  inDashPath: 0
+  dashAngle: 1
   hearts: []
   fullHeart: {fileID: 21300000, guid: a8292a95d39aa364db0318840ca30452, type: 3}
   emptyContainer: {fileID: 21300000, guid: 96009390e813882459f2dbffc549e177, type: 3}
   dashtracker: {fileID: 0}
   fullDash: {fileID: 21300000, guid: f5313f56e684c7f4792761a094ca9c0b, type: 3}
+  ghostSlider: {fileID: 0}
 --- !u!95 &2365109992041704511
 Animator:
   serializedVersion: 3
@@ -308,6 +309,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3fa35b9d264897488ebbd3a70a78702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostDelay: 0.022
   ghost: {fileID: 7016819479955561547, guid: 8f8275dcb7d3ec644bbdef6032680743, type: 3}
   makeGhost: 0

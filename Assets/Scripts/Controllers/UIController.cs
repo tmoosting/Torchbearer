@@ -29,7 +29,7 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
         {
             if (GameController.Instance.GetGameState() == GameController.GameState.TitleScreen)
             {
@@ -57,13 +57,13 @@ public class UIController : MonoBehaviour
     //{
        
     //}
-    public void FadeToBlack()
+    public void FadeToCredits()
     {
         blackFadePanel.SetActive(true);
-        StartCoroutine(FadeInBlackPanel());
+        StartCoroutine(FadeInBlackPanelForCredits());
     }
 
-    IEnumerator FadeInBlackPanel()
+    IEnumerator FadeInBlackPanelForCredits()
     {
         Image bgImage = blackFadePanel.GetComponent<Image>();
         Color tempColor = bgImage.color;
@@ -78,6 +78,7 @@ public class UIController : MonoBehaviour
     }
     void ShowCredits()
     {
+        OverworldController.Instance.GetNarrator().endEventPanel.SetActive(false);
         creditsText.gameObject.SetActive(true);
     }
 }

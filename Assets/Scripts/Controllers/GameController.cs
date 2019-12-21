@@ -25,8 +25,8 @@ public class GameController : MonoBehaviour
     {
         if (SceneController.Instance.madeTransition == false)
             StartGame();
-        else
-            currentGameState = GameState.Overworld;
+        else 
+            SetGameState(GameState.Overworld);  
     }
 
     void StartGame()
@@ -54,7 +54,7 @@ public class GameController : MonoBehaviour
         }
         if (state == GameState.Overworld)
         {
-            
+        
         }
     }
     public GameState GetGameState()

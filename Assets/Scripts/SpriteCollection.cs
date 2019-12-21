@@ -18,9 +18,7 @@ public class SpriteCollection : MonoBehaviour
         dangerSpriteList.Add(danger5Sprite);
         dangerSpriteList.Add(danger6Sprite);
         dangerSpriteList.Add(danger7Sprite);
-        dangerSpriteList.Add(danger8Sprite);
-        dangerSpriteList.Add(danger9Sprite);
-        dangerSpriteList.Add(danger10Sprite);
+        dangerSpriteList.Add(danger8Sprite); 
     }
     [Header("Narrator - Introduction")]
     public Sprite screen1Sprite;
@@ -32,6 +30,7 @@ public class SpriteCollection : MonoBehaviour
     [Header("Narrator - Events")]
     public Sprite heroStandsUpSprite;
     public Sprite successfulLevelSprite;
+    public Sprite successfulLevelAndTimeSprite;
     public Sprite dangerDodgedSprite;
     public Sprite danger1Sprite;
     public Sprite danger2Sprite;
@@ -41,8 +40,6 @@ public class SpriteCollection : MonoBehaviour
     public Sprite danger6Sprite;
     public Sprite danger7Sprite;
     public Sprite danger8Sprite;
-    public Sprite danger9Sprite;
-    public Sprite danger10Sprite;
     public Sprite villager1Sprite;
     public Sprite villager2Sprite;
     public Sprite villager3Sprite;
@@ -53,11 +50,7 @@ public class SpriteCollection : MonoBehaviour
     public Sprite villager8Sprite;
     public Sprite villager9Sprite;
     public Sprite villager10Sprite;  
-    public Sprite villager11Sprite;  
-    public Sprite villager12Sprite;  
-    public Sprite villager13Sprite;  
-    public Sprite villager14Sprite;  
-    public Sprite villager15Sprite;
+ 
 
     [Header("Overworld - Narrative")]
     public Sprite spookedSprite;
@@ -67,6 +60,9 @@ public class SpriteCollection : MonoBehaviour
     public Sprite towerSprite;
     public Sprite towerSpriteHi;
     public Sprite dangerMarkerSprite;
+    public Sprite dangerMarkerRipGhost;
+    public Sprite dangerMarkerRipDanger;
+    public Sprite dangerMarkerRipBoth;
 
  
 
