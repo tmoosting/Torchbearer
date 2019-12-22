@@ -11,8 +11,11 @@ public class UIController : MonoBehaviour
     [Header("Assign")]
     public Narrator narrator; 
     public GameObject titlePanel;
-    public GameObject blackFadePanel;
+    public GameObject creditFadePanel;
+    public GameObject transitionFadePanel;
+    public TextMeshProUGUI creditsHeader;
     public TextMeshProUGUI creditsText;
+    public TextMeshProUGUI creditsText2;
     public GameObject overworldHolder;
 
     private void Awake()
@@ -22,8 +25,11 @@ public class UIController : MonoBehaviour
         if (SceneController.Instance.madeTransition == false)
         {
             titlePanel.SetActive(false);
-            blackFadePanel.SetActive(false);
+            creditFadePanel.SetActive(false);
+            transitionFadePanel.SetActive(false);
+            creditsHeader.gameObject.SetActive(false); 
             creditsText.gameObject.SetActive(false); 
+            creditsText2.gameObject.SetActive(false); 
         } 
     }
 
@@ -62,14 +68,14 @@ public class UIController : MonoBehaviour
         OverworldController.Instance.GetNarrator().endEventPanel.SetActive(false);
         GameController.Instance.SetGameState(GameController.GameState.GameFinished);
 
-        blackFadePanel.SetActive(true);
+        creditFadePanel.SetActive(true);
         StartCoroutine(FadeInBlackPanelForCredits());
         StartCoroutine(OverworldController.Instance.heroObject.GetComponent<Hero>().MoveHeroToEndMarker()); 
     }
 
     IEnumerator FadeInBlackPanelForCredits()
     {
-        Image bgImage = blackFadePanel.GetComponent<Image>();
+        Image bgImage = creditFadePanel.GetComponent<Image>();
         Color tempColor = bgImage.color;
         float alpha = 0f;
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 6 )
@@ -82,6 +88,8 @@ public class UIController : MonoBehaviour
     }
     void ShowCredits()
     {
+        creditsHeader.gameObject.SetActive(true);
         creditsText.gameObject.SetActive(true);
+        creditsText2.gameObject.SetActive(true);
     }
 }

@@ -26,8 +26,8 @@ public class SceneController : MonoBehaviour
     }
     IEnumerator FadeToLevel()
     {
-        UIController.Instance.blackFadePanel.SetActive(true);
-        Image bgImage = UIController.Instance.blackFadePanel.GetComponent<Image>();
+        UIController.Instance.transitionFadePanel.SetActive(true);
+        Image bgImage = UIController.Instance.transitionFadePanel.GetComponent<Image>();
         Color tempColor = bgImage.color;
         float alpha = 0f;
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime *2)
@@ -56,7 +56,7 @@ public class SceneController : MonoBehaviour
         while (levelFullyLoaded == false)
             yield return null;
 
-        Image bgImage = UIController.Instance.blackFadePanel.GetComponent<Image>();
+        Image bgImage = UIController.Instance.transitionFadePanel.GetComponent<Image>();
         Color tempColor = bgImage.color;
         float alpha = 0f;
         for (float t = 1.0f; t > 0.0f; t -= Time.deltaTime * 2)
@@ -65,7 +65,7 @@ public class SceneController : MonoBehaviour
             bgImage.color = newColor;
             yield return null;
         }
-        UIController.Instance.blackFadePanel.SetActive(false);
+        UIController.Instance.transitionFadePanel.SetActive(false);
 
     }
 
@@ -77,8 +77,8 @@ public class SceneController : MonoBehaviour
     }
     IEnumerator FadeFromLevel(bool levelCompleted, bool withinTimeLimit)
     {
-        UIController.Instance.blackFadePanel.SetActive(true);
-        Image bgImage = UIController.Instance.blackFadePanel.GetComponent<Image>();
+        UIController.Instance.transitionFadePanel.SetActive(true);
+        Image bgImage = UIController.Instance.transitionFadePanel.GetComponent<Image>();
         Color tempColor = bgImage.color;
         float alpha = 0f;
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime * 2)
@@ -98,7 +98,7 @@ public class SceneController : MonoBehaviour
         for (int i = 0; i < 80; i++)        
             yield return null;
         
-        Image bgImage = UIController.Instance.blackFadePanel.GetComponent<Image>();
+        Image bgImage = UIController.Instance.transitionFadePanel.GetComponent<Image>();
         Color tempColor = bgImage.color;
         float alpha = 0f;
         for (float t = 1.0f; t > 0.0f; t -= Time.deltaTime * 2)
@@ -107,7 +107,7 @@ public class SceneController : MonoBehaviour
             bgImage.color = newColor;
             yield return null;
         }
-        UIController.Instance.blackFadePanel.SetActive(false); 
+        UIController.Instance.transitionFadePanel.SetActive(false); 
         OverworldController.Instance.FinishLevel(lastLevelSuccess, lastLevelMonsterEvaded); 
     }
 }
