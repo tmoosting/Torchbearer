@@ -165,20 +165,24 @@ public class Narrator : MonoBehaviour
     
     public void OpenSuccessfulLevelEventPanel()
     {
-      
+        string str = "";
         if (SceneController.Instance.lastLevelMonsterEvaded == true)
         {
             SoundController.Instance.PlayLevelDoubleSuccessful();
         eventPanelImage.sprite = SpriteCollection.Instance.successfulLevelAndTimeSprite;
+            str += "The Hero lights the way - fast as can be!";
         }
 
         else
         {
             SoundController.Instance.PlayLevelSuccessful();
             eventPanelImage.sprite = SpriteCollection.Instance.successfulLevelSprite;
+            str += "The Hero lights the way - but spookiness is catching up!";
         }
         levelSuccessfulEventPanelOpen = true;
         eventPanel.SetActive(true);
+        eventPanelText.gameObject.SetActive(true);
+        eventPanelText.text = str;
         eventPanelImage.gameObject.SetActive(true);
         eventPanelCrossImage.gameObject.SetActive(false); 
     }
@@ -191,7 +195,7 @@ public class Narrator : MonoBehaviour
         eventPanelCrossImage.gameObject.SetActive(false);
         eventPanelImage.sprite = SpriteCollection.Instance.dangerDodgedSprite;
         eventPanelText.text = dangerDodgedString;
-        eventPanelText.text = "Danger dodged by luck!";
+        eventPanelText.text = "Danger luckily dodged!";
         eventPanelText.gameObject.SetActive(true) ;
 
 
@@ -292,6 +296,7 @@ public class Narrator : MonoBehaviour
         if (SceneController.Instance.lastLevelMonsterEvaded == false)
             OverworldController.Instance.monster.MoveForward();
         eventPanelText.text = "";
+        eventPanelText.gameObject.SetActive(false);
 
     }
     void CloseDangerEventPanel()

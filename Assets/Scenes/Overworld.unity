@@ -290,9 +290,9 @@ MonoBehaviour:
   screen3Sprite2: {fileID: 21300000, guid: b09b4b3cff2ffe346b2d13c08e35f2f0, type: 3}
   screen4Sprite: {fileID: 21300000, guid: badec7610693d8b4fa1daf3d0ad5d34f, type: 3}
   heroStandsUpSprite: {fileID: 21300000, guid: 72f547efcdd315d4ead85fbe8a2c10b0, type: 3}
-  successfulLevelSprite: {fileID: 21300000, guid: ca9b91f6385602948add750e075d1e51,
+  successfulLevelSprite: {fileID: 21300000, guid: ae97685e127f43943b5878c76e3e0d77,
     type: 3}
-  successfulLevelAndTimeSprite: {fileID: 21300000, guid: 80e99db7460778448b026fdcb2a8aa67,
+  successfulLevelAndTimeSprite: {fileID: 21300000, guid: 00d9a918a1aa0a947a2087aef8f7bed4,
     type: 3}
   dangerDodgedSprite: {fileID: 21300000, guid: 1d38861d481c0184fa06ab7cb4d2bc15, type: 3}
   danger1Sprite: {fileID: 21300000, guid: e368ac0f1039d274687d5d9b817ce928, type: 3}
@@ -8267,8 +8267,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 5.1, y: -13.399994}
-  m_SizeDelta: {x: 130.8, y: 11.3}
+  m_AnchoredPosition: {x: 108.2, y: -13.399994}
+  m_SizeDelta: {x: 172.1, y: 11.3}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1977458767
 MonoBehaviour:

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Combinator 21
   m_EditorClassIdentifier: 
   combinationString: With no proprietor to host future excesses, the villagers might
-    become a little rowdy in all the wrong ways. And no one to keep them in check..
+    become a little rowdy in all the wrong ways.. with no one to keep them in check.
   occupation1: 9
   occupation2: 3
   occupation3: 0
@@ -22,4 +22,4 @@ MonoBehaviour:
   occupation6: 0
   occupation7: 0
   occupation8: 0
-  combinatorSize: 1
+  combinatorSize: 2
