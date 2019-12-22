@@ -97,7 +97,7 @@ public class Narrator : MonoBehaviour
     }  
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             if (currentStage > 0 && currentStage < 5)
             {
@@ -126,7 +126,7 @@ public class Narrator : MonoBehaviour
             //if (introductionDone == true)
             //    ShowLastEventPanel();
         }
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if ( GameController.Instance.GetGameState() == GameController.GameState.Introduction)
                   SkipRestOfIntroduction();
