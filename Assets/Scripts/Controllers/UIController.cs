@@ -61,16 +61,22 @@ public class UIController : MonoBehaviour
     }
     //public void ClearIntroduction()
     //{
-       
+
     //}
+    bool creditsStarted = false;
     public void FadeToCredits()
     {
-        OverworldController.Instance.GetNarrator().endEventPanel.SetActive(false);
-        GameController.Instance.SetGameState(GameController.GameState.GameFinished);
+        if (creditsStarted == false)
+        {
+            creditsStarted = true;
+            OverworldController.Instance.GetNarrator().endEventPanel.SetActive(false);
+            GameController.Instance.SetGameState(GameController.GameState.GameFinished);
 
-        creditFadePanel.SetActive(true);
-        StartCoroutine(FadeInBlackPanelForCredits());
-        StartCoroutine(OverworldController.Instance.heroObject.GetComponent<Hero>().MoveHeroToEndMarker()); 
+            creditFadePanel.SetActive(true);
+            StartCoroutine(FadeInBlackPanelForCredits());
+            StartCoroutine(OverworldController.Instance.heroObject.GetComponent<Hero>().MoveHeroToEndMarker());
+        }
+
     }
 
     IEnumerator FadeInBlackPanelForCredits()
