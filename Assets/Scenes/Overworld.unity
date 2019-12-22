@@ -3561,8 +3561,10 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "Audio\n- Music & FX from Eric Matyas\r \nat www.soundimage.org\n\nArt\n-
-    Level Sprite packs from ......\nat ...\n\nFonts\n- Immortal Font\nat www.1001freefonts.com"
+  m_text: "Audio\n- Music & FX from Eric Matyas\r \nat www.soundimage.org\n- Player
+    FX from www.zapsplat.com\n\nArt\n- Adventurer sprites & Platformer tileset from
+    rvros at rvros.itch.io\n- Beam animation from Stealthix at www.deviantart.com/stealthix\n\nFonts\n-
+    Immortal Font\nat www.1001freefonts.com"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f3bc3af2c005a434cbfec50bcf258e0a, type: 2}
   m_sharedMaterial: {fileID: 5827876272950467521, guid: f3bc3af2c005a434cbfec50bcf258e0a,
