@@ -94451,12 +94451,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2704364815727754731, guid: a0ea194cd75309843bc09b15a90acacf,
+    - target: {fileID: 2633501143273685525, guid: a0ea194cd75309843bc09b15a90acacf,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2633501143273685525, guid: a0ea194cd75309843bc09b15a90acacf,
+    - target: {fileID: 2704364815727754731, guid: a0ea194cd75309843bc09b15a90acacf,
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -95704,6 +95704,11 @@ PrefabInstance:
       propertyPath: LitAnimator
       value: 
       objectReference: {fileID: 471218057}
+    - target: {fileID: 6428960009663657171, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: maxTime
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 8176376522341251404, guid: 6215db441339de846bf442c6bea427cf,
         type: 3}
       propertyPath: MinDistance
@@ -96997,7 +97002,7 @@ PrefabInstance:
     - target: {fileID: 2316132158298737773, guid: ab06572ef56195f4c89bbec9c566d6ec,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37.91
+      value: 39.19
       objectReference: {fileID: 0}
     - target: {fileID: 2316132158298737773, guid: ab06572ef56195f4c89bbec9c566d6ec,
         type: 3}

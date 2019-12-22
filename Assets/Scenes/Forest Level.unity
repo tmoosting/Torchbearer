@@ -100889,6 +100889,11 @@ PrefabInstance:
       propertyPath: NotLitAnimator
       value: 
       objectReference: {fileID: 1268063004}
+    - target: {fileID: 6428960009663657171, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: maxTime
+      value: 60
+      objectReference: {fileID: 0}
     - target: {fileID: 8176376522341251404, guid: 6215db441339de846bf442c6bea427cf,
         type: 3}
       propertyPath: spreadCustomCurve.m_Curve.Array.size

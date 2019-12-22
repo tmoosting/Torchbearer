@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
     public Sprite fullDash;
     public Slider ghostSlider;
     private float timeSpent = 0f;
-    private float maxTime = 10f;
+    public float maxTime = 10f;
     public bool withinTime = true;
 
     private Vector3 spawnPoint;//The players starting point
