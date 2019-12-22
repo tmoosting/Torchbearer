@@ -288,7 +288,7 @@ MonoBehaviour:
   screen2Sprite2: {fileID: 21300000, guid: 9d7698b9d46aa704fa20ed39ef509e1b, type: 3}
   screen3Sprite1: {fileID: 21300000, guid: 76e68e93c8d1e054cb93f57d08892429, type: 3}
   screen3Sprite2: {fileID: 21300000, guid: b09b4b3cff2ffe346b2d13c08e35f2f0, type: 3}
-  screen4Sprite: {fileID: 21300000, guid: c0570ce94a7d7d14b91f29e6953f343d, type: 3}
+  screen4Sprite: {fileID: 21300000, guid: badec7610693d8b4fa1daf3d0ad5d34f, type: 3}
   heroStandsUpSprite: {fileID: 21300000, guid: 72f547efcdd315d4ead85fbe8a2c10b0, type: 3}
   successfulLevelSprite: {fileID: 21300000, guid: ca9b91f6385602948add750e075d1e51,
     type: 3}
@@ -367,10 +367,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1977458766}
   - {fileID: 369652249}
   - {fileID: 684200448}
   - {fileID: 1463901888}
+  - {fileID: 1977458766}
   m_Father: {fileID: 659989260}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1404,7 +1404,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 87398677}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2346,7 +2346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &588193368
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2713,7 +2713,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 87398677}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3061,10 +3061,10 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: "Oscar Bergman \n- Programming: Physics & Controls\n- Programming: Levels
-    & Custom Creation\n- Level Design\n\nSerena van Oosten\n- Narrative Design\n-
-    Original Art (narrative, overworld)\n- Level Design\n\nTitus Oosting\n- Narrative
-    Design\n- Programming: Overworld & Narrative\n- Original Art (overworld)\n\nRobert
-    Arntzenius\n- Level Design"
+    & Level Editing\n- Level Design\n\nSerena van Oosten\n- Narrative Design\n- Original
+    Art (narrative, overworld)\n- Level Design\n\nTitus Oosting\n- Narrative Design\n-
+    Programming: Overworld & Narrative\n- Original Art (overworld)\n\nRobert Arntzenius\n-
+    Level Design"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f3bc3af2c005a434cbfec50bcf258e0a, type: 2}
   m_sharedMaterial: {fileID: 5827876272950467521, guid: f3bc3af2c005a434cbfec50bcf258e0a,
@@ -4325,8 +4325,8 @@ MonoBehaviour:
   screen4ImageAppearSpeed: 1
   screen4TextAppearDelay: 1
   heroStandsUpString: 'A dashing hero steps forward! '
-  successfulLevelString: group found safe passage through the beacon!!
-  dangerDodgedString: group got lucky.. this time
+  successfulLevelString: 
+  dangerDodgedString: 
   stage5CompletedString: 
 --- !u!1001 &1150551733
 PrefabInstance:
@@ -6015,7 +6015,7 @@ RectTransform:
   m_LocalScale: {x: 1.02, y: 1.02, z: 1}
   m_Children: []
   m_Father: {fileID: 87398677}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8230,7 +8230,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1977458766
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8243,13 +8243,13 @@ RectTransform:
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 87398677}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.3, y: -185.7}
-  m_SizeDelta: {x: 248.3, y: 64.3}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 5.1, y: -13.399994}
+  m_SizeDelta: {x: 130.8, y: 11.3}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1977458767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8270,10 +8270,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Event text
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: f3bc3af2c005a434cbfec50bcf258e0a, type: 2}
+  m_sharedMaterial: {fileID: 5827876272950467521, guid: f3bc3af2c005a434cbfec50bcf258e0a,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8339,13 +8340,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1977458767}
-    characterCount: 10
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 1
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0

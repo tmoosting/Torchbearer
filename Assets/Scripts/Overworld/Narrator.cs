@@ -82,7 +82,7 @@ public class Narrator : MonoBehaviour
     [Header("Event Panel")]
     public string heroStandsUpString;
     public string successfulLevelString;
-    public string dangerDodgedString;
+    public string dangerDodgedString; 
 
     [Header("End")]
     public string stage5CompletedString;
@@ -146,14 +146,14 @@ public class Narrator : MonoBehaviour
         eventPanelCrossImage.gameObject.SetActive(false);  
         eventPanelImage.sprite = sprite;
         eventPanelText.text = text;
+        eventPanelText.gameObject.SetActive(true);
     }
     public void OpenEventPanel( string text)
     {
         eventPanelOpen = true;
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(false); 
-        eventPanelCrossImage.gameObject.SetActive(false);
-        eventPanelText.text = text;
+        eventPanelCrossImage.gameObject.SetActive(false); 
     }  
     public void OpenEndEventPanel()
     {
@@ -191,6 +191,10 @@ public class Narrator : MonoBehaviour
         eventPanelCrossImage.gameObject.SetActive(false);
         eventPanelImage.sprite = SpriteCollection.Instance.dangerDodgedSprite;
         eventPanelText.text = dangerDodgedString;
+        eventPanelText.text = "Danger dodged by luck!";
+        eventPanelText.gameObject.SetActive(true) ;
+
+
     }
     public void OpenDangerHitEventPanel (Danger danger)
     {
@@ -199,14 +203,7 @@ public class Narrator : MonoBehaviour
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(true);
         eventPanelCrossImage.gameObject.SetActive(false);
-        eventPanelImage.sprite = danger.dangerSprite;
-        string str = "";
-        str += danger.dangerID;
-        str += "\n";
-        str += danger.dangerString;
-        str += "\n\n";
-        
-        eventPanelText.text = str;
+        eventPanelImage.sprite = danger.dangerSprite; 
     }
     public void OpenSpookedEventPanel(   )
     {
@@ -214,11 +211,8 @@ public class Narrator : MonoBehaviour
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(true);
         eventPanelCrossImage.gameObject.SetActive(false);
-        eventPanelImage.sprite = SpriteCollection.Instance.spookedSprite;
-        string str = "";
-        str += "A villager got spooked!"; 
-        str += "\n\n"; 
-        eventPanelText.text = str;
+        eventPanelImage.sprite = SpriteCollection.Instance.spookedSprite; 
+        eventPanelText.text = "";
         SoundController.Instance.PlayMonsterEatsVillagerSound();
     }
     public void OpenDeadVillagerEventPanel(   )
@@ -227,21 +221,23 @@ public class Narrator : MonoBehaviour
         eventPanel.SetActive(true);
         eventPanelImage.gameObject.SetActive(true);
         eventPanelCrossImage.gameObject.SetActive(false);
-        string str = "";
+        string str = "The ";
         if (spookException == false)
         {
             eventPanelImage.sprite = VillageController.Instance.recentlyDeceasedVillager.sprite;
-            str += VillageController.Instance.recentlyDeceasedVillager.villagerID;
+            str += VillageController.Instance.recentlyDeceasedVillager.occupation.ToString();
+            str += " has perished!";
         }
         else
         {
             eventPanelImage.sprite = VillageController.Instance.recentlySpookedVillager.sprite;
-            str += VillageController.Instance.recentlySpookedVillager.villagerID;
+            str += VillageController.Instance.recentlySpookedVillager.occupation.ToString();
+            str += " got spooked!";
         } 
-        str += "\n";
-        str += "has met their demise";
-        str += "\n\n"; 
+      
+       
         eventPanelText.text = str;
+        eventPanelText.gameObject.SetActive(true);
         waitingForCross = true;
         StartCoroutine(ShowCrossAfterDelay());
         OverworldController.Instance.SetRipSprites();
@@ -283,6 +279,9 @@ public class Narrator : MonoBehaviour
         levelSuccessfulEventPanelOpen = false;
         eventPanel.SetActive(false);
         OverworldController.Instance.EventPanelGotClosed(true);
+        eventPanelText.gameObject.SetActive(false);
+        eventPanelText.text = "";
+
     }
     void CloseLevelClearedEventPanel()
     {
@@ -292,6 +291,8 @@ public class Narrator : MonoBehaviour
         OverworldController.Instance.EventPanelGotClosed(false);
         if (SceneController.Instance.lastLevelMonsterEvaded == false)
             OverworldController.Instance.monster.MoveForward();
+        eventPanelText.text = "";
+
     }
     void CloseDangerEventPanel()
     {
@@ -299,6 +300,7 @@ public class Narrator : MonoBehaviour
         eventPanel.SetActive(false);
         OverworldController.Instance.EventPanelGotClosed(true);
         OpenDeadVillagerEventPanel(); 
+
     }
     void CloseDangerDodgedPanel()
     {
@@ -306,7 +308,8 @@ public class Narrator : MonoBehaviour
         dangerDodgedPanelOpen = false;
         eventPanel.SetActive(false);
         OverworldController.Instance.EventPanelGotClosed(false);
-        
+        eventPanelText.gameObject.SetActive(false);
+        eventPanelText.text = ""; 
     }
     void CloseDeadVillagerEventPanel()
     {
@@ -324,8 +327,10 @@ public class Narrator : MonoBehaviour
         deadVillagerEventPanelOpen = false;
         eventPanel.SetActive(false);
         OverworldController.Instance.EventPanelGotClosed(false);
+        eventPanelText.gameObject.SetActive(false);
+        eventPanelText.text = ""; 
     }
-    
+
     bool spookException = false;
     void CloseSpookedEventPanel()
     { 

@@ -15,5 +15,5 @@ MonoBehaviour:
   villagerID: Vill6
   occupation: 6
   power: 0
-  isAlive: 0
-  sprite: {fileID: 21300000, guid: 3264cdf260627a64089637573eff821d, type: 3}
+  isAlive: 1
+  sprite: {fileID: 21300000, guid: 7d85d6349a0843646aa61af01ba4d3be, type: 3}
