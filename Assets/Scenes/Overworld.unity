@@ -5147,7 +5147,8 @@ AudioSource:
   m_GameObject: {fileID: 1265962005}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1670772977790426814, guid: 28e84e8521868484e9529812876a9e6b,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.213
@@ -5243,7 +5244,8 @@ AudioSource:
   m_GameObject: {fileID: 1265962005}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8401743179895549189, guid: 28e84e8521868484e9529812876a9e6b,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -5344,8 +5346,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fxAudio: {fileID: 1265962008}
   bgAudio: {fileID: 1265962007}
-  intro1Music: {fileID: 8300000, guid: b94f74696ec24ee459ce22d38782057d, type: 3}
-  intro2Music: {fileID: 8300000, guid: 378a7568aa8de6a429bb7e98e3d40aa4, type: 3}
+  intro1Music: {fileID: 8300000, guid: 9c500d7e51a5f5743b146d55c4f302fc, type: 3}
+  intro2Music: {fileID: 8300000, guid: f9237e4de2fd6f2409de4e6e3c49bfde, type: 3}
   overworldMusic: {fileID: 8300000, guid: 4c8e3aaa7b8c70747864b4fd39fb1647, type: 3}
   endMusic: {fileID: 8300000, guid: 0e40b83ab93c508409e749b743d270b5, type: 3}
   heroDash: {fileID: 8300000, guid: 4c30ebe24d09a044daf445563d2cb3cc, type: 3}
