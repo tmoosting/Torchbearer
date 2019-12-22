@@ -23,11 +23,14 @@ public class PlayerMovement : MonoBehaviour
     public Animator NotLitAnimator;
     //Player Audio Components
     public AudioSource PlayerAudio;
+    public AudioSource BGM;
     public AudioClip PlayerStep;
     public AudioClip PlayerJump;
     public AudioClip PlayerDash;
     public AudioClip PlayerDamage;
     public AudioClip PlayerCast;
+    public AudioClip LevelCleared;
+    public AudioClip LevelFailed;
     public float PitchRange = 0.2f; //Maximum deviation from starting pitch
     private float OriginalPitch; //.9 is recommended
     //Cinemachine components
@@ -72,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
     public float dashAngle = 1f;
     private bool DashPathActivated = false;
     private bool wasInPath = false;
+    private bool hasPlayed = false;
   
     private int PlayerLives = 3; // Player lives
     public Image[] hearts;
@@ -234,6 +238,15 @@ public class PlayerMovement : MonoBehaviour
                         {
                             horizontal = 1f;
                             LitAnimator.SetTrigger("Lit");
+                            if (!hasPlayed)
+                            {
+                                hasPlayed = true;
+                                BGM.Stop();
+                                BGM.clip = LevelCleared;
+                                BGM.loop = false;
+                                BGM.Play();
+                            }
+                            
                         }
                         vel.x = horizontal * maxspeed; //Alter horizontal velocity
                         PlayerAnimator.SetFloat("Speed", Mathf.Abs(horizontal * maxspeed));
@@ -538,6 +551,10 @@ public class PlayerMovement : MonoBehaviour
     }
     void Die()
     {
+        BGM.Stop();
+        BGM.clip = LevelFailed;
+        BGM.loop = false;
+        BGM.Play();
         PlayerLives = 0;
         foreach (Image heart in hearts)
         {
@@ -581,6 +598,10 @@ public class PlayerMovement : MonoBehaviour
             if (PlayerLives == 0)
             {
                 hearts[PlayerLives].sprite = emptyContainer;
+                PlayerAudio.Stop();
+                PlayerAudio.clip = PlayerDamage;
+                PlayerAudio.pitch = Random.Range(OriginalPitch - PitchRange, OriginalPitch + PitchRange);
+                PlayerAudio.Play();
                 Die();
             }
             else
