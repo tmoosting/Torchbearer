@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb5f7d1dfeae38d4fa72d3d5c3c57855, type: 3}
-  m_Name: Combinator 6
+  m_Name: Combinator 14
   m_EditorClassIdentifier: 
-  combinationString: "It might be a bitter future, but without any honey, it certainly
-    won\u2019t be sweet."
-  occupation1: 6
-  occupation2: 0
+  combinationString: "Now it\u2019s back to wooden tools. But without a dedicated
+    guard, the village seems ill-equipped to handle any future marauders. "
+  occupation1: 2
+  occupation2: 3
   occupation3: 0
   occupation4: 0
   occupation5: 0

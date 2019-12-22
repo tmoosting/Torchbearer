@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb5f7d1dfeae38d4fa72d3d5c3c57855, type: 3}
-  m_Name: Combinator 6
+  m_Name: Combinator 30
   m_EditorClassIdentifier: 
-  combinationString: "It might be a bitter future, but without any honey, it certainly
-    won\u2019t be sweet."
-  occupation1: 6
-  occupation2: 0
-  occupation3: 0
+  combinationString: "The villagers will be devoid of outside news, and don\u2019t
+    even have someone eyeing the land. And with no guard to watch the perimeter, easy
+    pickings is what they are. "
+  occupation1: 7
+  occupation2: 5
+  occupation3: 3
   occupation4: 0
   occupation5: 0
   occupation6: 0

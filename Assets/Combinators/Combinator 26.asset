@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb5f7d1dfeae38d4fa72d3d5c3c57855, type: 3}
-  m_Name: Combinator 6
+  m_Name: Combinator 26
   m_EditorClassIdentifier: 
-  combinationString: "It might be a bitter future, but without any honey, it certainly
-    won\u2019t be sweet."
-  occupation1: 6
-  occupation2: 0
-  occupation3: 0
+  combinationString: "No wool and no tools.. perhaps it\u2019s for the best the Weaver
+    didn\u2019t make it, either. "
+  occupation1: 5
+  occupation2: 2
+  occupation3: 4
   occupation4: 0
   occupation5: 0
   occupation6: 0

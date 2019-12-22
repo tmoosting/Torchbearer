@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb5f7d1dfeae38d4fa72d3d5c3c57855, type: 3}
-  m_Name: Combinator 6
+  m_Name: Combinator 17
   m_EditorClassIdentifier: 
-  combinationString: "It might be a bitter future, but without any honey, it certainly
-    won\u2019t be sweet."
-  occupation1: 6
-  occupation2: 0
+  combinationString: The sheep will run wild and free..joined in their dance by many
+    a bee..
+  occupation1: 5
+  occupation2: 6
   occupation3: 0
   occupation4: 0
   occupation5: 0
