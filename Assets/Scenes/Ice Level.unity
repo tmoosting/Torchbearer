@@ -18861,6 +18861,11 @@ PrefabInstance:
       propertyPath: maxTime
       value: 65
       objectReference: {fileID: 0}
+    - target: {fileID: 6428960009663657171, guid: 6215db441339de846bf442c6bea427cf,
+        type: 3}
+      propertyPath: BGM
+      value: 
+      objectReference: {fileID: 7551088415902794278}
     - target: {fileID: 8176376522341251510, guid: 6215db441339de846bf442c6bea427cf,
         type: 3}
       propertyPath: ghostDelay
