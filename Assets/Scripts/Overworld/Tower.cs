@@ -7,6 +7,8 @@ public class Tower : MonoBehaviour
     public Sprite levelSuccessSprite;
     public Sprite levelFailSprite;
     public Sprite flagSprite;
+    public GameObject cleared;
+    public GameObject failed;
     [HideInInspector]
     public bool explorable = false;
     [HideInInspector]
@@ -33,9 +35,16 @@ public class Tower : MonoBehaviour
     public void SetCompletionSprite()
     {
         if (SceneController.Instance.lastLevelSuccess == true)
+        {
             gameObject.GetComponent<SpriteRenderer>().sprite = levelSuccessSprite;
-        else 
+            cleared.SetActive(true);
+        }
+            
+        else
+        {
             gameObject.GetComponent<SpriteRenderer>().sprite = levelFailSprite;
+            failed.SetActive(true);
+        }  
     }
     public void SetFlagSprite()
     {
